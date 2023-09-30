@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.3.1",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "class-variance-authority": "^0.7.0",
@@ -22,13 +23,14 @@
   },
   "devDependencies": {
     "@types/node": "latest",
-    "framer-motion": "^10.16.4",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "framer-motion": "^10.16.4",
     "postcss": "latest",
+    "prisma": "^5.3.1",
     "tailwindcss": "latest",
     "typescript": "latest"
   }

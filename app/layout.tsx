@@ -4,6 +4,10 @@ import { Inter } from 'next/font/google';
 import TopMenu from '../components/TopMenu';
 import Foot from '../components/Foot';
 import { ThemeProvider } from '@/components/theme-provider';
+import TeamSwitcher from './dashboard/components/team-switcher';
+import { UserNav } from './dashboard/components/user-nav';
+import { MainNav } from './dashboard/components/main-nav';
+import { Search } from './dashboard/components/search';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -21,7 +25,8 @@ export default function RootLayout({
       {/* something to commit */}
       <ThemeProvider>
       <body className="  gradient-container  w-full flex flex-col justify-center items-center ">
-        {/* <TopMenu /> */}
+        <TopMenu />
+        
         {children}
 
         <Foot />

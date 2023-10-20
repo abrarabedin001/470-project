@@ -8,8 +8,9 @@ import TeamSwitcher from './dashboard/components/team-switcher';
 import { UserNav } from './dashboard/components/user-nav';
 import { MainNav } from './dashboard/components/main-nav';
 import { Search } from './dashboard/components/search';
+import AuthWrapper from './AuthWrapper';
 const inter = Inter({ subsets: ['latin'] });
-
+import { Toaster } from "@/components/ui/toaster"
 export const metadata: Metadata = {
   title: 'CleverCore',
   description: 'Automate, Analyze, and Amplify your Communication Processes',
@@ -29,13 +30,17 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
             >
-      <body className="  gradient-container  w-full flex flex-col justify-center items-center ">
-        <TopMenu />
-        
-        {children}
+        <AuthWrapper>
+          <body className="  gradient-container  w-full flex flex-col justify-center items-center ">
+            <TopMenu />
+          
+          {children}
 
-        <Foot />
-      </body>
+            <Foot />
+          </body>
+        
+        </AuthWrapper>
+      
       </ThemeProvider>
       
     </html>

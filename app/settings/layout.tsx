@@ -1,13 +1,16 @@
+"use client"
 import { Metadata } from "next"
 import Image from "next/image"
 
 import { Separator } from "@/components/ui/separator"
 import { SidebarNav } from "@/components/sidebar-nav"
+import { useUserStore } from '@/Controller/userStore'
+import { useRouter } from "next/navigation"
 
-export const metadata: Metadata = {
-  title: "Forms",
-  description: "Advanced form example using react-hook-form and Zod.",
-}
+// export const metadata: Metadata = {
+//   title: "Forms",
+//   description: "Advanced form example using react-hook-form and Zod.",
+// }
 
 const sidebarNavItems = [
   {
@@ -37,6 +40,12 @@ interface SettingsLayoutProps {
 }
 
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
+  const user = useUserStore((state) => state.user)
+  const router = useRouter()
+
+  if (!user) {
+    router.push('/')
+    return null}
   return (
     <>
       <div className="md:hidden">

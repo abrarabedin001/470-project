@@ -5,7 +5,7 @@ import TestimonialV2 from "../components/TestimonialV2";
 
 import Testimonial from "../components/Testimonial";
 import WhyChoseCleverCore from "../components/WhatIsCleverCore";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Home() {
   return (
@@ -14,6 +14,7 @@ export default function Home() {
     <WhyChoseCleverCore />
     <GettingStartedWithCleverCore />
     <TestimonialV2 />
+    <ToastContainer />
   </main>
   )
 }

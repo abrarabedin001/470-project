@@ -7,6 +7,10 @@ import Image from 'next/image';
 import HamburgerMenu from './HamburgerMenu';
 // import { NavigationMenu } from '@radix-ui/react-navigation-menu';
 import { NavigationMenuTop } from './ui/NavigationMenuTop';
+import { MainNav } from '@/app/dashboard/components/main-nav';
+import TeamSwitcher from '@/app/dashboard/components/team-switcher';
+import { Search } from '@/app/dashboard/components/search';
+import { UserNav } from '@/app/dashboard/components/user-nav';
 
 export default function TopMenu() {
   const [navColor, setnavColor] = useState('bg-white');
@@ -21,11 +25,12 @@ export default function TopMenu() {
     };
   }, []);
   return (
-    <div
-      className={`w-full    py-3 fixed left-0 top-0  z-50 flex justify-center items-center transition-all duration-500 ease-in-out ${navColor}`}
-    >
-      <div className="w-full container max-w-[1440px] lg:px-5 hidden lg:grid grid-cols-2 lg:grid-cols-3 justify-center ">
-        <a href="/" className="flex justify-start items-start ">
+    // <div
+    //   className={`w-full    py-3 fixed left-0 top-0  z-50 flex justify-center items-center transition-all duration-500 ease-in-out ${navColor}`}
+    // >
+      <div className="border-b w-full">
+          <div className="flex h-16 items-center px-4">
+          <a href="/" className="flex justify-start items-start ">
           <Image
             src="/main_logo.png"
             alt="clever-core"
@@ -34,31 +39,14 @@ export default function TopMenu() {
             className="max-w-full h-auto min-w-[200px] max-height-[50px] max-width-[250px]"
           />
         </a>
-
-        <div className="w-[501px] h-16 px-6 text-gray-700 justify-start items-center gap-6 hidden lg:inline-flex mr-16  ">
-          <div className=" justify-start items-center gap-2.5 flex">
-            <NavigationMenuTop />
+            <MainNav className="mx-6" />
+            <div className="ml-auto flex items-center space-x-4">
+            <TeamSwitcher />
+              <Search />
+              <UserNav />
+            </div>
           </div>
         </div>
-
-        <div className="hidden w-full lg:flex justify-end h-full items-center">
-          <PrimaryButton className="p-5 w-[180]">Login</PrimaryButton>
-        </div>
-        <HamburgerMenu />
-      </div>
-      <div className="w-full container pr-4 pl-4 flex items-center justify-between lg:hidden">
-        <a href="/" className="flex justify-start items-center ">
-          <Image
-            src="/main_logo.png"
-            alt="clever-core"
-            width={300}
-            height={100}
-            className="max-w-full h-auto min-w-[200px] max-height-[50px]  max-width-[250px]"
-          />
-        </a>
-
-        <HamburgerMenu />
-      </div>
-    </div>
+ 
   );
 }

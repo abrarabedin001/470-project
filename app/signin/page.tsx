@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 import { useUserStore } from '@/Controller/userStore'
 
 import { Icons } from '@/components/icons'
@@ -16,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { signIn, signInWithGoogle } from '@/Database/auth'
-
+import { ToastContainer, toast } from 'react-toastify';
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -29,17 +29,20 @@ function Page(): JSX.Element {
 
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
-        toast.error('Your password is incorrect')
+        toast("Wow so easy!")
       } else {
-        toast.error('An error occurred during sign-in')
+        
         // result?.currentUser?.displayName
       }
       console.log(error)
       return
+    }else{
+      toast("Wow so easy!")
+      router.push('/')
     }
-
+    toast("Wow so easy!")
     // Redirect to the admin page
-    router.push('/')
+    // 
   }
 
   // Handle Google sign-in
@@ -50,7 +53,7 @@ function Page(): JSX.Element {
       // Display and log any sign-in errors
       console.log(error)
       return
-    }
+    } else{toast.success('Login Successful')} 
 
     // Sign in successful
     console.log(user)

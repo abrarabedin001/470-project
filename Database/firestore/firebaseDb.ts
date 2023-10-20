@@ -11,6 +11,7 @@ import {
   orderBy,
   updateDoc,
   addDoc,
+  setDoc,
 } from 'firebase/firestore'
 
 export const dateFormatOptions = {
@@ -24,4 +25,16 @@ export const dateFormatOptions = {
 } as Intl.DateTimeFormatOptions
 
 export const db = getFirestore(firebase_app)
-// const users = collection(db, 'user')
+const users = collection(db, 'user')
+
+export async function createUser(uid: string) {
+  const userDoc = doc(db, 'user', uid)
+  await setDoc(userDoc, {
+    uid,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  })
+
+  // const userSnap = await getDoc(userDoc)
+  // return userSnap.data()
+}

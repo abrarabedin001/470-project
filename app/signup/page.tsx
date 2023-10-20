@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { signUp, signUpWithGoogle } from '@/Database/auth'
+import { createUser } from '@/Database/firestore/firebaseDb'
 
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')
@@ -36,6 +37,9 @@ function Page(): JSX.Element {
       }
       console.log(error)
       return
+    }else{
+      toast.success('Login Successful')
+      createUser(result?.user?.uid!)
     }
     console.log(result ,error)
     // Redirect to the admin page
@@ -50,6 +54,9 @@ function Page(): JSX.Element {
       // Display and log any sign-in errors
       console.log(error)
       return
+    }else{
+      toast.success('Login Successful')
+      // createUser(user?.uid!)
     }
 
     // Sign in successful

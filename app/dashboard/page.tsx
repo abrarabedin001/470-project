@@ -22,6 +22,8 @@ import { RecentSales } from "./components/recent-sales"
 import { Search } from "./components/search"
 import TeamSwitcher from "./components/team-switcher"
 import { UserNav } from "./components/user-nav"
+import { useUserStore } from '@/Controller/userStore'
+import { useRouter } from "next/navigation"
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -29,6 +31,11 @@ export const metadata: Metadata = {
 }
 
 export default function DashboardPage() {
+  const user = useUserStore((state) => state.user)
+  const router = useRouter()
+  if (!user) {
+    router.push('/')
+    return null}
   return (
     <>
       <div className="md:hidden">

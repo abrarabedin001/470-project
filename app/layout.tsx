@@ -10,7 +10,7 @@ import { MainNav } from './dashboard/components/main-nav';
 import { Search } from './dashboard/components/search';
 import AuthWrapper from './AuthWrapper';
 const inter = Inter({ subsets: ['latin'] });
-
+import { Toaster } from "@/components/ui/toaster"
 export const metadata: Metadata = {
   title: 'CleverCore',
   description: 'Automate, Analyze, and Amplify your Communication Processes',
@@ -38,6 +38,7 @@ export default function RootLayout({
 
             <Foot />
           </body>
+        
         </AuthWrapper>
       
       </ThemeProvider>

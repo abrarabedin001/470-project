@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components//ui/dropdown-menu"
 import { useRouter } from 'next/navigation'
-
+import Link from "next/link"
 
 export function UserNav() {
   const router = useRouter()
@@ -55,10 +55,25 @@ export function UserNav() {
             Billing
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href="/signin">
+            <DropdownMenuItem>
+              Sign In
+              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <Link href="/signup">
+            <DropdownMenuItem>
+              Sign Up
+              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <Link href="/settings">
+            <DropdownMenuItem>
+              Settings
+              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

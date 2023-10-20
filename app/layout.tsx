@@ -21,9 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-white">
-      {/* something to commit */}
-      <ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+     
+      <ThemeProvider 
+      attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            >
       <body className="  gradient-container  w-full flex flex-col justify-center items-center ">
         <TopMenu />
         

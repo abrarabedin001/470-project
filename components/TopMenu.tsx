@@ -11,6 +11,7 @@ import { MainNav } from '@/app/dashboard/components/main-nav';
 import TeamSwitcher from '@/app/dashboard/components/team-switcher';
 import { Search } from '@/app/dashboard/components/search';
 import { UserNav } from '@/app/dashboard/components/user-nav';
+import { ModeToggle } from './ModeToggle';
 
 export default function TopMenu() {
   const [navColor, setnavColor] = useState('bg-white');
@@ -41,7 +42,9 @@ export default function TopMenu() {
         </a>
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
+            <ModeToggle></ModeToggle>
             <TeamSwitcher />
+
               <Search />
               <UserNav />
             </div>

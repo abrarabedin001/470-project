@@ -7,9 +7,9 @@ import { BsFacebook } from 'react-icons/bs';
 
 export default function Foot() {
   return (
-    <div className="w-full h-full left-0 bottom-0 lg:bg-white flex justify-center mt-36 text-gray-700">
+    <div className="w-full h-full left-0 bottom-0  flex justify-center mt-36 text-gray-700">
       <div className="max-w-[1440px] w-full">
-        <div className="w-full  hidden lg:block bg-white ">
+        <div className="w-full  hidden lg:block  ">
           <div className="flex flex-row p-10 justify-between w-full  ">
             <div className=" text-zinc-800 text-base font-medium leading-normal py-5">
               © 2020 Wirefigma

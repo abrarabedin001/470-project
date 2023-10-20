@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signIn, signInWithGoogle } from '@/Database/auth'
+import { signUp, signUpWithGoogle } from '@/Database/auth'
 
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')
@@ -25,7 +25,7 @@ function Page(): JSX.Element {
     event.preventDefault()
 
     // Attempt to sign in with provided email and password
-    const { result, error } = await signIn(email, password)
+    const { result, error } = await signUp(email, password)
 
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
@@ -37,14 +37,14 @@ function Page(): JSX.Element {
       console.log(error)
       return
     }
-
+    console.log(result ,error)
     // Redirect to the admin page
-    router.push('/')
+    // router.push('/')
   }
 
   // Handle Google sign-in
   const handleGoogleSignIn = async () => {
-    const { user, error } = await signInWithGoogle()
+    const { user, error } = await signUpWithGoogle()
 
     if (error) {
       // Display and log any sign-in errors

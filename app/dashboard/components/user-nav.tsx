@@ -4,6 +4,7 @@ import {
   AvatarImage,
 } from "@/components//ui/avatar"
 import { Button } from "@/components//ui/button"
+import {signOutUser} from "@/Database/auth"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +15,17 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components//ui/dropdown-menu"
+import { useRouter } from 'next/navigation'
+
 
 export function UserNav() {
+  const router = useRouter()
+  const handleLogout = () => {
+    // setCurrentViewAccount({ name: '', id: '' })
+    signOutUser(() => {
+      router.push('/signin')
+    })
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -52,7 +62,7 @@ export function UserNav() {
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={()=>handleLogout()}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

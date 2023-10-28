@@ -11,7 +11,6 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { ref, uploadBytes, getDownloadURL, getStorage } from 'firebase/storage'
-
 export const auth = getAuth(firebase_app)
 import { db } from '../firestore/firebaseDb'
 import {
@@ -22,13 +21,11 @@ import {
 export async function signIn(email: string, password: string) {
   let result = null,
     error = null
-
   try {
     result = await signInWithEmailAndPassword(auth, email, password)
   } catch (e) {
     error = e as FirebaseError
   }
-
   return { result, error }
 }
 
@@ -42,13 +39,11 @@ export async function signInWithGoogle() {
   const provider = new GoogleAuthProvider()
   let result = null,
     error = null
-
   try {
     result = await signInWithPopup(auth, provider)
   } catch (e) {
     error = e as FirebaseError
   }
-
   return { result, error }
 }
 
@@ -93,8 +88,5 @@ export const updateUserProfileImage = async (file: File, customId: string) => {
     })
     return url
   }
-
-
-
   return null
 }

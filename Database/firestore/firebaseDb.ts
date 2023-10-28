@@ -41,6 +41,9 @@ export async function createUser(uid: string) {
   // return userSnap.data()
 }
 
+
+
+/////////////////////
 const bugs = collection(db, 'bugs');
 
 
@@ -61,7 +64,7 @@ export const updateBugStatus = async (bugId: string, status: string): Promise<vo
   await updateDoc(bugDocRef, { status });
 }
 
-
+/////////////////////
 const tasks = collection(db, 'tasks');
 
 
@@ -82,6 +85,14 @@ export const updateTask = async (taskId: string, updates: Record<string, any>): 
   await updateDoc(taskDocRef, updates);
 }
 
+export const deleteTask = async (taskId: string): Promise<void> => {
+  const taskDocRef = doc(tasks, taskId);
+  await runTransaction(db, async (transaction) => {
+    transaction.delete(taskDocRef);
+  });
+}
+
+/////////////////////
 const teams = collection(db, 'teams');
 
 export const createTeam = async (teamName: string, adminId: string): Promise<string> => {

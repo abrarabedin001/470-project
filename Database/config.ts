@@ -23,21 +23,24 @@ const firebaseConfig2 = {
 // NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID = G - F91332VJM1
 
 
-export const firebaseConfig = {
-  apiKey: 'AIzaSyDLO1SpyHgSlFVgASfeSivkR0_LMi_pwE0',
+const firebaseConfig = {
 
-  authDomain: 'cse470-f7ddf.firebaseapp.com',
+  apiKey: "AIzaSyAyka1l_uySKA2vMaADshMFPbM0rM4edYY",
 
-  projectId: 'ccse470-f7ddf',
+  authDomain: "cse470-6fd25.firebaseapp.com",
 
-  storageBucket: 'cse470-f7ddf.appspot.com',
+  projectId: "cse470-6fd25",
 
-  messagingSenderId: '1093399606317',
+  storageBucket: "cse470-6fd25.appspot.com",
 
-  appId: '1:1093399606317:web:d0858679e283b3795d74a4',
+  messagingSenderId: "638756388365",
 
-  measurementId: 'G-F91332VJM1',
+  appId: "1:638756388365:web:ebea075969c185f86c9f44",
+
+  measurementId: "G-3WW53ZQRZ0"
+
 };
+
 // Initialize Firebase
 let firebase_app = initializeApp(firebaseConfig);
 

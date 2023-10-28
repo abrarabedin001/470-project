@@ -33,7 +33,7 @@
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
     "encoding": "^0.1.13",
-    "firebase": "^10.5.0",
+    "firebase": "^10.5.2",
     "firebase-admin": "^11.11.0",
     "lucide-react": "^0.279.0",
     "next": "latest",

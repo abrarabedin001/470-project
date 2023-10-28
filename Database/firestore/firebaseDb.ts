@@ -29,7 +29,7 @@ const users = collection(db, 'user')
 
 
 
-export async function createUser(uid: string) {
+export async function createUser(uid: string, displayName: string) {
   console.log('createUser', uid)
   const userRef = doc(db, "users", uid); // Specify the collection and document ID
 
@@ -38,9 +38,7 @@ export async function createUser(uid: string) {
       uid,
       createdAt: new Date(),
       updatedAt: new Date(),
-      first: "Ada",
-      last: "Lovelace",
-      born: 1815
+      displayName,
     });
     console.log("User created with UID: ", uid);
   } catch (e) {

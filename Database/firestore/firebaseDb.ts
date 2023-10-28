@@ -42,86 +42,194 @@ export async function createUser(uid: string) {
 }
 
 
-
 /////////////////////
 const bugs = collection(db, 'bugs');
 
-
+export const getAllBugsInTeam = async (teamId: string): Promise<BugDetails[]> => {
+  try {
+    const bugsQuery = query(bugs, where('teamId', '==', teamId));
+    const querySnapshot = await getDocs(bugsQuery);
+    const allBugs = querySnapshot.docs.map(doc => doc.data() as BugDetails);
+    console.log('success: Retrieved all bugs in team');
+    return allBugs;
+  } catch (error) {
+    console.error('error: Failed to retrieve all bugs in team', error);
+    throw error;
+  }
+}
 
 export const logBug = async (details: BugDetails): Promise<string> => {
-  const bugDocRef = doc(bugs);
-  await setDoc(bugDocRef, { ...details, status: 'Open', createdAt: new Date() });
-  return bugDocRef.id;
+  try {
+    const bugDocRef = doc(bugs);
+    await setDoc(bugDocRef, { ...details, status: 'Open', createdAt: new Date() });
+    console.log('success: Bug logged');
+    return bugDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to log bug', error);
+    throw error;
+  }
 }
 
 export const assignBug = async (bugId: string, assigneeId: string): Promise<void> => {
-  const bugDocRef = doc(bugs, bugId);
-  await updateDoc(bugDocRef, { assigneeId });
+  try {
+    const bugDocRef = doc(bugs, bugId);
+    await updateDoc(bugDocRef, { assigneeId });
+    console.log('success: Bug assigned');
+  } catch (error) {
+    console.error('error: Failed to assign bug', error);
+    throw error;
+  }
 }
 
 export const updateBugStatus = async (bugId: string, status: string): Promise<void> => {
-  const bugDocRef = doc(bugs, bugId);
-  await updateDoc(bugDocRef, { status });
+  try {
+    const bugDocRef = doc(bugs, bugId);
+    await updateDoc(bugDocRef, { status, updateAt: new Date() });
+    console.log('success: Bug status updated');
+  } catch (error) {
+    console.error('error: Failed to update bug status', error);
+    throw error;
+  }
 }
+
+export const deleteBug = async (bugId: string): Promise<void> => {
+  try {
+    const bugDocRef = doc(bugs, bugId);
+    await runTransaction(db, async (transaction) => {
+      transaction.delete(bugDocRef);
+    });
+    console.log('success: Bug deleted');
+  } catch (error) {
+    console.error('error: Failed to delete bug', error);
+    throw error;
+  }
+}
+
+
 
 /////////////////////
 const tasks = collection(db, 'tasks');
 
-
+export const getAllTasksInTeam = async (teamId: string): Promise<TaskDetails[]> => {
+  try {
+    const tasksQuery = query(tasks, where('teamId', '==', teamId));
+    const querySnapshot = await getDocs(tasksQuery);
+    const allTasks = querySnapshot.docs.map(doc => doc.data() as TaskDetails);
+    console.log('success: Retrieved all tasks in team');
+    return allTasks;
+  } catch (error) {
+    console.error('error: Failed to retrieve all tasks in team', error);
+    throw error;
+  }
+}
 
 export const createTask = async (details: TaskDetails): Promise<string> => {
-  const taskDocRef = doc(tasks);
-  await setDoc(taskDocRef, { ...details, status: 'Open', createdAt: new Date() });
-  return taskDocRef.id;
+  try {
+    const taskDocRef = doc(tasks);
+    await setDoc(taskDocRef, { ...details, status: 'Open', createdAt: new Date() });
+    console.log('success: Task created');
+    return taskDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to create task', error);
+    throw error;
+  }
 }
 
 export const assignTask = async (taskId: string, assigneeId: string): Promise<void> => {
-  const taskDocRef = doc(tasks, taskId);
-  await updateDoc(taskDocRef, { assigneeId });
+  try {
+    const taskDocRef = doc(tasks, taskId);
+    await updateDoc(taskDocRef, { assigneeId });
+    console.log('success: Task assigned');
+  } catch (error) {
+    console.error('error: Failed to assign task', error);
+    throw error;
+  }
 }
 
 export const updateTask = async (taskId: string, updates: Record<string, any>): Promise<void> => {
-  const taskDocRef = doc(tasks, taskId);
-  await updateDoc(taskDocRef, updates);
+  try {
+    const taskDocRef = doc(tasks, taskId);
+    await updateDoc(taskDocRef, updates);
+    console.log('success: Task updated');
+  } catch (error) {
+    console.error('error: Failed to update task', error);
+    throw error;
+  }
 }
 
 export const deleteTask = async (taskId: string): Promise<void> => {
-  const taskDocRef = doc(tasks, taskId);
-  await runTransaction(db, async (transaction) => {
-    transaction.delete(taskDocRef);
-  });
+  try {
+    const taskDocRef = doc(tasks, taskId);
+    await runTransaction(db, async (transaction) => {
+      transaction.delete(taskDocRef);
+    });
+    console.log('success: Task deleted');
+  } catch (error) {
+    console.error('error: Failed to delete task', error);
+    throw error;
+  }
 }
 
 /////////////////////
 const teams = collection(db, 'teams');
 
 export const createTeam = async (teamName: string, adminId: string): Promise<string> => {
-  const teamDocRef = doc(teams);
-  await setDoc(teamDocRef, { name: teamName, admin: adminId, createdAt: new Date() });
-  return teamDocRef.id;
+  try {
+    const teamDocRef = doc(teams);
+    await setDoc(teamDocRef, { name: teamName, admin: adminId, createdAt: new Date() });
+    console.log('success: Team created');
+    return teamDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to create team', error);
+    throw error;
+  }
 }
 
 export const addTeamMember = async (teamId: string, memberId: string): Promise<void> => {
-  const membersCollection = collection(db, 'teams', teamId, 'members');
-  const memberDocRef = doc(membersCollection, memberId);
-  await setDoc(memberDocRef, { joinedAt: new Date() });
+  try {
+    const membersCollection = collection(db, 'teams', teamId, 'members');
+    const memberDocRef = doc(membersCollection, memberId);
+    await setDoc(memberDocRef, { joinedAt: new Date() });
+    console.log('success: Team member added');
+  } catch (error) {
+    console.error('error: Failed to add team member', error);
+    throw error;
+  }
 }
 
 export const removeTeamMember = async (teamId: string, memberId: string): Promise<void> => {
-  const memberDocRef = doc(db, 'teams', teamId, 'members', memberId);
-  await runTransaction(db, async (transaction) => {
-    transaction.delete(memberDocRef);
-  });
+  try {
+    const memberDocRef = doc(db, 'teams', teamId, 'members', memberId);
+    await runTransaction(db, async (transaction) => {
+      transaction.delete(memberDocRef);
+    });
+    console.log('success: Team member removed');
+  } catch (error) {
+    console.error('error: Failed to remove team member', error);
+    throw error;
+  }
 }
 
 export const assignTeamRole = async (teamId: string, memberId: string, role: string): Promise<void> => {
-  const memberDocRef = doc(db, 'teams', teamId, 'members', memberId);
-  await updateDoc(memberDocRef, { role });
+  try {
+    const memberDocRef = doc(db, 'teams', teamId, 'members', memberId);
+    await updateDoc(memberDocRef, { role });
+    console.log('success: Team role assigned');
+  } catch (error) {
+    console.error('error: Failed to assign team role', error);
+    throw error;
+  }
 }
 
 export const deleteTeam = async (teamId: string): Promise<void> => {
-  const teamDocRef = doc(teams, teamId);
-  await runTransaction(db, async (transaction) => {
-    transaction.delete(teamDocRef);
-  });
+  try {
+    const teamDocRef = doc(teams, teamId);
+    await runTransaction(db, async (transaction) => {
+      transaction.delete(teamDocRef);
+    });
+    console.log('success: Team deleted');
+  } catch (error) {
+    console.error('error: Failed to delete team', error);
+    throw error;
+  }
 }

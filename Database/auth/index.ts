@@ -13,7 +13,6 @@ import {
   // updateProfile,
 } from 'firebase/auth'
 import { ref, uploadBytes, getDownloadURL, getStorage } from 'firebase/storage'
-
 export const auth = getAuth(firebase_app)
 import { db } from '../firestore/firebaseDb'
 import {
@@ -24,13 +23,11 @@ const googleAuthProvider = new GoogleAuthProvider();
 export async function signIn(email: string, password: string) {
   let result = null,
     error = null
-
   try {
     result = await signInWithEmailAndPassword(auth, email, password)
   } catch (e) {
     error = e as FirebaseError
   }
-
   return { result, error }
 }
 export async function signUp(email: string, password: string) {

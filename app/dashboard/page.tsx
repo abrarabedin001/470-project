@@ -31,8 +31,8 @@ export default function DashboardPage() {
   const user = useUserStore((state) => state.user)
   const router = useRouter()
   if (!user) {
-    router.push('/')
-    return null}
+    
+    return "null"}
   return (
     <>
       <div className="md:hidden">

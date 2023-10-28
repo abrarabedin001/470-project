@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-// import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { useUserStore } from '@/Controller/userStore'
 
 import { Icons } from '@/components/icons'
@@ -15,8 +15,9 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signIn, signInWithGoogle } from '@/Database/auth'
-import { ToastContainer, toast } from 'react-toastify';
+import { signUp, signUpWithGoogle } from '@/Database/auth'
+import { createUser } from '@/Database/firestore/firebaseDb'
+
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -25,35 +26,38 @@ function Page(): JSX.Element {
     event.preventDefault()
 
     // Attempt to sign in with provided email and password
-    const { result, error } = await signIn(email, password)
-
+    const { result, error } = await signUp(email, password)
+    // createUser(result?.user?.uid!,result?.user?.displayName!)
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
-        toast("Wow so easy!")
+        toast.error('Your password is incorrect')
       } else {
-        
+        toast.error('An error occurred during sign-in')
         // result?.currentUser?.displayName
       }
       console.log(error)
       return
     }else{
-      toast("Wow so easy!")
-      router.push('/')
+      toast.success('Login Successful')
+      createUser(result?.user?.uid!,result?.user?.email!)
     }
-    toast("Wow so easy!")
+    console.log(result ,error)
     // Redirect to the admin page
-    // 
+    // router.push('/')
   }
 
   // Handle Google sign-in
   const handleGoogleSignIn = async () => {
-    const { user, error } = await signInWithGoogle()
+    const { user, error } = await signUpWithGoogle()
 
     if (error) {
       // Display and log any sign-in errors
       console.log(error)
       return
-    } else{toast.success('Login Successful')} 
+    }else{
+      toast.success('Login Successful')
+      // createUser(user?.uid!)
+    }
 
     // Sign in successful
     console.log(user)

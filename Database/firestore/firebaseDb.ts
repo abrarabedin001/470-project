@@ -13,6 +13,7 @@ const users = collection(db, 'user')
 console.log('Firestore Instance Created:', db);
 
 
+
 export const dateFormatOptions = {
   day: 'numeric',
   month: 'long',
@@ -25,14 +26,21 @@ export const dateFormatOptions = {
 
 
 
-export async function createUser(uid: string) {
-  const userDoc = doc(db, 'user', uid)
-  await setDoc(userDoc, {
-    uid,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  })
+export async function createUser(uid: string, displayName: string) {
+  console.log('createUser', uid)
+  const userRef = doc(db, "users", uid); // Specify the collection and document ID
 
+  try {
+    await setDoc(userRef, {
+      uid,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      displayName,
+    });
+    console.log("User created with UID: ", uid);
+  } catch (e) {
+    console.error("Error creating user: ", e);
+  }
   // const userSnap = await getDoc(userDoc)
   // return userSnap.data()
 }
@@ -266,4 +274,7 @@ export const deleteTeam = async (teamId: string): Promise<void> => {
     console.error('error: Failed to delete team', error);
     throw error;
   }
+
 }
+
+

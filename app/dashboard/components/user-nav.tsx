@@ -4,6 +4,7 @@ import {
   AvatarImage,
 } from "@/components//ui/avatar"
 import { Button } from "@/components//ui/button"
+import {signOutUser} from "@/Database/auth"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +15,17 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components//ui/dropdown-menu"
+import { useRouter } from 'next/navigation'
+import Link from "next/link"
 
 export function UserNav() {
+  const router = useRouter()
+  const handleLogout = () => {
+    // setCurrentViewAccount({ name: '', id: '' })
+    signOutUser(() => {
+      router.push('/signin')
+    })
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -45,14 +55,29 @@ export function UserNav() {
             Billing
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href="/signin">
+            <DropdownMenuItem>
+              Sign In
+              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <Link href="/signup">
+            <DropdownMenuItem>
+              Sign Up
+              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          <Link href="/settings">
+            <DropdownMenuItem>
+              Settings
+              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={()=>handleLogout()}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

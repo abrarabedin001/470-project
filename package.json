@@ -32,7 +32,9 @@
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
-    "firebase": "^10.5.0",
+    "encoding": "^0.1.13",
+    "firebase": "^10.5.2",
+    "firebase-admin": "^11.11.0",
     "lucide-react": "^0.279.0",
     "next": "latest",
     "next-themes": "^0.2.1",
@@ -46,7 +48,8 @@
     "recharts": "^2.9.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.4.4"
   },
   "devDependencies": {
     "@types/node": "latest",

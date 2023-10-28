@@ -27,7 +27,7 @@ function Page(): JSX.Element {
 
     // Attempt to sign in with provided email and password
     const { result, error } = await signUp(email, password)
-
+    // createUser(result?.user?.uid!,result?.user?.displayName!)
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
         toast.error('Your password is incorrect')
@@ -39,7 +39,7 @@ function Page(): JSX.Element {
       return
     }else{
       toast.success('Login Successful')
-      createUser(result?.user?.uid!)
+      createUser(result?.user?.uid!,result?.user?.email!)
     }
     console.log(result ,error)
     // Redirect to the admin page

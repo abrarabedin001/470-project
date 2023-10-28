@@ -1,5 +1,5 @@
 "use client"
-import { Metadata } from "next"
+
 import Image from "next/image"
 
 import { Button } from "@/components//ui/button"
@@ -26,17 +26,13 @@ import { UserNav } from "./components/user-nav"
 import { useUserStore } from '@/Controller/userStore'
 import { useRouter } from "next/navigation"
 
-// export const metadata: Metadata = {
-//   title: "Dashboard",
-//   description: "Example dashboard app built using the components.",
-// }
 
 export default function DashboardPage() {
   const user = useUserStore((state) => state.user)
   const router = useRouter()
   if (!user) {
-    router.push('/')
-    return null}
+    
+    return "null"}
   return (
     <>
       <div className="md:hidden">

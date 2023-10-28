@@ -14,7 +14,7 @@ import {
 
 } from 'firebase/firestore'
 import { collection, doc, getFirestore, runTransaction, setDoc, updateDoc } from 'firebase/firestore';
-
+import { BugDetails, TaskDetails } from '../../lib/type';
 
 export const dateFormatOptions = {
   day: 'numeric',
@@ -43,12 +43,7 @@ export async function createUser(uid: string) {
 
 const bugs = collection(db, 'bugs');
 
-interface BugDetails {
-  severity: string;
-  description: string;
-  screenshots?: string[];
-  // any other fields that you want to include
-}
+
 
 export const logBug = async (details: BugDetails): Promise<string> => {
   const bugDocRef = doc(bugs);
@@ -69,13 +64,7 @@ export const updateBugStatus = async (bugId: string, status: string): Promise<vo
 
 const tasks = collection(db, 'tasks');
 
-interface TaskDetails {
-  title: string;
-  description: string;
-  priority: string;
-  deadline: Date;
-  // any other fields that you want to include
-}
+
 
 export const createTask = async (details: TaskDetails): Promise<string> => {
   const taskDocRef = doc(tasks);

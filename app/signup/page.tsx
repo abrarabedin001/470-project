@@ -26,22 +26,23 @@ function Page(): JSX.Element {
     event.preventDefault()
 
     // Attempt to sign in with provided email and password
-    const { result, error } = await signUp(email, password)
-
-    if (error) {
-      if (error.code === 'auth/invalid-login-credentials') {
-        toast.error('Your password is incorrect')
-      } else {
-        toast.error('An error occurred during sign-in')
-        // result?.currentUser?.displayName
-      }
-      console.log(error)
-      return
-    }else{
-      toast.success('Login Successful')
-      createUser(result?.user?.uid!)
-    }
-    console.log(result ,error)
+    // const { result, error } = await signUp(email, password)
+    // createUser(result?.user?.uid!)
+    createUser("Asdfasd")
+    // if (error) {
+    //   if (error.code === 'auth/invalid-login-credentials') {
+    //     toast.error('Your password is incorrect')
+    //   } else {
+    //     toast.error('An error occurred during sign-in')
+    //     // result?.currentUser?.displayName
+    //   }
+    //   console.log(error)
+    //   return
+    // }else{
+    //   toast.success('Login Successful')
+    //   createUser(result?.user?.uid!)
+    // }
+    // console.log(result ,error)
     // Redirect to the admin page
     // router.push('/')
   }

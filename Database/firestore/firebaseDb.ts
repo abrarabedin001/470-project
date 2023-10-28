@@ -178,54 +178,54 @@ export const deleteTask = async (taskId: string): Promise<void> => {
 const teams = collection(db, 'teams');
 
 
-export const createTeam = async (teamName: string, adminId: string): Promise<void> => {
-  try {
-    const docRef = await addDoc(collection(db, 'teams'), {
-      name: 'Test Team',
-      admin: 'Test Admin',
-      createdAt: new Date(),
-    });
-    console.log('Document written with ID: ', docRef.id);
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
-}
-
-export async function addSampleData() {
-  let teamId = 'UMcdZGjAIjfsQ8OJ0E4e '
-  try {
-    const teamDocRef = doc(db, 'teams', teamId);
-    console.log("teamDocRef", teamDocRef)
-    const teamDocSnap = await getDoc(teamDocRef);
-    console.log("teamDocSnap", teamDocSnap)
-
-    if (teamDocSnap.exists()) {
-      console.log('Team data:', teamDocSnap.data());
-      return teamDocSnap.data();
-    } else {
-      console.log('No such team!');
-      return null;
-    }
-  } catch (error) {
-    console.error('Error getting team:', error);
-    throw error;
-  }
-}
-
-
-// export const createTeam = async (teamName: string, adminId: string): Promise<string> => {
-//   console.log('teamName', teamName);
+// export const createTeam = async (teamName: string, adminId: string): Promise<void> => {
 //   try {
-//     const teamDocRef = doc(teams);
-//     console.log('teamDocRef', teamDocRef);
-//     await setDoc(teamDocRef, { name: teamName, admin: adminId, createdAt: new Date() });
-//     console.log('success: Team created with ID:', teamDocRef.id);
-//     return teamDocRef.id;
+//     const docRef = await addDoc(collection(db, 'teams'), {
+//       name: 'Test Team',
+//       admin: 'Test Admin',
+//       createdAt: new Date(),
+//     });
+//     console.log('Document written with ID: ', docRef.id);
+//   } catch (e) {
+//     console.error('Error adding document: ', e);
+//   }
+// }
+
+// export async function addSampleData() {
+//   let teamId = 'UMcdZGjAIjfsQ8OJ0E4e '
+//   try {
+//     const teamDocRef = doc(db, 'teams', teamId);
+//     console.log("teamDocRef", teamDocRef)
+//     const teamDocSnap = await getDoc(teamDocRef);
+//     console.log("teamDocSnap", teamDocSnap)
+
+//     if (teamDocSnap.exists()) {
+//       console.log('Team data:', teamDocSnap.data());
+//       return teamDocSnap.data();
+//     } else {
+//       console.log('No such team!');
+//       return null;
+//     }
 //   } catch (error) {
-//     console.error('error: Failed to create team', error);
+//     console.error('Error getting team:', error);
 //     throw error;
 //   }
 // }
+
+
+export const createTeam = async (teamName: string, adminId: string): Promise<string> => {
+  console.log('teamName', teamName);
+  try {
+    const teamDocRef = doc(teams);
+    console.log('teamDocRef', teamDocRef);
+    await setDoc(teamDocRef, { name: teamName, admin: adminId, createdAt: new Date() });
+    console.log('success: Team created with ID:', teamDocRef.id);
+    return teamDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to create team', error);
+    throw error;
+  }
+}
 
 export const addTeamMember = async (teamId: string, memberId: string): Promise<void> => {
   try {

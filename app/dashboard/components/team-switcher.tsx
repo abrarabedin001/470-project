@@ -46,17 +46,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components//ui/select"
+import { createTeam } from "@/Database/firestore/firebaseDb"
+import TeamForm from "@/components/CreateTeamForm"
 
 const groups = [
-  {
-    label: "Personal Account",
-    teams: [
-      {
-        label: "Alicia Koch",
-        value: "personal",
-      },
-    ],
-  },
+  // {
+  //   label: "Personal Account",
+  //   teams: [
+  //     {
+  //       label: "Alicia Koch",
+  //       value: "personal",
+  //     },
+  //   ],
+  // },
   {
     label: "Teams",
     teams: [
@@ -84,6 +86,20 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const [selectedTeam, setSelectedTeam] = React.useState<Team>(
     groups[0].teams[0]
   )
+
+  const adminId = 'p1nixi24VsW1AteaGeOHTcOeJVF3'; // Replace with actual admin ID
+
+  const handleTeamSubmit = async (teamDetails:any) => {
+    console.log('Team Details:', teamDetails);
+    // addSampleData()
+    // Here, you can call the createTeam function to save the team details to your database
+    try {
+      const teamId = await createTeam(teamDetails.name, teamDetails.adminId);
+      console.log('Team Created with ID:', teamId);
+    } catch (error) {
+      console.error('Error creating team:', error);
+    }
+  };
 
   return (
     <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
@@ -173,11 +189,12 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         </DialogHeader>
         <div>
           <div className="space-y-4 py-2 pb-4">
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <Label htmlFor="name">Team name</Label>
               <Input id="name" placeholder="Acme Inc." />
-            </div>
-            <div className="space-y-2">
+            </div> */}
+            <TeamForm onSubmit={handleTeamSubmit} adminId={adminId} />
+            {/* <div className="space-y-2">
               <Label htmlFor="plan">Subscription plan</Label>
               <Select>
                 <SelectTrigger>
@@ -198,14 +215,14 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                   </SelectItem>
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
           </div>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => setShowNewTeamDialog(false)}>
             Cancel
           </Button>
-          <Button type="submit">Continue</Button>
+         
         </DialogFooter>
       </DialogContent>
     </Dialog>

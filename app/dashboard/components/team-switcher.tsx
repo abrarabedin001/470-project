@@ -48,6 +48,7 @@ import {
 } from "@/components//ui/select"
 import { createTeam } from "@/Database/firestore/firebaseDb"
 import TeamForm from "@/components/CreateTeamForm"
+import { useUserStore } from '@/Controller/userStore'
 
 const groups = [
   // {
@@ -87,8 +88,9 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     groups[0].teams[0]
   )
   const [loading, setLoading] = React.useState(false)
+  const user = useUserStore((state) => state.user)
 
-  const adminId = 'p1nixi24VsW1AteaGeOHTcOeJVF3'; // Replace with actual admin ID
+  const adminId = user?.uid; // Replace with actual admin ID
 
   const handleTeamSubmit = async (teamDetails:any) => {
     console.log('Team Details:', teamDetails);
@@ -104,7 +106,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   };
 
   return (
-    <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
+    <Dialog open={showNewTeamDialog}  onOpenChange={setShowNewTeamDialog}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -182,7 +184,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
           </Command>
         </PopoverContent>
       </Popover>
-      <DialogContent>
+      <DialogContent className="w-[200px]" >
         <DialogHeader>
           <DialogTitle>Create team</DialogTitle>
           <DialogDescription>
@@ -195,7 +197,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               <Label htmlFor="name">Team name</Label>
               <Input id="name" placeholder="Acme Inc." />
             </div> */}
-            <TeamForm onSubmit={handleTeamSubmit} loading={loading} setLoading={setLoading} adminId={adminId} />
+            <TeamForm onSubmit={handleTeamSubmit} loading={loading} setLoading={setLoading} adminId={adminId!} />
             {/* <div className="space-y-2">
               <Label htmlFor="plan">Subscription plan</Label>
               <Select>

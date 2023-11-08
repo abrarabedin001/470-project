@@ -20,7 +20,7 @@ export default function ExpPage() {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Create Team</h1>
-      <TeamForm onSubmit={handleTeamSubmit} adminId={adminId} />
+      {/* <TeamForm onSubmit={handleTeamSubmit} adminId={adminId} /> */}
     </div>
   );
 }

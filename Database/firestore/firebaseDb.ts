@@ -4,7 +4,7 @@ import {
   getDocs,
   query,
   where,
-  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc
+  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc, arrayUnion
 } from 'firebase/firestore';
 import { BugDetails, TaskDetails } from '../../lib/type';
 export const db = getFirestore(firebase_app)
@@ -27,22 +27,29 @@ export const dateFormatOptions = {
 
 
 export async function createUser(uid: string, displayName: string) {
-  console.log('createUser', uid)
+  console.log('Checking for user with UID:', uid);
   const userRef = doc(db, "users", uid); // Specify the collection and document ID
 
   try {
-    await setDoc(userRef, {
-      uid,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      displayName,
-    });
-    console.log("User created with UID: ", uid);
+    // Check if the user already exists
+    const userSnap = await getDoc(userRef);
+    if (userSnap.exists()) {
+      // If the user exists, log and do nothing
+      console.log(`User with UID: ${uid} already exists.`);
+    } else {
+      // If the user does not exist, create a new user document
+      await setDoc(userRef, {
+        uid,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        displayName,
+        teams: [],
+      });
+      console.log("User created with UID: ", uid);
+    }
   } catch (e) {
-    console.error("Error creating user: ", e);
+    console.error("Error accessing user: ", e);
   }
-  // const userSnap = await getDoc(userDoc)
-  // return userSnap.data()
 }
 
 
@@ -178,48 +185,25 @@ export const deleteTask = async (taskId: string): Promise<void> => {
 const teams = collection(db, 'teams');
 
 
-// export const createTeam = async (teamName: string, adminId: string): Promise<void> => {
-//   try {
-//     const docRef = await addDoc(collection(db, 'teams'), {
-//       name: 'Test Team',
-//       admin: 'Test Admin',
-//       createdAt: new Date(),
-//     });
-//     console.log('Document written with ID: ', docRef.id);
-//   } catch (e) {
-//     console.error('Error adding document: ', e);
-//   }
-// }
-
-// export async function addSampleData() {
-//   let teamId = 'UMcdZGjAIjfsQ8OJ0E4e '
-//   try {
-//     const teamDocRef = doc(db, 'teams', teamId);
-//     console.log("teamDocRef", teamDocRef)
-//     const teamDocSnap = await getDoc(teamDocRef);
-//     console.log("teamDocSnap", teamDocSnap)
-
-//     if (teamDocSnap.exists()) {
-//       console.log('Team data:', teamDocSnap.data());
-//       return teamDocSnap.data();
-//     } else {
-//       console.log('No such team!');
-//       return null;
-//     }
-//   } catch (error) {
-//     console.error('Error getting team:', error);
-//     throw error;
-//   }
-// }
 
 
 export const createTeam = async (teamName: string, adminId: string): Promise<string> => {
   console.log('teamName', teamName);
   try {
-    const teamDocRef = doc(teams);
+    // Create a new team document reference in the "teams" collection
+    const teamDocRef = doc(collection(db, "teams"));
     console.log('teamDocRef', teamDocRef);
+
+    // Set the new team document with the provided team name and admin ID
     await setDoc(teamDocRef, { name: teamName, admin: adminId, createdAt: new Date() });
     console.log('success: Team created with ID:', teamDocRef.id);
+
+    // Update the user's document with the new team ID in the "users" collection
+    const userDocRef = doc(db, "users", adminId);
+    await updateDoc(userDocRef, {
+      teams: arrayUnion(teamDocRef.id) // Assuming 'teams' is an array of team IDs
+    });
+
     return teamDocRef.id;
   } catch (error) {
     console.error('error: Failed to create team', error);

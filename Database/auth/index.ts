@@ -43,30 +43,26 @@ export async function signUp(email: string, password: string) {
 }
 
 export async function signUpWithGoogle() {
-  let user = null,
-    error = null
-  signInWithPopup(auth, googleAuthProvider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
-      // The signed-in user info.
-      user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      error = error as FirebaseError
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
+  let user: any = null,
+    error: any = null
+  try {
+    let result = await signInWithPopup(auth, googleAuthProvider)
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential?.accessToken;
+    user = result.user;
+  } catch (e) {
+    error = error as FirebaseError
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+
+  }
 
   return { user, error }
+
 }
 
 export async function signOutUser(onSignOut: () => void) {

@@ -201,13 +201,40 @@ export const createTeam = async (teamName: string, adminId: string): Promise<str
     // Update the user's document with the new team ID in the "users" collection
     const userDocRef = doc(db, "users", adminId);
     await updateDoc(userDocRef, {
-      teams: arrayUnion(teamDocRef.id) // Assuming 'teams' is an array of team IDs
+      teams: arrayUnion({ id: teamDocRef.id, name: teamName }) // Assuming 'teams' is an array of team IDs
     });
 
     return teamDocRef.id;
   } catch (error) {
     console.error('error: Failed to create team', error);
     throw error;
+  }
+}
+export const getUserTeams = async (userId: string): Promise<{ id: string, name: string }[]> => {
+  try {
+    // Reference to the user's document in the "users" collection
+    const userDocRef = doc(db, "users", userId);
+
+    // Get the user's document
+    const userSnap = await getDoc(userDocRef);
+
+    if (userSnap.exists()) {
+      // Get the data from the user's document
+      const userData = userSnap.data();
+
+      // Access the 'teams' array from the user's data
+      const teams = userData.teams || []; // If 'teams' does not exist, default to an empty array
+
+      console.log(`Retrieved teams for user ${userId}:`, teams);
+      return teams;
+    } else {
+      // Handle the case where the user does not exist
+      console.log(`No user found with ID: ${userId}`);
+      return []; // Return an empty array if the user does not exist
+    }
+  } catch (error) {
+    console.error('Error retrieving user teams:', error);
+    throw error; // Rethrow the error after logging it
   }
 }
 

@@ -50,38 +50,52 @@ import { createTeam } from "@/Database/firestore/firebaseDb"
 import TeamForm from "@/components/CreateTeamForm"
 import { useUserStore } from '@/Controller/userStore'
 
-const groups = [
-  // {
-  //   label: "Personal Account",
-  //   teams: [
-  //     {
-  //       label: "Alicia Koch",
-  //       value: "personal",
-  //     },
-  //   ],
-  // },
-  {
-    label: "Teams",
-    teams: [
-      {
-        label: "Acme Inc.",
-        value: "acme-inc",
-      },
-      {
-        label: "Monsters Inc.",
-        value: "monsters",
-      },
-    ],
-  },
-]
 
-type Team = (typeof groups)[number]["teams"][number]
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
 interface TeamSwitcherProps extends PopoverTriggerProps {}
 
 export default function TeamSwitcher({ className }: TeamSwitcherProps) {
+  
+  const teamList = useUserStore((state) => state.teamList)
+  const setTeamList = useUserStore((state) => state.setTeamList)
+  const [teamListObj,setTeamListObj] = React.useState<{label:string,value:string}[]>([])
+
+  React.useEffect(() => {
+    setTeamList()
+    let array:{label:string,value:string}[] = []
+    teamList.map((team) => {
+      console.log("team",team)
+     array.push({
+        label: team.name,
+        value: team.name,
+      })
+    })
+    setTeamListObj(array)
+    console.log("teamlistobh",teamListObj)
+    console.log("this is the array",teamList)
+    console.log("this is the array",array)
+  },[] )
+
+  const groups = [
+ 
+    {
+      label: "Teams",
+      teams: [
+        {
+          label: "Acme Inc.",
+          value: "acme-inc",
+        },
+        {
+          label: "Monsters Inc.",
+          value: "monsters",
+        },
+        ...teamListObj,
+      ],
+    },
+  ]
+  type Team = (typeof groups)[number]["teams"][number]
   const [open, setOpen] = React.useState(false)
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
   const [selectedTeam, setSelectedTeam] = React.useState<Team>(
@@ -89,6 +103,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   )
   const [loading, setLoading] = React.useState(false)
   const user = useUserStore((state) => state.user)
+ 
 
   const adminId = user?.uid; // Replace with actual admin ID
 
@@ -193,33 +208,9 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         </DialogHeader>
         <div>
           <div className="space-y-4 py-2 pb-4">
-            {/* <div className="space-y-2">
-              <Label htmlFor="name">Team name</Label>
-              <Input id="name" placeholder="Acme Inc." />
-            </div> */}
+            
             <TeamForm onSubmit={handleTeamSubmit} loading={loading} setLoading={setLoading} adminId={adminId!} />
-            {/* <div className="space-y-2">
-              <Label htmlFor="plan">Subscription plan</Label>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a plan" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="free">
-                    <span className="font-medium">Free</span> -{" "}
-                    <span className="text-muted-foreground">
-                      Trial for two weeks
-                    </span>
-                  </SelectItem>
-                  <SelectItem value="pro">
-                    <span className="font-medium">Pro</span> -{" "}
-                    <span className="text-muted-foreground">
-                      $9/month per user
-                    </span>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div> */}
+           
           </div>
         </div>
         <DialogFooter>

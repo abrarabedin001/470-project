@@ -1,3 +1,4 @@
+import { Loader2 } from 'lucide-react';
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -8,13 +9,16 @@ interface TeamDetails {
 
 interface TeamFormProps {
   onSubmit: (data: TeamDetails) => void;
-  adminId: string; // Assuming the admin ID is passed as a prop
+  adminId: string;
+  loading:boolean;
+  setLoading:(loading:boolean)=>void // Assuming the admin ID is passed as a prop
 }
 
-const TeamForm: React.FC<TeamFormProps> = ({ onSubmit, adminId }) => {
+const TeamForm: React.FC<TeamFormProps> = ({ onSubmit, adminId,loading,setLoading }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<TeamDetails>();
 
   const handleFormSubmit: SubmitHandler<TeamDetails> = (data) => {
+    setLoading(true)
     onSubmit({ ...data, adminId });
   };
 
@@ -25,10 +29,13 @@ const TeamForm: React.FC<TeamFormProps> = ({ onSubmit, adminId }) => {
         <input {...register('name', { required: 'Team name is required' })} id="name" style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }} />
         {errors.name && <span style={{ color: 'red', fontSize: '12px' }}>{errors.name.message}</span>}
       </div>
-
-      <button type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+      {loading?<button disabled  type="submit" className='flex flex-row justify-center items-center' style={{ width: '100%', padding: '10px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         Create Team
-      </button>
+      </button> :<button  type="submit" style={{ width: '100%', padding: '10px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+        Create Team
+      </button> }
+      
     </form>
   );
 };

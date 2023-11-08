@@ -86,6 +86,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const [selectedTeam, setSelectedTeam] = React.useState<Team>(
     groups[0].teams[0]
   )
+  const [loading, setLoading] = React.useState(false)
 
   const adminId = 'p1nixi24VsW1AteaGeOHTcOeJVF3'; // Replace with actual admin ID
 
@@ -96,6 +97,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     try {
       const teamId = await createTeam(teamDetails.name, teamDetails.adminId);
       console.log('Team Created with ID:', teamId);
+      setLoading(false)
     } catch (error) {
       console.error('Error creating team:', error);
     }
@@ -193,7 +195,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               <Label htmlFor="name">Team name</Label>
               <Input id="name" placeholder="Acme Inc." />
             </div> */}
-            <TeamForm onSubmit={handleTeamSubmit} adminId={adminId} />
+            <TeamForm onSubmit={handleTeamSubmit} loading={loading} setLoading={setLoading} adminId={adminId} />
             {/* <div className="space-y-2">
               <Label htmlFor="plan">Subscription plan</Label>
               <Select>

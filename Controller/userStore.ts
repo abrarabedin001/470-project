@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { User, getAuth } from 'firebase/auth'
 import firebase_app from '@/Database/config'
+import { getUserTeams } from '@/Database/firestore/firebaseDb'
 
 interface UserStore {
   user: User | null
@@ -9,6 +10,8 @@ interface UserStore {
   refreshUser: () => Promise<void>
   loading: boolean
   setLoading: (loading: boolean) => void
+  teamList: { id: string, name: string }[];
+  setTeamList: () => void;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -24,6 +27,17 @@ export const useUserStore = create<UserStore>()(
           set({ user: getAuth(firebase_app).currentUser })
           console.log('get refreshed user', get().user?.displayName)
         },
+        teamList: [],
+        setTeamList: () => {
+          getUserTeams(get().user?.uid!).then(
+            (teams) => {
+              console.log('teams', teams)
+              set({ teamList: teams })
+            }
+          )
+          // set({ teamList: list }),
+        },
+
       }),
       { name: 'userStore470' }
     )

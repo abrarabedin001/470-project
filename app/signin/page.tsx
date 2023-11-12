@@ -53,12 +53,15 @@ function Page(): JSX.Element {
       // Display and log any sign-in errors
       console.log(error)
       return
-    } else{toast.success('Login Successful')} 
+    } else{
+      toast.success('Login Successful')
+    router.push('/')
+  } 
 
     // Sign in successful
     console.log(user)
 
-    // router.push('/')
+    
   }
 
   return (

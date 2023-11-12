@@ -12,6 +12,11 @@ interface UserStore {
   setLoading: (loading: boolean) => void
   teamList: { id: string, name: string }[];
   setTeamList: () => void;
+  currrentTeam: {
+    label: string;
+    value: string;
+  } | null;
+  setCurrentTeam: (team: { label: string, value: string } | null) => void;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -37,6 +42,8 @@ export const useUserStore = create<UserStore>()(
           )
           // set({ teamList: list }),
         },
+        currrentTeam: null,
+        setCurrentTeam: (team: { label: string, value: string } | null) => set({ currrentTeam: team })
 
       }),
       { name: 'userStore470' }

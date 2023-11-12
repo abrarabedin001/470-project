@@ -27,43 +27,6 @@ import { useUserStore } from '@/Controller/userStore'
 import { ta } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
 
-// export const metadata: Metadata = {
-//   title: 'Tasks',
-//   description: 'A task and issue tracker build using Tanstack Table.',
-// }
-
-// Simulate a database read for tasks.
-async function getTasks(teamId: string) {
-  // if (teamId) {
-  //   try {
-  //     let promise = await getAllTasksInTeam(teamId)
-  //     console.log('promise', promise)
-  //     return z.array(taskSchema).parse(promise)
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
-  // const data = await fs.readFile(
-  //   path.join(process.cwd(), 'app/dashboard/tasks/data/tasks.json')
-  // )
-
-  // const tasks = JSON.parse(data.toString())
-  const tasks = [
-    {
-      id: 'YHcgsHl2AQDl7eiVS6wc',
-      label: 'bug',
-      priority: 'high',
-      status: 'backlog',
-      teamId: '9AbAbz2YjCBMWxpwVSS5',
-      title: 'another fix 2',
-      createdAt: { seconds: 1699790113, nanoseconds: 331000000 },
-    },
-  ]
-
-  return z.array(taskSchema).parse(tasks)
-}
-
 export default function TaskPage() {
   let teamId = useUserStore((state) => state.currrentTeam?.value)
   let [tasks, setTasks] = useState<any[]>([])
@@ -74,39 +37,6 @@ export default function TaskPage() {
       })
     }
   }, [teamId])
-  // async function getData(teamId: string) {
-  //   tasks = await getTasks(teamId)
-  //   return tasks
-  // }
-
-  // getData(teamId!).then((res) => {
-  //   // JSON.parse(data.toString())
-  //   tasks = res
-  //   console.log('tasks', tasks)
-  //   tasks = [
-  //     {
-  //       id: 'YHcgsHl2AQDl7eiVS6wc',
-  //       label: 'bug',
-  //       priority: 'high',
-  //       status: 'backlog',
-  //       teamId: '9AbAbz2YjCBMWxpwVSS5',
-  //       title: 'another fix 2',
-  //       // createdAt: { seconds: 1699790113, nanoseconds: 331000000 },
-  //     },
-  //   ]
-  // })
-
-  // tasks = [
-  //   {
-  //     id: 'YHcgsHl2',
-  //     label: 'bug',
-  //     priority: 'high',
-  //     status: 'backlog',
-  //     teamId: '9AbAbz2YjCBMWxpwVSS5',
-  //     title: 'another fix 2 sdf asd asdfa sdf',
-  //     createdAt: { seconds: 1699790113, nanoseconds: 331000000 },
-  //   },
-  // ]
 
   return (
     <>

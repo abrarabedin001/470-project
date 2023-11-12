@@ -67,7 +67,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       console.log('team', team)
       array.push({
         label: team.name,
-        value: team.name,
+        value: team.id,
       })
     })
     setTeamListObj(array)

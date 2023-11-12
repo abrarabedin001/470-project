@@ -45,6 +45,7 @@ import {
 import { createTeam } from '@/Database/firestore/firebaseDb'
 import TeamForm from '@/components/CreateTeamForm'
 import { useUserStore } from '@/Controller/userStore'
+// import useUserStore from '@/Controller/userStore'
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -53,6 +54,8 @@ interface TeamSwitcherProps extends PopoverTriggerProps {}
 export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const teamList = useUserStore((state) => state.teamList)
   const setTeamList = useUserStore((state) => state.setTeamList)
+  const currrentTeam = useUserStore((state) => state.currrentTeam)
+  const setCurrentTeam = useUserStore((state) => state.setCurrentTeam)
   const [teamListObj, setTeamListObj] = React.useState<
     { label: string; value: string }[]
   >([])
@@ -64,7 +67,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       console.log('team', team)
       array.push({
         label: team.name,
-        value: team.name,
+        value: team.id,
       })
     })
     setTeamListObj(array)
@@ -113,16 +116,16 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               aria-label="Select a team"
               className={cn('w-[200px] justify-between', className)}
             >
-              {selectedTeam ? (
+              {currrentTeam ? (
                 <>
                   <Avatar className="mr-2 h-5 w-5">
                     <AvatarImage
-                      src={`https://avatar.vercel.sh/${selectedTeam.value}.png`}
-                      alt={selectedTeam.label}
+                      src={`https://avatar.vercel.sh/${currrentTeam.value}.png`}
+                      alt={currrentTeam.label}
                     />
                     <AvatarFallback>SC</AvatarFallback>
                   </Avatar>
-                  {selectedTeam?.label}
+                  {currrentTeam?.label}
                   <CaretSortIcon className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                 </>
               ) : (
@@ -145,7 +148,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                       <CommandItem
                         key={team.value}
                         onSelect={() => {
-                          setSelectedTeam(team)
+                          setCurrentTeam(team)
                           setOpen(false)
                         }}
                         className="text-sm"
@@ -162,7 +165,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                         <CheckIcon
                           className={cn(
                             'ml-auto h-4 w-4',
-                            selectedTeam?.value === team.value
+                            currrentTeam?.value === team.value
                               ? 'opacity-100'
                               : 'opacity-0'
                           )}

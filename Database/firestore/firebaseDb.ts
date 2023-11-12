@@ -121,23 +121,41 @@ export const deleteBug = async (bugId: string): Promise<void> => {
 /////////////////////
 const tasks = collection(db, 'tasks');
 
-export const getAllTasksInTeam = async (teamId: string): Promise<TaskDetails[]> => {
+// export const getAllTasksInTeam = async (teamId: string): Promise<TaskDetails[]> => {
+//   try {
+//     const tasksQuery = query(tasks, where('teamId', '==', teamId));
+//     const querySnapshot = await getDocs(tasksQuery);
+//     const allTasks = querySnapshot.docs.map(doc => doc.data() as TaskDetails);
+//     console.log('success: Retrieved all tasks in team');
+//     return allTasks;
+//   } catch (error) {
+//     console.error('error: Failed to retrieve all tasks in team', error);
+//     throw error;
+//   }
+// }
+
+export const getAllTasksInTeam = async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
   try {
     const tasksQuery = query(tasks, where('teamId', '==', teamId));
     const querySnapshot = await getDocs(tasksQuery);
-    const allTasks = querySnapshot.docs.map(doc => doc.data() as TaskDetails);
+    const allTasks = querySnapshot.docs.map(doc => {
+      return {
+        id: doc.id, // This is the unique ID of the document
+        ...doc.data()
+      } as TaskDetails & { id: string };
+    });
     console.log('success: Retrieved all tasks in team');
     return allTasks;
   } catch (error) {
     console.error('error: Failed to retrieve all tasks in team', error);
     throw error;
   }
-}
+};
 
 export const createTask = async (details: TaskDetails): Promise<string> => {
   try {
     const taskDocRef = doc(tasks);
-    await setDoc(taskDocRef, { ...details, status: 'Open', createdAt: new Date() });
+    await setDoc(taskDocRef, { ...details, createdAt: new Date() });
     console.log('success: Task created');
     return taskDocRef.id;
   } catch (error) {

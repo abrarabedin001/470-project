@@ -142,9 +142,12 @@ export const getAllTasksInTeam = async (teamId: string): Promise<(TaskDetails & 
       return {
         id: doc.id, // This is the unique ID of the document
         ...doc.data()
+        ,
+        createdAt: doc.data().createdAt.toDate('en-us', { year: "numeric", month: "short", day: "numeric" }),
       } as TaskDetails & { id: string };
     });
     console.log('success: Retrieved all tasks in team');
+    console.log('allTasks', allTasks);
     return allTasks;
   } catch (error) {
     console.error('error: Failed to retrieve all tasks in team', error);

@@ -8,10 +8,7 @@ export const taskSchema = z.object({
   status: z.string(),
   label: z.string(),
   priority: z.string(),
-  // createdAt: z.object({
-  //   seconds: z.number(),
-  //   nanoseconds: z.number(),
-  // }),
+  createdAt: z.date(),
 })
 
 

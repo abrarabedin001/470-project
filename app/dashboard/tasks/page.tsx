@@ -42,7 +42,7 @@ export default function TaskPage() {
     <>
       {teamId && (
         <>
-          <div className="md:hidden">
+          {/* <div className="">
             <Image
               src="/examples/tasks-light.png"
               width={1280}
@@ -57,8 +57,8 @@ export default function TaskPage() {
               alt="Playground"
               className="hidden dark:block"
             />
-          </div>
-          <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
+          </div> */}
+          <div className="flex h-full flex-1 flex-col space-y-8 p-8 ">
             <div className="flex items-center justify-between space-y-2">
               <div>
                 <h2 className="text-2xl font-bold tracking-tight">

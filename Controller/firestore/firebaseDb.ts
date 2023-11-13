@@ -1,3 +1,4 @@
+// import { dateFormatOptions } from './firebaseDb';
 import firebase_app from '../config'
 
 import {
@@ -132,7 +133,7 @@ const teams = collection(db, 'teams');
 
 
 
-export const createTeam = async (teamName: string, adminId: string): Promise<string> => {
+export const createTeam = async (teamName: string, adminId: string, displayName: string): Promise<string> => {
   console.log('teamName', teamName);
   try {
     // Create a new team document reference in the "teams" collection
@@ -142,6 +143,11 @@ export const createTeam = async (teamName: string, adminId: string): Promise<str
     // Set the new team document with the provided team name and admin ID
     await setDoc(teamDocRef, { name: teamName, admin: adminId, createdAt: new Date() });
     console.log('success: Team created with ID:', teamDocRef.id);
+
+    const membersCollection = collection(db, 'teams', teamDocRef.id, 'members');
+    const memberDocRef = doc(membersCollection, adminId);
+    await setDoc(memberDocRef, { userId: adminId, joinedAt: new Date(), displayName: displayName, role: 'admin' });
+    console.log('success: Team member added');
 
     // Update the user's document with the new team ID in the "users" collection
     const userDocRef = doc(db, "users", adminId);
@@ -183,14 +189,77 @@ export const getUserTeams = async (userId: string): Promise<{ id: string, name: 
   }
 }
 
-export const addTeamMember = async (teamId: string, memberId: string): Promise<void> => {
+// import { collection, query, where, getDocs, setDoc, doc } from 'firebase/firestore';
+
+export const addTeamMemberByEmail = async (teamId: string, teamName: string, displayName: string, role: string): Promise<void> => {
+  try {
+    // Query the user's ID using their email
+    const usersCollection = collection(db, 'users');
+    const q = query(usersCollection, where('displayName', '==', displayName));
+    const querySnapshot = await getDocs(q);
+    let userId = '';
+
+    querySnapshot.forEach((doc) => {
+      // Assuming each email is unique and can only have one user ID associated with it
+      userId = doc.id;
+    });
+
+    // If no user found with that email, throw an error
+    if (!userId) throw new Error('No user found with the provided displayName');
+
+    // Use the user ID to add them as a team member
+    const membersCollection = collection(db, 'teams', teamId, 'members');
+    const memberDocRef = doc(membersCollection, userId);
+    await setDoc(memberDocRef, { userId: userId, joinedAt: new Date(), displayName: displayName, role: role?.toLowerCase() || 'view' });
+    console.log('success: Team member added');
+    // Update the user's document with the new team ID in the "users" collection
+    const teamDocRef = doc(collection(db, "teams"));
+    const userDocRef = doc(db, "users", userId);
+    await updateDoc(userDocRef, {
+      teams: arrayUnion({ id: teamDocRef.id, name: teamName }) // Assuming 'teams' is an array of team IDs
+    });
+  } catch (error) {
+    console.error('error: Failed to add team member by displayName', error);
+    throw error;
+  }
+}
+
+export const updateTeamMemberRole = async (teamId: string, memberId: string, newRole: string): Promise<void> => {
+  try {
+    // Reference to the specific team member document
+    const memberDocRef = doc(db, 'teams', teamId, 'members', memberId);
+
+    // Update the role of the team member
+    await updateDoc(memberDocRef, {
+      role: newRole.toLowerCase()
+    });
+
+    console.log('success: Team member role updated');
+  } catch (error) {
+    console.error('error: Failed to update team member role', error);
+    throw error;
+  }
+}
+
+export const getTeamMembers = async (teamId: string): Promise<any[]> => {
   try {
     const membersCollection = collection(db, 'teams', teamId, 'members');
-    const memberDocRef = doc(membersCollection, memberId);
-    await setDoc(memberDocRef, { joinedAt: new Date() });
-    console.log('success: Team member added');
+    const q = query(membersCollection);
+    const querySnapshot = await getDocs(q);
+    const members: { id: string, displayName: string, role: string, joinedAt: Date }[] = [];
+
+    querySnapshot.forEach((memberDoc) => {
+      // Push each member's data into the members array
+      // You might want to include more or fewer details here depending on your needs
+      members.push({
+        id: memberDoc.id,
+        ...memberDoc.data() as { displayName: string, role: string, joinedAt: Date },
+      });
+    });
+
+    return members; // Returns an array of member objects
   } catch (error) {
-    console.error('error: Failed to add team member', error);
+    console.error('error: Failed to get team members', error);
     throw error;
   }
 }

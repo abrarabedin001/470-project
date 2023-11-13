@@ -28,24 +28,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components//ui/dialog'
-import { Input } from '@/components//ui/input'
-import { Label } from '@/components//ui/label'
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components//ui/popover'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components//ui/select'
-import { createTeam } from '@/Database/firestore/firebaseDb'
+
+import { createTeam } from '@/Controller/firestore/firebaseDb'
 import TeamForm from '@/components/CreateTeamForm'
-import { useUserStore } from '@/Controller/userStore'
-// import useUserStore from '@/Controller/userStore'
+import { useUserStore } from '@/Store/userStore'
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -60,6 +52,13 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     { label: string; value: string }[]
   >([])
 
+  const [open, setOpen] = React.useState(false)
+  const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
+
+  const [loading, setLoading] = React.useState(false)
+  const user = useUserStore((state) => state.user)
+
+  const adminId = user?.uid // Replace with actual admin ID
   React.useEffect(() => {
     setTeamList()
     let array: { label: string; value: string }[] = []
@@ -71,31 +70,18 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       })
     })
     setTeamListObj(array)
-  }, [])
-
-  const groups = [
-    {
-      label: 'Teams',
-      teams: [...teamListObj],
-    },
-  ]
-  type Team = (typeof groups)[number]['teams'][number]
-  const [open, setOpen] = React.useState(false)
-  const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
-  const [selectedTeam, setSelectedTeam] = React.useState<Team>(
-    groups[0].teams[0]
-  )
-  const [loading, setLoading] = React.useState(false)
-  const user = useUserStore((state) => state.user)
-
-  const adminId = user?.uid // Replace with actual admin ID
+  }, [open])
 
   const handleTeamSubmit = async (teamDetails: any) => {
     console.log('Team Details:', teamDetails)
     // addSampleData()
     // Here, you can call the createTeam function to save the team details to your database
     try {
-      const teamId = await createTeam(teamDetails.name, teamDetails.adminId)
+      const teamId = await createTeam(
+        teamDetails.name,
+        teamDetails.adminId,
+        user?.email!
+      )
       console.log('Team Created with ID:', teamId)
       setLoading(false)
     } catch (error) {
@@ -142,38 +128,37 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               <CommandList>
                 <CommandInput placeholder="Search team..." />
                 <CommandEmpty>No team found.</CommandEmpty>
-                {groups.map((group) => (
-                  <CommandGroup key={group.label} heading={group.label}>
-                    {group.teams.map((team) => (
-                      <CommandItem
-                        key={team.value}
-                        onSelect={() => {
-                          setCurrentTeam(team)
-                          setOpen(false)
-                        }}
-                        className="text-sm"
-                      >
-                        <Avatar className="mr-2 h-5 w-5">
-                          <AvatarImage
-                            src={`https://avatar.vercel.sh/${team.value}.png`}
-                            alt={team.label}
-                            className="grayscale"
-                          />
-                          <AvatarFallback>SC</AvatarFallback>
-                        </Avatar>
-                        {team.label}
-                        <CheckIcon
-                          className={cn(
-                            'ml-auto h-4 w-4',
-                            currrentTeam?.value === team.value
-                              ? 'opacity-100'
-                              : 'opacity-0'
-                          )}
+
+                <CommandGroup key={'Teams'} heading={'Teams'}>
+                  {teamListObj.map((team) => (
+                    <CommandItem
+                      key={team.value}
+                      onSelect={() => {
+                        setCurrentTeam(team)
+                        setOpen(false)
+                      }}
+                      className="text-sm"
+                    >
+                      <Avatar className="mr-2 h-5 w-5">
+                        <AvatarImage
+                          src={`https://avatar.vercel.sh/${team.value}.png`}
+                          alt={team.label}
+                          className="grayscale"
                         />
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                ))}
+                        <AvatarFallback>SC</AvatarFallback>
+                      </Avatar>
+                      {team.label}
+                      <CheckIcon
+                        className={cn(
+                          'ml-auto h-4 w-4',
+                          currrentTeam?.value === team.value
+                            ? 'opacity-100'
+                            : 'opacity-0'
+                        )}
+                      />
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
               </CommandList>
               <CommandSeparator />
               <CommandList>

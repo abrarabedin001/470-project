@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { User, getAuth } from 'firebase/auth'
-import firebase_app from '@/Database/config'
-import { getUserTeams } from '@/Database/firestore/firebaseDb'
+import firebase_app from '@/Controller/config'
+import { getUserTeams } from '@/Controller/firestore/firebaseDb'
+import { TeamMembers } from '@/lib/type'
 
 interface UserStore {
   user: User | null
@@ -17,6 +18,8 @@ interface UserStore {
     value: string;
   } | null;
   setCurrentTeam: (team: { label: string, value: string } | null) => void;
+  teamMembers: TeamMembers | null;
+  setTeamMembers: (members: TeamMembers) => void;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -43,8 +46,9 @@ export const useUserStore = create<UserStore>()(
           // set({ teamList: list }),
         },
         currrentTeam: null,
-        setCurrentTeam: (team: { label: string, value: string } | null) => set({ currrentTeam: team })
-
+        setCurrentTeam: (team: { label: string, value: string } | null) => set({ currrentTeam: team }),
+        teamMembers: null,
+        setTeamMembers: (members: TeamMembers) => set({ teamMembers: members })
       }),
       { name: 'userStore470' }
     )

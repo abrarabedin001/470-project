@@ -22,10 +22,11 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import TaskForm from '@/components/TaskForm'
-import { getAllTasksInTeam } from '@/Database/firestore/firebaseDb'
-import { useUserStore } from '@/Controller/userStore'
+import { getAllTasksInTeam } from '@/Controller/firestore/firebaseDb'
+import { useUserStore } from '@/Store/userStore'
 import { ta } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
+// import { AssignTeamForm } from '@/components/AssignTeamForm'
 
 export default function TaskPage() {
   let teamId = useUserStore((state) => state.currrentTeam?.value)
@@ -35,6 +36,8 @@ export default function TaskPage() {
       getAllTasksInTeam(teamId).then((res) => {
         setTasks(res)
       })
+    } else {
+      setTasks([])
     }
   }, [teamId])
 
@@ -84,6 +87,7 @@ export default function TaskPage() {
                   <AlertDialogTitle>Create Your Tasks:</AlertDialogTitle>
                   <AlertDialogDescription>
                     <TaskForm></TaskForm>
+                    {/* <AssignTeamForm></AssignTeamForm> */}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

@@ -52,13 +52,6 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     { label: string; value: string }[]
   >([])
 
-  let groups = [
-    {
-      label: 'Teams',
-      teams: [...teamListObj],
-    },
-  ]
-
   const [open, setOpen] = React.useState(false)
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
 

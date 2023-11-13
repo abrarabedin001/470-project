@@ -3,6 +3,7 @@
 import { ColumnDef } from '@tanstack/react-table'
 
 import { Badge } from '@/components/ui/badge'
+
 import { Checkbox } from '@/components/ui/checkbox'
 
 import { labels, priorities, statuses } from '../data/data'
@@ -122,6 +123,27 @@ export const columns: ColumnDef<Task>[] = [
       let date = row.getValue('createdAt') as Date
 
       return <div className="w-[80px]">{date.toLocaleDateString()}</div>
+    },
+    enableSorting: true,
+    enableHiding: true,
+  },
+  {
+    accessorKey: 'assigned',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Assigned" />
+    ),
+    cell: ({ row }) => {
+      let names = row.getValue('assigned') as string[]
+
+      return (
+        <div className="w-[200px]">
+          {names.map((name) => (
+            <Badge key={name} variant="outline">
+              {name}
+            </Badge>
+          ))}
+        </div>
+      )
     },
     enableSorting: true,
     enableHiding: true,

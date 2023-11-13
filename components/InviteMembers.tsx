@@ -25,22 +25,26 @@ import {
   getTeamMembers,
   updateTeamMemberRole,
 } from '@/Controller/firestore/firebaseDb'
+import { TeamMembers } from '@/lib/type'
 export function InviteMembers() {
   const [email, setEmail] = useState('')
   const teamId = useUserStore((state) => state.currrentTeam?.value)
   const teamName = useUserStore((state) => state.currrentTeam?.label)
-  const [teamMembers, setTeamMembers] = useState<
-    { id: string; displayName: string; role: string; joinedAt: Date }[]
-  >([])
+  const teamMembers = useUserStore((state) => state.teamMembers)
+  const setTeamMembers = useUserStore((state) => state.setTeamMembers)
   useEffect(() => {
     let func = async () => {
       if (teamId) {
-        let res = await getTeamMembers(teamId)
-        setTeamMembers(res)
+        try {
+          let res = await getTeamMembers(teamId)
+          setTeamMembers(res as unknown as TeamMembers)
+        } catch {
+          console.log('error')
+        }
       }
     }
     func()
-  }, [])
+  }, [teamId])
   return (
     <Card>
       <CardHeader>
@@ -69,40 +73,40 @@ export function InviteMembers() {
         <div className="space-y-4">
           <h4 className="text-sm font-medium">People with access</h4>
           <div className="grid gap-6">
-            {teamMembers?.map((member) => (
-              <>
-                <div className="flex items-center justify-between space-x-4">
-                  <div className="flex items-center space-x-4">
-                    <Avatar>
-                      <AvatarImage src="/avatars/03.png" />
-                      <AvatarFallback>OM</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="text-sm font-medium leading-none">
-                        {member.displayName}
-                        {/* hello */}
-                      </p>
+            {teamMembers &&
+              Object.values(teamMembers).map((member: any) => (
+                <>
+                  <div className="flex items-center justify-between space-x-4">
+                    <div className="flex items-center space-x-4">
+                      <Avatar>
+                        <AvatarImage src="/avatars/03.png" />
+                        <AvatarFallback>OM</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm font-medium leading-none">
+                          {member.displayName}
+                          {/* hello */}
+                        </p>
+                      </div>
                     </div>
+                    <Select
+                      onValueChange={(e) =>
+                        updateTeamMemberRole(teamId!, member.id, e)
+                      }
+                      defaultValue={member.role}
+                    >
+                      <SelectTrigger className="ml-auto w-[110px]">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="admin">Admin</SelectItem>
+                        <SelectItem value="edit">Can edit</SelectItem>
+                        <SelectItem value="view">Can view</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                  <Select
-                    onValueChange={(e) =>
-                      updateTeamMemberRole(teamId!, member.id, e)
-                    }
-                    defaultValue={member.role}
-                  >
-                    <SelectTrigger className="ml-auto w-[110px]">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="admin">Admin</SelectItem>
-
-                      <SelectItem value="edit">Can edit</SelectItem>
-                      <SelectItem value="view">Can view</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </>
-            ))}
+                </>
+              ))}
           </div>
         </div>
       </CardContent>

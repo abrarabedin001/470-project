@@ -26,7 +26,9 @@ import { Link } from 'lucide-react'
 import { createTask } from '@/Controller/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
 import { MultiSelect } from './MultiSelect'
+import { useEffect, useState } from 'react'
 // import { AssignTeamForm } from './AssignTeamForm'
+// import {useUserStore}
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -38,8 +40,21 @@ const formSchema = z.object({
   assigned: z.array(z.string()),
 })
 export default function TaskForm() {
+  const teamMembers = useUserStore((state) => state.teamMembers)
   const currrentTeam = useUserStore((state) => state.currrentTeam)
   // 1. Define your form.
+  const [options, setOptions] = useState<{ value: any; label: any }[]>([])
+  useEffect(() => {
+    if (teamMembers) {
+      let arr = (teamMembers as unknown as Array<any>).map((member) => {
+        return {
+          value: member.displayName,
+          label: member.displayName,
+        }
+      })
+      setOptions(arr)
+    }
+  }, [teamMembers])
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -159,16 +174,7 @@ export default function TaskForm() {
                 <FormLabel>Assigned Members</FormLabel>
                 <MultiSelect
                   selected={field.value}
-                  options={[
-                    {
-                      value: 'Colonial',
-                      label: 'Colonial',
-                    },
-                    {
-                      value: 'Modern',
-                      label: 'Modern',
-                    },
-                  ]}
+                  options={options}
                   {...field}
                   className=""
                 />

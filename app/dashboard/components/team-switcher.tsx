@@ -77,7 +77,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       })
     })
     setTeamListObj(array)
-  }, [open, teamList])
+  }, [open])
 
   const handleTeamSubmit = async (teamDetails: any) => {
     console.log('Team Details:', teamDetails)

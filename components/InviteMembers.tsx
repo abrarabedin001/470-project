@@ -23,6 +23,7 @@ import { useUserStore } from '@/Store/userStore'
 import {
   addTeamMemberByEmail,
   getTeamMembers,
+  updateTeamMemberRole,
 } from '@/Controller/firestore/firebaseDb'
 export function InviteMembers() {
   const [email, setEmail] = useState('')
@@ -83,7 +84,12 @@ export function InviteMembers() {
                       </p>
                     </div>
                   </div>
-                  <Select defaultValue={member.role}>
+                  <Select
+                    onValueChange={(e) =>
+                      updateTeamMemberRole(teamId!, member.id, e)
+                    }
+                    defaultValue={member.role}
+                  >
                     <SelectTrigger className="ml-auto w-[110px]">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>

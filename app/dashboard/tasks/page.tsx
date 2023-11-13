@@ -36,6 +36,8 @@ export default function TaskPage() {
       getAllTasksInTeam(teamId).then((res) => {
         setTasks(res)
       })
+    } else {
+      setTasks([])
     }
   }, [teamId])
 

@@ -53,12 +53,12 @@ function Page(): JSX.Element {
       console.log(error)
       return
     } else {
-      toast.success('Login Successful')
-      router.push('/')
+      // toast.success('Login Successful')
     }
 
     // Sign in successful
     console.log(user)
+    // router.push('/')
   }
 
   return (

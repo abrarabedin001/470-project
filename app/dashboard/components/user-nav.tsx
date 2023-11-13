@@ -13,11 +13,14 @@ import {
 } from '@/components//ui/dropdown-menu'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useUserStore } from '@/Store/userStore'
 
 export function UserNav() {
   const router = useRouter()
+  let setCurrentTeam = useUserStore((state) => state.setCurrentTeam)
   const handleLogout = () => {
     // setCurrentViewAccount({ name: '', id: '' })
+    setCurrentTeam(null)
     signOutUser(() => {
       router.push('/signin')
     })

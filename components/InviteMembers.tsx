@@ -19,9 +19,13 @@ import {
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { useState } from 'react'
-
+import { useUserStore } from '@/Store/userStore'
+import { addTeamMemberByEmail } from '@/Controller/firestore/firebaseDb'
 export function InviteMembers() {
   const [email, setEmail] = useState('')
+  const teamId = useUserStore((state) => state.currrentTeam?.value)
+  const teamName = useUserStore((state) => state.currrentTeam?.label)
+
   return (
     <Card>
       <CardHeader>
@@ -33,7 +37,16 @@ export function InviteMembers() {
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Button variant="secondary" className="shrink-0">
+          <Button
+            variant="secondary"
+            className="shrink-0"
+            onClick={() => {
+              console.log('add member')
+              if (teamId && teamName) {
+                addTeamMemberByEmail(teamId, teamName, email)
+              }
+            }}
+          >
             Add
           </Button>
         </div>

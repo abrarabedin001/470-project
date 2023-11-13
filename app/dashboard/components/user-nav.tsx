@@ -1,10 +1,6 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components//ui/avatar"
-import { Button } from "@/components//ui/button"
-import {signOutUser} from "@/Database/auth"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components//ui/avatar'
+import { Button } from '@/components//ui/button'
+import { signOutUser } from '@/Controller/auth'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,9 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components//ui/dropdown-menu"
+} from '@/components//ui/dropdown-menu'
 import { useRouter } from 'next/navigation'
-import Link from "next/link"
+import Link from 'next/link'
 
 export function UserNav() {
   const router = useRouter()
@@ -73,11 +69,11 @@ export function UserNav() {
               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
-          
+
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={()=>handleLogout()}>
+        <DropdownMenuItem onClick={() => handleLogout()}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

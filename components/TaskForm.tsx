@@ -23,8 +23,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Link } from 'lucide-react'
-import { createTask } from '@/Database/firestore/firebaseDb'
-import { useUserStore } from '@/Controller/userStore'
+import { createTask } from '@/Controller/firestore/firebaseDb'
+import { useUserStore } from '@/Store/userStore'
 import { MultiSelect } from './MultiSelect'
 // import { AssignTeamForm } from './AssignTeamForm'
 

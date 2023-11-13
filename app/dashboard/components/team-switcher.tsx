@@ -42,9 +42,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components//ui/select'
-import { createTeam } from '@/Database/firestore/firebaseDb'
+import { createTeam } from '@/Controller/firestore/firebaseDb'
 import TeamForm from '@/components/CreateTeamForm'
-import { useUserStore } from '@/Controller/userStore'
+import { useUserStore } from '@/Store/userStore'
 // import useUserStore from '@/Controller/userStore'
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>

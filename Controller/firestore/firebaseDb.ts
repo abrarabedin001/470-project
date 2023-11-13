@@ -183,17 +183,42 @@ export const getUserTeams = async (userId: string): Promise<{ id: string, name: 
   }
 }
 
-export const addTeamMember = async (teamId: string, memberId: string): Promise<void> => {
+// import { collection, query, where, getDocs, setDoc, doc } from 'firebase/firestore';
+
+export const addTeamMemberByEmail = async (teamId: string, teamName: string, email: string): Promise<void> => {
   try {
+    // Query the user's ID using their email
+    const usersCollection = collection(db, 'users');
+    const q = query(usersCollection, where('displayName', '==', email));
+    const querySnapshot = await getDocs(q);
+    let userId = '';
+
+    querySnapshot.forEach((doc) => {
+      // Assuming each email is unique and can only have one user ID associated with it
+      userId = doc.id;
+    });
+
+    // If no user found with that email, throw an error
+    if (!userId) throw new Error('No user found with the provided email');
+
+    // Use the user ID to add them as a team member
     const membersCollection = collection(db, 'teams', teamId, 'members');
-    const memberDocRef = doc(membersCollection, memberId);
+    const memberDocRef = doc(membersCollection, userId);
     await setDoc(memberDocRef, { joinedAt: new Date() });
     console.log('success: Team member added');
+    // Update the user's document with the new team ID in the "users" collection
+    const teamDocRef = doc(collection(db, "teams"));
+    const userDocRef = doc(db, "users", userId);
+    await updateDoc(userDocRef, {
+      teams: arrayUnion({ id: teamDocRef.id, name: teamName }) // Assuming 'teams' is an array of team IDs
+    });
   } catch (error) {
-    console.error('error: Failed to add team member', error);
+    console.error('error: Failed to add team member by email', error);
     throw error;
   }
 }
+
+
 
 export const removeTeamMember = async (teamId: string, memberId: string): Promise<void> => {
   try {

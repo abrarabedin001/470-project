@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { User, getAuth } from 'firebase/auth'
-import firebase_app from '@/Database/config'
-import { getUserTeams } from '@/Database/firestore/firebaseDb'
+import firebase_app from '@/Controller/config'
+import { getUserTeams } from '@/Controller/firestore/firebaseDb'
 
 interface UserStore {
   user: User | null

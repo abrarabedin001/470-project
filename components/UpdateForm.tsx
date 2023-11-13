@@ -34,7 +34,7 @@ const formSchema = z.object({
   label: z.enum(['documentation', 'bug', 'enhancement']),
   priority: z.enum(['low', 'medium', 'high']),
 })
-export default function TaskForm() {
+export default function UpdateForm() {
   const currrentTeam = useUserStore((state) => state.currrentTeam)
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -56,7 +56,7 @@ export default function TaskForm() {
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <FormField
           control={form.control}
           name="title"

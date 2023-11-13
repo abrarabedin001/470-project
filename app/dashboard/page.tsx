@@ -21,6 +21,7 @@ import { UserNav } from './components/user-nav'
 import { useUserStore } from '@/Controller/userStore'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { InviteMembers } from '@/components/InviteMembers'
 
 export default function DashboardPage() {
   const user = useUserStore((state) => state.user)
@@ -197,6 +198,7 @@ export default function DashboardPage() {
               </div>
             </TabsContent>
           </Tabs>
+          <InviteMembers />
         </div>
       </div>
     </>

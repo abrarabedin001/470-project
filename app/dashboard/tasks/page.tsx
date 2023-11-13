@@ -77,7 +77,7 @@ export default function TaskPage() {
           <div>
             <AlertDialog>
               <AlertDialogTrigger>
-                <Button>Open</Button>
+                <Button>Create Tasks</Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>

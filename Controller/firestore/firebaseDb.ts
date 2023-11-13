@@ -146,7 +146,7 @@ export const createTeam = async (teamName: string, adminId: string, displayName:
 
     const membersCollection = collection(db, 'teams', teamDocRef.id, 'members');
     const memberDocRef = doc(membersCollection, adminId);
-    await setDoc(memberDocRef, { joinedAt: new Date(), displayName: displayName, role: 'admin' });
+    await setDoc(memberDocRef, { userId: adminId, joinedAt: new Date(), displayName: displayName, role: 'admin' });
     console.log('success: Team member added');
 
     // Update the user's document with the new team ID in the "users" collection
@@ -210,7 +210,7 @@ export const addTeamMemberByEmail = async (teamId: string, teamName: string, dis
     // Use the user ID to add them as a team member
     const membersCollection = collection(db, 'teams', teamId, 'members');
     const memberDocRef = doc(membersCollection, userId);
-    await setDoc(memberDocRef, { joinedAt: new Date(), displayName: displayName, role: role?.toLowerCase() || 'view' });
+    await setDoc(memberDocRef, { userId: userId, joinedAt: new Date(), displayName: displayName, role: role?.toLowerCase() || 'view' });
     console.log('success: Team member added');
     // Update the user's document with the new team ID in the "users" collection
     const teamDocRef = doc(collection(db, "teams"));
@@ -220,6 +220,23 @@ export const addTeamMemberByEmail = async (teamId: string, teamName: string, dis
     });
   } catch (error) {
     console.error('error: Failed to add team member by displayName', error);
+    throw error;
+  }
+}
+
+export const updateTeamMemberRole = async (teamId: string, memberId: string, newRole: string): Promise<void> => {
+  try {
+    // Reference to the specific team member document
+    const memberDocRef = doc(db, 'teams', teamId, 'members', memberId);
+
+    // Update the role of the team member
+    await updateDoc(memberDocRef, {
+      role: newRole.toLowerCase()
+    });
+
+    console.log('success: Team member role updated');
+  } catch (error) {
+    console.error('error: Failed to update team member role', error);
     throw error;
   }
 }

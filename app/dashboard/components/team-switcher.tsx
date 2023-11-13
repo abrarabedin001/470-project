@@ -52,18 +52,16 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     { label: string; value: string }[]
   >([])
 
-  const groups = [
+  let groups = [
     {
       label: 'Teams',
       teams: [...teamListObj],
     },
   ]
-  type Team = (typeof groups)[number]['teams'][number]
+
   const [open, setOpen] = React.useState(false)
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
-  const [selectedTeam, setSelectedTeam] = React.useState<Team>(
-    groups[0].teams[0]
-  )
+
   const [loading, setLoading] = React.useState(false)
   const user = useUserStore((state) => state.user)
 
@@ -79,7 +77,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       })
     })
     setTeamListObj(array)
-  }, [open])
+  }, [open, teamList])
 
   const handleTeamSubmit = async (teamDetails: any) => {
     console.log('Team Details:', teamDetails)
@@ -137,38 +135,37 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
               <CommandList>
                 <CommandInput placeholder="Search team..." />
                 <CommandEmpty>No team found.</CommandEmpty>
-                {groups.map((group) => (
-                  <CommandGroup key={group.label} heading={group.label}>
-                    {group.teams.map((team) => (
-                      <CommandItem
-                        key={team.value}
-                        onSelect={() => {
-                          setCurrentTeam(team)
-                          setOpen(false)
-                        }}
-                        className="text-sm"
-                      >
-                        <Avatar className="mr-2 h-5 w-5">
-                          <AvatarImage
-                            src={`https://avatar.vercel.sh/${team.value}.png`}
-                            alt={team.label}
-                            className="grayscale"
-                          />
-                          <AvatarFallback>SC</AvatarFallback>
-                        </Avatar>
-                        {team.label}
-                        <CheckIcon
-                          className={cn(
-                            'ml-auto h-4 w-4',
-                            currrentTeam?.value === team.value
-                              ? 'opacity-100'
-                              : 'opacity-0'
-                          )}
+
+                <CommandGroup key={'Teams'} heading={'Teams'}>
+                  {teamListObj.map((team) => (
+                    <CommandItem
+                      key={team.value}
+                      onSelect={() => {
+                        setCurrentTeam(team)
+                        setOpen(false)
+                      }}
+                      className="text-sm"
+                    >
+                      <Avatar className="mr-2 h-5 w-5">
+                        <AvatarImage
+                          src={`https://avatar.vercel.sh/${team.value}.png`}
+                          alt={team.label}
+                          className="grayscale"
                         />
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                ))}
+                        <AvatarFallback>SC</AvatarFallback>
+                      </Avatar>
+                      {team.label}
+                      <CheckIcon
+                        className={cn(
+                          'ml-auto h-4 w-4',
+                          currrentTeam?.value === team.value
+                            ? 'opacity-100'
+                            : 'opacity-0'
+                        )}
+                      />
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
               </CommandList>
               <CommandSeparator />
               <CommandList>

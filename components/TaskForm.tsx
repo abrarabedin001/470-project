@@ -25,6 +25,8 @@ import {
 import { Link } from 'lucide-react'
 import { createTask } from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Controller/userStore'
+import { MultiSelect } from './MultiSelect'
+// import { AssignTeamForm } from './AssignTeamForm'
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -33,6 +35,7 @@ const formSchema = z.object({
   status: z.enum(['in progress', 'completed', 'backlog']),
   label: z.enum(['documentation', 'bug', 'enhancement']),
   priority: z.enum(['low', 'medium', 'high']),
+  assigned: z.array(z.string()),
 })
 export default function TaskForm() {
   const currrentTeam = useUserStore((state) => state.currrentTeam)
@@ -44,6 +47,7 @@ export default function TaskForm() {
       status: 'in progress',
       label: 'documentation',
       priority: 'medium',
+      assigned: [],
     },
   })
 
@@ -143,6 +147,71 @@ export default function TaskForm() {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="assigned"
+          render={({ field }) => {
+            if (field.value === undefined) {
+              field.value = []
+            }
+            return (
+              <FormItem>
+                <FormLabel>Assigned Members</FormLabel>
+                <MultiSelect
+                  selected={field.value}
+                  options={[
+                    {
+                      value: 'Colonial',
+                      label: 'Colonial',
+                    },
+                    {
+                      value: 'Modern',
+                      label: 'Modern',
+                    },
+                  ]}
+                  {...field}
+                  className=""
+                />
+                <FormMessage />
+              </FormItem>
+            )
+          }}
+        />
+        {/* <FormField
+          control={form.control}
+          name="assigned"
+          render={({ field }) => {
+            if (field.value === undefined) {
+              field.value = []
+            }
+            return (
+              <FormItem className="w-[80%] flex flex-col items-center ">
+                <FormLabel
+                  className="text-xl"
+                  placeholder="Select the architectural style of the property"
+                >
+                  Architectural Style
+                </FormLabel>
+                <AssignTeamForm
+                  selected={field.value}
+                  options={[
+                    {
+                      value: 'Colonial',
+                      label: 'Colonial',
+                    },
+                    {
+                      value: 'Modern',
+                      label: 'Modern',
+                    },
+                  ]}
+                  {...field}
+                  // className="sm:w-[510px]"
+                />
+                <FormMessage />
+              </FormItem>
+            )
+          }}
+        /> */}
         <Button type="submit">Submit</Button>
       </form>
     </Form>

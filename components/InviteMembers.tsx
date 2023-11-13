@@ -83,11 +83,13 @@ export function InviteMembers() {
                       </p>
                     </div>
                   </div>
-                  <Select defaultValue="edit">
+                  <Select defaultValue={member.role}>
                     <SelectTrigger className="ml-auto w-[110px]">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="admin">Admin</SelectItem>
+
                       <SelectItem value="edit">Can edit</SelectItem>
                       <SelectItem value="view">Can view</SelectItem>
                     </SelectContent>

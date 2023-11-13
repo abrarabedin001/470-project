@@ -28,24 +28,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components//ui/dialog'
-import { Input } from '@/components//ui/input'
-import { Label } from '@/components//ui/label'
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components//ui/popover'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components//ui/select'
+
 import { createTeam } from '@/Controller/firestore/firebaseDb'
 import TeamForm from '@/components/CreateTeamForm'
 import { useUserStore } from '@/Store/userStore'
-// import useUserStore from '@/Controller/userStore'
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -59,19 +51,6 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const [teamListObj, setTeamListObj] = React.useState<
     { label: string; value: string }[]
   >([])
-
-  React.useEffect(() => {
-    setTeamList()
-    let array: { label: string; value: string }[] = []
-    teamList.map((team) => {
-      console.log('team', team)
-      array.push({
-        label: team.name,
-        value: team.id,
-      })
-    })
-    setTeamListObj(array)
-  }, [])
 
   const groups = [
     {
@@ -89,13 +68,29 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const user = useUserStore((state) => state.user)
 
   const adminId = user?.uid // Replace with actual admin ID
+  React.useEffect(() => {
+    setTeamList()
+    let array: { label: string; value: string }[] = []
+    teamList.map((team) => {
+      console.log('team', team)
+      array.push({
+        label: team.name,
+        value: team.id,
+      })
+    })
+    setTeamListObj(array)
+  }, [open])
 
   const handleTeamSubmit = async (teamDetails: any) => {
     console.log('Team Details:', teamDetails)
     // addSampleData()
     // Here, you can call the createTeam function to save the team details to your database
     try {
-      const teamId = await createTeam(teamDetails.name, teamDetails.adminId)
+      const teamId = await createTeam(
+        teamDetails.name,
+        teamDetails.adminId,
+        user?.email!
+      )
       console.log('Team Created with ID:', teamId)
       setLoading(false)
     } catch (error) {

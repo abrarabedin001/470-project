@@ -20,6 +20,7 @@ import {
 
 import { labels } from '../data/data'
 import { taskSchema } from '../data/schema'
+import Link from 'next/link'
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -42,7 +43,9 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href={'/dashboard/tasks/task'}>Edit</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />

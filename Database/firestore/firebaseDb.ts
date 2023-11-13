@@ -53,86 +53,10 @@ export async function createUser(uid: string, displayName: string) {
 }
 
 
-/////////////////////
-const bugs = collection(db, 'bugs');
-
-export const getAllBugsInTeam = async (teamId: string): Promise<BugDetails[]> => {
-  try {
-    const bugsQuery = query(bugs, where('teamId', '==', teamId));
-    const querySnapshot = await getDocs(bugsQuery);
-    const allBugs = querySnapshot.docs.map(doc => doc.data() as BugDetails);
-    console.log('success: Retrieved all bugs in team');
-    return allBugs;
-  } catch (error) {
-    console.error('error: Failed to retrieve all bugs in team', error);
-    throw error;
-  }
-}
-
-export const logBug = async (details: BugDetails): Promise<string> => {
-  try {
-    const bugDocRef = doc(bugs);
-    await setDoc(bugDocRef, { ...details, status: 'Open', createdAt: new Date() });
-    console.log('success: Bug logged');
-    return bugDocRef.id;
-  } catch (error) {
-    console.error('error: Failed to log bug', error);
-    throw error;
-  }
-}
-
-export const assignBug = async (bugId: string, assigneeId: string): Promise<void> => {
-  try {
-    const bugDocRef = doc(bugs, bugId);
-    await updateDoc(bugDocRef, { assigneeId });
-    console.log('success: Bug assigned');
-  } catch (error) {
-    console.error('error: Failed to assign bug', error);
-    throw error;
-  }
-}
-
-export const updateBugStatus = async (bugId: string, status: string): Promise<void> => {
-  try {
-    const bugDocRef = doc(bugs, bugId);
-    await updateDoc(bugDocRef, { status, updateAt: new Date() });
-    console.log('success: Bug status updated');
-  } catch (error) {
-    console.error('error: Failed to update bug status', error);
-    throw error;
-  }
-}
-
-export const deleteBug = async (bugId: string): Promise<void> => {
-  try {
-    const bugDocRef = doc(bugs, bugId);
-    await runTransaction(db, async (transaction) => {
-      transaction.delete(bugDocRef);
-    });
-    console.log('success: Bug deleted');
-  } catch (error) {
-    console.error('error: Failed to delete bug', error);
-    throw error;
-  }
-}
-
-
 
 /////////////////////
 const tasks = collection(db, 'tasks');
 
-// export const getAllTasksInTeam = async (teamId: string): Promise<TaskDetails[]> => {
-//   try {
-//     const tasksQuery = query(tasks, where('teamId', '==', teamId));
-//     const querySnapshot = await getDocs(tasksQuery);
-//     const allTasks = querySnapshot.docs.map(doc => doc.data() as TaskDetails);
-//     console.log('success: Retrieved all tasks in team');
-//     return allTasks;
-//   } catch (error) {
-//     console.error('error: Failed to retrieve all tasks in team', error);
-//     throw error;
-//   }
-// }
 
 export const getAllTasksInTeam = async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
   try {
@@ -142,9 +66,12 @@ export const getAllTasksInTeam = async (teamId: string): Promise<(TaskDetails & 
       return {
         id: doc.id, // This is the unique ID of the document
         ...doc.data()
+        ,
+        createdAt: doc.data().createdAt.toDate('en-us', { year: "numeric", month: "short", day: "numeric" }),
       } as TaskDetails & { id: string };
     });
     console.log('success: Retrieved all tasks in team');
+    console.log('allTasks', allTasks);
     return allTasks;
   } catch (error) {
     console.error('error: Failed to retrieve all tasks in team', error);

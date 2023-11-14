@@ -1,42 +1,42 @@
-import React from 'react';
-import PrimaryButton from './ui/PrimaryButton';
-import Link from 'next/link';
-import { AiFillLinkedin } from 'react-icons/ai';
-import { AiFillInstagram } from 'react-icons/ai';
-import { BsFacebook } from 'react-icons/bs';
+import React from 'react'
+import PrimaryButton from './ui/PrimaryButton'
+import Link from 'next/link'
+import { AiFillLinkedin } from 'react-icons/ai'
+import { AiFillInstagram } from 'react-icons/ai'
+import { BsFacebook } from 'react-icons/bs'
 
 export default function Foot() {
   return (
-    <div className="w-full h-full left-0 bottom-0  flex justify-center mt-36 text-gray-700">
+    <div className="w-full h-full left-0 bottom-0  flex justify-center mt-36 text-gray-700 dark:text-white">
       <div className="max-w-[1440px] w-full">
         <div className="w-full  hidden lg:block  ">
           <div className="flex flex-row p-10 justify-between w-full  ">
-            <div className=" text-zinc-800 text-base font-medium leading-normal py-5">
+            <div className=" text-zinc-800 dark:text-white text-base font-medium leading-normal py-5">
               © 2020 Wirefigma
             </div>
             <div className="flex flex-col justify-center">
               <div className=" px-5 py-[13px]  rounded-[5px] justify-center items-start gap-5 inline-flex ">
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Contact
                 </Link>
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Privacy
                 </Link>
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Terms of Service
                 </Link>
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Faq
                 </Link>
@@ -68,31 +68,31 @@ export default function Foot() {
             </div>
           </div>
         </div>
-        <div className="w-full mt-36 flex flex-col justify-center lg:hidden bg-white">
+        <div className="text-white w-full mt-36 flex flex-col justify-center lg:hidden">
           <div className="flex flex-row p-10 justify-between w-full">
             <div className="flex flex-col">
               <div className=" px-5 py-[13px]  rounded-[5px] justify-center items-start gap-5 inline-flex flex-col  ">
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Faq
                 </Link>
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Contact
                 </Link>
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Privacy
                 </Link>
                 <Link
                   href={'/'}
-                  className="text-gray-700 text-base font-medium leading-normal"
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
                 >
                   Terms of Service
                 </Link>
@@ -127,11 +127,11 @@ export default function Foot() {
               </div>
             </div>
           </div>
-          <div className=" text-zinc-800 text-base text-center font-medium leading-normal py-5">
+          <div className=" text-zinc-800 dark:text-white text-base text-center font-medium leading-normal py-5">
             © 2023 CleverCore.ai
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -106,9 +106,16 @@ export async function getCurrentUser() {
 export function subscribeToAuthChanges(
   onAuthStateChanged: (user: User | null) => void
 ) {
+  console.log("auth", auth.currentUser?.getIdToken)
   return auth.onAuthStateChanged((user) => {
     onAuthStateChanged(user)
   })
+}
+
+export async function getUserCustomClaims() {
+  let res = await auth.currentUser?.getIdToken(true)
+  console.log(res)
+  return res
 }
 
 

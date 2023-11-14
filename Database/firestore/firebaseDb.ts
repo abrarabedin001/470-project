@@ -277,4 +277,38 @@ export const deleteTeam = async (teamId: string): Promise<void> => {
 
 }
 
+//chat section
+const chatCollection = collection(db, 'chats');
 
+// send messages
+export const sendMessage = async (teamId: string, senderId: string, message: string, image?: string): Promise<string> => {
+  try {
+    const messageDocRef = doc(chatCollection);
+    await setDoc(messageDocRef, {
+      teamId,
+      senderId,
+      message,
+      image,
+      createdAt: new Date(),
+    });
+    console.log('success: Message sent');
+    return messageDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to send message', error);
+    throw error;
+  }
+};
+
+//receive messages
+export const getAllChatMessagesInTeam = async (teamId: string): Promise<any[]> => {
+  try {
+    const chatQuery = query(chatCollection, where('teamId', '==', teamId));
+    const querySnapshot = await getDocs(chatQuery);
+    const allMessages = querySnapshot.docs.map(doc => doc.data());
+    console.log('success: Retrieved all chat messages in team');
+    return allMessages;
+  } catch (error) {
+    console.error('error: Failed to retrieve all chat messages in team', error);
+    throw error;
+  }
+};

@@ -46,68 +46,6 @@ export async function createUser(uid: string, displayName: string) {
 }
 
 
-/////////////////////
-const bugs = collection(db, 'bugs');
-
-export const getAllBugsInTeam = async (teamId: string): Promise<BugDetails[]> => {
-  try {
-    const bugsQuery = query(bugs, where('teamId', '==', teamId));
-    const querySnapshot = await getDocs(bugsQuery);
-    const allBugs = querySnapshot.docs.map(doc => doc.data() as BugDetails);
-    console.log('success: Retrieved all bugs in team');
-    return allBugs;
-  } catch (error) {
-    console.error('error: Failed to retrieve all bugs in team', error);
-    throw error;
-  }
-}
-
-export const logBug = async (details: BugDetails): Promise<string> => {
-  try {
-    const bugDocRef = doc(bugs);
-    await setDoc(bugDocRef, { ...details, status: 'Open', createdAt: new Date() });
-    console.log('success: Bug logged');
-    return bugDocRef.id;
-  } catch (error) {
-    console.error('error: Failed to log bug', error);
-    throw error;
-  }
-}
-
-export const assignBug = async (bugId: string, assigneeId: string): Promise<void> => {
-  try {
-    const bugDocRef = doc(bugs, bugId);
-    await updateDoc(bugDocRef, { assigneeId });
-    console.log('success: Bug assigned');
-  } catch (error) {
-    console.error('error: Failed to assign bug', error);
-    throw error;
-  }
-}
-
-export const updateBugStatus = async (bugId: string, status: string): Promise<void> => {
-  try {
-    const bugDocRef = doc(bugs, bugId);
-    await updateDoc(bugDocRef, { status, updateAt: new Date() });
-    console.log('success: Bug status updated');
-  } catch (error) {
-    console.error('error: Failed to update bug status', error);
-    throw error;
-  }
-}
-
-export const deleteBug = async (bugId: string): Promise<void> => {
-  try {
-    const bugDocRef = doc(bugs, bugId);
-    await runTransaction(db, async (transaction) => {
-      transaction.delete(bugDocRef);
-    });
-    console.log('success: Bug deleted');
-  } catch (error) {
-    console.error('error: Failed to delete bug', error);
-    throw error;
-  }
-}
 
 
 
@@ -243,27 +181,87 @@ export const deleteTeam = async (teamId: string): Promise<void> => {
 
 }
 
-//chat section
-const chatCollection = collection(db, 'chats');
+//chat for team
+const chatCollection = collection(db, 'teamChats');
 
 // send messages
-export const sendMessage = async (teamId: string, senderId: string, message: string, image?: string): Promise<string> => {
+// export const sendMessage = async (teamId: string, senderId: string, message: string, image?: string): Promise<string> => {
+//   try {
+//     const messageDocRef = doc(chatCollection);
+//     await setDoc(messageDocRef, {
+//       teamId,
+//       senderId,
+//       message,
+//       image,
+//       createdAt: new Date(),
+//     });
+//     console.log('success: Message sent');
+//     return messageDocRef.id;
+//   } catch (error) {
+//     console.error('error: Failed to send message', error);
+//     throw error;
+//   }
+// };
+
+// export const createChatForTeam = async (taskId: string, participants: string[]): Promise<string> => {
+//   try {
+//     const chatDocRef = doc(chatCollection);
+//     await setDoc(chatDocRef, {
+//       taskId,
+//       createdAt: new Date(),
+//       participants,
+//       messages: []
+//     });
+//     console.log('success: Chat created for task', taskId);
+//     return chatDocRef.id;
+//   } catch (error) {
+//     console.error('error: Failed to create chat for task', error);
+//     throw error;
+//   }
+// }
+
+export const createChatForTeam = async (taskId: string, participants: string[]): Promise<string> => {
   try {
-    const messageDocRef = doc(chatCollection);
-    await setDoc(messageDocRef, {
-      teamId,
-      senderId,
-      message,
-      image,
+    // Create a new chat document
+    const chatDocRef = doc(chatCollection);
+    await setDoc(chatDocRef, {
+      taskId,
       createdAt: new Date(),
+      participants
     });
-    console.log('success: Message sent');
-    return messageDocRef.id;
+
+    // Optionally, initialize the 'messages' subcollection with an empty document
+    // This step is not strictly necessary as Firestore allows adding to a subcollection directly
+    // But if you want to initialize it, you can do so like this:
+    const messagesCollectionRef = collection(chatDocRef, 'messages');
+    const initialMessageDocRef = doc(messagesCollectionRef);
+    await setDoc(initialMessageDocRef, {
+      // Add initial data for the message, or leave it empty
+    });
+
+    console.log('success: Chat created for task', taskId);
+    return chatDocRef.id;
   } catch (error) {
-    console.error('error: Failed to send message', error);
+    console.error('error: Failed to create chat for task', error);
     throw error;
   }
 };
+
+export const addMessageForTeam = async (chatId: string, userId: string, text: string): Promise<void> => {
+  try {
+    const messageDocRef = doc(collection(db, 'teamChats', chatId, 'messages'));
+    let res = await setDoc(messageDocRef, {
+      userId,
+      text,
+      createdAt: new Date()
+    });
+    console.log('success: Message added');
+    return res;
+  } catch (error) {
+    console.error('error: Failed to add message', error);
+    throw error;
+  }
+}
 
 //receive messages
 export const getAllChatMessagesInTeam = async (teamId: string): Promise<any[]> => {
@@ -278,3 +276,55 @@ export const getAllChatMessagesInTeam = async (teamId: string): Promise<any[]> =
     throw error;
   }
 };
+
+
+
+//chat for tasks
+
+const chats = collection(db, 'chats');
+
+export const createChatForTask = async (taskId: string, participants: string[]): Promise<string> => {
+  try {
+    const chatDocRef = doc(chats);
+    await setDoc(chatDocRef, {
+      taskId,
+      createdAt: new Date(),
+      participants,
+      messages: []
+    });
+    console.log('success: Chat created for task', taskId);
+    return chatDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to create chat for task', error);
+    throw error;
+  }
+}
+
+
+export const deleteChat = async (chatId: string): Promise<void> => {
+  try {
+    const chatDocRef = doc(chats, chatId);
+    await runTransaction(db, async (transaction) => {
+      transaction.delete(chatDocRef);
+    });
+    console.log('success: Chat deleted');
+  } catch (error) {
+    console.error('error: Failed to delete chat', error);
+    throw error;
+  }
+}
+
+export const addMessage = async (chatId: string, userId: string, text: string): Promise<void> => {
+  try {
+    const messageDocRef = doc(collection(db, 'chats', chatId, 'messages'));
+    await setDoc(messageDocRef, {
+      userId,
+      text,
+      createdAt: new Date()
+    });
+    console.log('success: Message added');
+  } catch (error) {
+    console.error('error: Failed to add message', error);
+    throw error;
+  }
+}

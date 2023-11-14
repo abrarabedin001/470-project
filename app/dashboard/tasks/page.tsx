@@ -29,7 +29,7 @@ import { useEffect, useState } from 'react'
 // import { AssignTeamForm } from '@/components/AssignTeamForm'
 
 export default function TaskPage() {
-  let teamId = useUserStore((state) => state.currrentTeam?.value)
+  let teamId: any = useUserStore((state) => state.currrentTeam?.value)
   let [tasks, setTasks] = useState<any[]>([])
   useEffect(() => {
     if (teamId) {

@@ -4,6 +4,7 @@ import {
   getDocs,
   query,
   where,
+
   addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc
 } from 'firebase/firestore';
 import { BugDetails, TaskDetails } from '../../lib/type';
@@ -184,41 +185,7 @@ export const deleteTeam = async (teamId: string): Promise<void> => {
 //chat for team
 const chatCollection = collection(db, 'teamChats');
 
-// send messages
-// export const sendMessage = async (teamId: string, senderId: string, message: string, image?: string): Promise<string> => {
-//   try {
-//     const messageDocRef = doc(chatCollection);
-//     await setDoc(messageDocRef, {
-//       teamId,
-//       senderId,
-//       message,
-//       image,
-//       createdAt: new Date(),
-//     });
-//     console.log('success: Message sent');
-//     return messageDocRef.id;
-//   } catch (error) {
-//     console.error('error: Failed to send message', error);
-//     throw error;
-//   }
-// };
 
-// export const createChatForTeam = async (taskId: string, participants: string[]): Promise<string> => {
-//   try {
-//     const chatDocRef = doc(chatCollection);
-//     await setDoc(chatDocRef, {
-//       taskId,
-//       createdAt: new Date(),
-//       participants,
-//       messages: []
-//     });
-//     console.log('success: Chat created for task', taskId);
-//     return chatDocRef.id;
-//   } catch (error) {
-//     console.error('error: Failed to create chat for task', error);
-//     throw error;
-//   }
-// }
 
 export const createChatForTeam = async (taskId: string, participants: string[]): Promise<string> => {
   try {

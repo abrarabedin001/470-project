@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import TaskForm from '@/components/TaskForm'
-import { getAllTasksInTeam } from '@/Controller/firestore/firebaseDb'
+import { getAllTasksInTeam } from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
 import { ta } from 'date-fns/locale'
 import { useEffect, useState } from 'react'

@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Link } from 'lucide-react'
-import { createTask } from '@/Controller/firestore/firebaseDb'
+import { createTask } from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
 import { MultiSelect } from './MultiSelect'
 import { useEffect, useState } from 'react'

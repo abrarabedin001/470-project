@@ -2,7 +2,7 @@
 import firebase from 'firebase/app'
 import React, { useEffect, useState } from 'react'
 import { useUserStore } from '@/Store/userStore'
-import { getUserCustomClaims, subscribeToAuthChanges } from '@/Controller/auth'
+import { getUserCustomClaims, subscribeToAuthChanges } from '@/Database/auth'
 
 interface WrapperProps {
   children: React.ReactNode

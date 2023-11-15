@@ -15,8 +15,8 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signUp, signUpWithGoogle } from '@/Controller/auth'
-import { createUser } from '@/Controller/firestore/firebaseDb'
+import { signUp, signUpWithGoogle } from '@/Database/auth'
+import { createUser } from '@/Database/firestore/firebaseDb'
 
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')

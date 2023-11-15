@@ -1,7 +1,7 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import H1 from './ui/H1';
+'use client'
+import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
+import H1 from './ui/H1'
 
 const TestimonialV2 = () => {
   const slides = [
@@ -55,23 +55,23 @@ const TestimonialV2 = () => {
       imageSrc: '/Testimonials/Ellipse 2.png',
     },
     // Add more slides as needed
-  ];
+  ]
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [exitingSlide, setExitingSlide] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [exitingSlide, setExitingSlide] = useState<number | null>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setExitingSlide(currentSlide);
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 5000);
+      setExitingSlide(currentSlide)
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)
+    }, 5000)
 
-    return () => clearInterval(interval);
-  }, [currentSlide]);
+    return () => clearInterval(interval)
+  }, [currentSlide])
 
   const handleTransitionEnd = () => {
-    setExitingSlide(null);
-  };
+    setExitingSlide(null)
+  }
 
   return (
     <div className="slideshow-container w-full flex justify-center mt-20">
@@ -81,7 +81,7 @@ const TestimonialV2 = () => {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`slide flex flex-col md:w-[600px] md:h-[400px] lg:w-[700px] lg:h-[400px] rounded-xl my-32  ${
+          className={`text-white slide flex flex-col md:w-[600px] md:h-[400px] lg:w-[700px] lg:h-[400px] rounded-xl my-32  ${
             index === currentSlide
               ? 'active-slide'
               : index === exitingSlide
@@ -103,15 +103,15 @@ const TestimonialV2 = () => {
             </div>
             <div className="">
               <div className="quote tracking-wide">{slide.quote}</div>
-              <div className="author font-bold mt-5 tracking-wider">
+              <div className=" font-bold mt-5 tracking-wider dark:text-white">
                 {slide.author}
               </div>
-              <div className="title">{slide.title}</div>
+              <div className="title text-white">{slide.title}</div>
             </div>
           </div>
         </div>
       ))}
     </div>
-  );
-};
-export default TestimonialV2;
+  )
+}
+export default TestimonialV2

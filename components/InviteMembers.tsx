@@ -24,7 +24,7 @@ import {
   addTeamMemberByEmail,
   getTeamMembers,
   updateTeamMemberRole,
-} from '@/Controller/firestore/firebaseDb'
+} from '@/Database/firestore/firebaseDb'
 import { TeamMembers } from '@/lib/type'
 export function InviteMembers() {
   const [email, setEmail] = useState('')

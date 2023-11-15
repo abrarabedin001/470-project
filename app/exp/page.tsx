@@ -1,5 +1,5 @@
 'use client'
-import { createTeam } from '@/Controller/firestore/firebaseDb'
+import { createTeam } from '@/Database/firestore/firebaseDb'
 import {
   addMessage,
   addMessageForTeam,

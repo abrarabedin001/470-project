@@ -1,38 +1,38 @@
-'use client';
-import React, { useRef, useEffect } from 'react';
-import H1 from './ui/H1';
-import H3 from './ui/H3';
-import Image from 'next/image';
-import P from './ui/P';
-import H2 from './ui/H2';
-import PrimaryButton from './ui/PrimaryButton';
-import { motion, useInView, useAnimation } from 'framer-motion';
+'use client'
+import React, { useRef, useEffect } from 'react'
+import H1 from './ui/H1'
+import H3 from './ui/H3'
+import Image from 'next/image'
+import P from './ui/P'
+import H2 from './ui/H2'
+import PrimaryButton from './ui/PrimaryButton'
+import { motion, useInView, useAnimation } from 'framer-motion'
 
 export default function WhyChoseCleverCore() {
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const ref4 = useRef(null);
-  const ref5 = useRef(null);
-  const ref6 = useRef(null);
-  const ref7 = useRef(null);
-  const ref8 = useRef(null);
-  const inView1 = useInView(ref1, { once: true });
-  const inView2 = useInView(ref2, { once: true });
-  const inView3 = useInView(ref3, { once: true });
-  const inView4 = useInView(ref4, { once: true });
-  const inView5 = useInView(ref5, { once: true });
-  const inView6 = useInView(ref6, { once: true });
-  const inView7 = useInView(ref7, { once: true });
-  const inView8 = useInView(ref8, { once: true });
-  const mainControls1 = useAnimation();
-  const mainControls2 = useAnimation();
-  const mainControls3 = useAnimation();
-  const mainControls4 = useAnimation();
-  const mainControls5 = useAnimation();
-  const mainControls6 = useAnimation();
-  const mainControls7 = useAnimation();
-  const mainControls8 = useAnimation();
+  const ref1 = useRef(null)
+  const ref2 = useRef(null)
+  const ref3 = useRef(null)
+  const ref4 = useRef(null)
+  const ref5 = useRef(null)
+  const ref6 = useRef(null)
+  const ref7 = useRef(null)
+  const ref8 = useRef(null)
+  const inView1 = useInView(ref1, { once: true })
+  const inView2 = useInView(ref2, { once: true })
+  const inView3 = useInView(ref3, { once: true })
+  const inView4 = useInView(ref4, { once: true })
+  const inView5 = useInView(ref5, { once: true })
+  const inView6 = useInView(ref6, { once: true })
+  const inView7 = useInView(ref7, { once: true })
+  const inView8 = useInView(ref8, { once: true })
+  const mainControls1 = useAnimation()
+  const mainControls2 = useAnimation()
+  const mainControls3 = useAnimation()
+  const mainControls4 = useAnimation()
+  const mainControls5 = useAnimation()
+  const mainControls6 = useAnimation()
+  const mainControls7 = useAnimation()
+  const mainControls8 = useAnimation()
 
   const leftVarients = {
     hidden: {
@@ -46,7 +46,7 @@ export default function WhyChoseCleverCore() {
         duration: 1,
       },
     },
-  };
+  }
 
   const rightVarients = {
     hidden: {
@@ -60,38 +60,38 @@ export default function WhyChoseCleverCore() {
         duration: 1,
       },
     },
-  };
+  }
 
   useEffect(() => {
     if (inView1) {
-      mainControls1.start('visible');
+      mainControls1.start('visible')
     }
     if (inView2) {
-      mainControls2.start('visible');
+      mainControls2.start('visible')
     }
     if (inView3) {
-      mainControls3.start('visible');
+      mainControls3.start('visible')
     }
     if (inView4) {
-      mainControls4.start('visible');
+      mainControls4.start('visible')
     }
     if (inView5) {
-      mainControls5.start('visible');
+      mainControls5.start('visible')
     }
     if (inView6) {
-      mainControls6.start('visible');
+      mainControls6.start('visible')
     }
     if (inView7) {
-      mainControls7.start('visible');
+      mainControls7.start('visible')
     }
     if (inView8) {
-      mainControls8.start('visible');
+      mainControls8.start('visible')
     }
-  }, [inView1, inView2, inView3, inView4, inView5, inView6, inView7, inView8]);
+  }, [inView1, inView2, inView3, inView4, inView5, inView6, inView7, inView8])
 
   return (
     <div className="container lg:p-8 text-center pt-16 lg:mt-36 flex flex-col ">
-      <H2 className="lg:mb-36">What is CleverCore AI?</H2>
+      <H2 className="lg:mb-36">What is Bug Smasher?</H2>
       <div className="flex flex-col justify-center items-center">
         <div className="w-[250px] lg:w-full  flex justify-center flex-col  lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div
@@ -110,7 +110,7 @@ export default function WhyChoseCleverCore() {
             variants={rightVarients}
           >
             <H2 className=" mb-10 lg:text-3xl font-semibold">
-              CleverCore AI: Revolutionize Your Voice Communications
+              Bug Smasher: Revolutionize Your Voice Communications
             </H2>{' '}
             <div className="flex">
               ✔
@@ -265,5 +265,5 @@ export default function WhyChoseCleverCore() {
         </div>
       </div>
     </div>
-  );
+  )
 }

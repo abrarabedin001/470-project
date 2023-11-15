@@ -1,4 +1,4 @@
-import { createChatForTeam } from "@/Controller/firestore/firebaseDb"
+import { createChatForTeam } from "@/Database/firestore/firebaseDb"
 import user from "@/lib/token"
 
 
@@ -9,9 +9,9 @@ export async function POST(request: Request) {
   try {
     if (user) {
       console.log(user)
-      const {teamId,participants}= await request.json()
-      
-      let res = await createChatForTeam(teamId,participants)
+      const { teamId, participants } = await request.json()
+
+      let res = await createChatForTeam(teamId, participants)
       let something = JSON.stringify(res)
       return Response.json({ "hello": something })
 

@@ -370,7 +370,7 @@ export const getAllChatMessagesInTeam = async (teamId: string): Promise<any[]> =
 
 //chat for tasks
 
-const chatsForTask= collection(db, 'taskChats');
+const chatsForTask = collection(db, 'taskChats');
 
 export const createChatForTask = async (taskId: string, participants: string[]): Promise<string> => {
   try {
@@ -390,18 +390,18 @@ export const createChatForTask = async (taskId: string, participants: string[]):
 }
 
 
-export const deleteChat = async (chatId: string): Promise<void> => {
-  try {
-    const chatDocRef = doc(chats, chatId);
-    await runTransaction(db, async (transaction) => {
-      transaction.delete(chatDocRef);
-    });
-    console.log('success: Chat deleted');
-  } catch (error) {
-    console.error('error: Failed to delete chat', error);
-    throw error;
-  }
-}
+// export const deleteChat = async (chatId: string): Promise<void> => {
+//   try {
+//     const chatDocRef = doc(chats, chatId);
+//     await runTransaction(db, async (transaction) => {
+//       transaction.delete(chatDocRef);
+//     });
+//     console.log('success: Chat deleted');
+//   } catch (error) {
+//     console.error('error: Failed to delete chat', error);
+//     throw error;
+//   }
+// }
 
 export const addMessage = async (chatId: string, userId: string, text: string): Promise<void> => {
   try {

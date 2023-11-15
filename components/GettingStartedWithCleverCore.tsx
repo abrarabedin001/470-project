@@ -1,38 +1,38 @@
-'use client';
-import React, { useRef, useEffect } from 'react';
-import H2 from './ui/H2';
-import H3 from './ui/H3';
-import Image from 'next/image';
-import H1 from './ui/H1';
-import { motion, useInView, useAnimation } from 'framer-motion';
-import PrimaryButton from './ui/PrimaryButton';
+'use client'
+import React, { useRef, useEffect } from 'react'
+import H2 from './ui/H2'
+import H3 from './ui/H3'
+import Image from 'next/image'
+import H1 from './ui/H1'
+import { motion, useInView, useAnimation } from 'framer-motion'
+import PrimaryButton from './ui/PrimaryButton'
 export default function GettingStartedWithCleverCore() {
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
-  const ref4 = useRef(null);
-  const refL1 = useRef(null);
-  const refL2 = useRef(null);
-  const refL3 = useRef(null);
-  const refL4 = useRef(null);
+  const ref1 = useRef(null)
+  const ref2 = useRef(null)
+  const ref3 = useRef(null)
+  const ref4 = useRef(null)
+  const refL1 = useRef(null)
+  const refL2 = useRef(null)
+  const refL3 = useRef(null)
+  const refL4 = useRef(null)
 
-  const inView1 = useInView(ref1, { once: true });
-  const inView2 = useInView(ref2, { once: true });
-  const inView3 = useInView(ref3, { once: true });
-  const inView4 = useInView(ref4, { once: true });
-  const inViewL1 = useInView(refL1, { once: true });
-  const inViewL2 = useInView(refL2, { once: true });
-  const inViewL3 = useInView(refL3, { once: true });
-  const inViewL4 = useInView(refL4, { once: true });
+  const inView1 = useInView(ref1, { once: true })
+  const inView2 = useInView(ref2, { once: true })
+  const inView3 = useInView(ref3, { once: true })
+  const inView4 = useInView(ref4, { once: true })
+  const inViewL1 = useInView(refL1, { once: true })
+  const inViewL2 = useInView(refL2, { once: true })
+  const inViewL3 = useInView(refL3, { once: true })
+  const inViewL4 = useInView(refL4, { once: true })
 
-  const mainControls1 = useAnimation();
-  const mainControls2 = useAnimation();
-  const mainControls3 = useAnimation();
-  const mainControls4 = useAnimation();
-  const mainControlsL1 = useAnimation();
-  const mainControlsL2 = useAnimation();
-  const mainControlsL3 = useAnimation();
-  const mainControlsL4 = useAnimation();
+  const mainControls1 = useAnimation()
+  const mainControls2 = useAnimation()
+  const mainControls3 = useAnimation()
+  const mainControls4 = useAnimation()
+  const mainControlsL1 = useAnimation()
+  const mainControlsL2 = useAnimation()
+  const mainControlsL3 = useAnimation()
+  const mainControlsL4 = useAnimation()
 
   const leftVarients = {
     hidden: {
@@ -46,7 +46,7 @@ export default function GettingStartedWithCleverCore() {
         duration: 1,
       },
     },
-  };
+  }
 
   const rightVarients = {
     hidden: {
@@ -60,34 +60,34 @@ export default function GettingStartedWithCleverCore() {
         duration: 1,
       },
     },
-  };
+  }
 
   useEffect(() => {
     if (inView1) {
-      mainControls1.start('visible');
+      mainControls1.start('visible')
     }
     if (inView2) {
-      mainControls2.start('visible');
+      mainControls2.start('visible')
     }
     if (inView3) {
-      mainControls3.start('visible');
+      mainControls3.start('visible')
     }
     if (inView4) {
-      mainControls4.start('visible');
+      mainControls4.start('visible')
     }
 
     // Lg screen
     if (inViewL1) {
-      mainControls1.start('visible');
+      mainControls1.start('visible')
     }
     if (inViewL2) {
-      mainControls2.start('visible');
+      mainControls2.start('visible')
     }
     if (inViewL3) {
-      mainControls3.start('visible');
+      mainControls3.start('visible')
     }
     if (inViewL4) {
-      mainControls4.start('visible');
+      mainControls4.start('visible')
     }
   }, [
     inView1,
@@ -98,11 +98,11 @@ export default function GettingStartedWithCleverCore() {
     inViewL2,
     inViewL3,
     inViewL4,
-  ]);
+  ])
   return (
     <div className="container flex flex-col justify-center items-center mx-auto w-full h-full mt-10 lg:mt-36 ">
       <H1 className="text-center pb-10 lg:pb-18">
-        Getting Started with CleverCore AI is Easy!
+        Getting Started with Bug Smasher is Easy!
       </H1>
       <PrimaryButton className=" w-[250px] mb-10">Try Now</PrimaryButton>
       {/* for large screens */}
@@ -202,7 +202,7 @@ export default function GettingStartedWithCleverCore() {
                 <p className="font-bold">Step Three</p>
                 <H3 className="p-0 ">Make Calls</H3>
                 <p className="text-gray-700">
-                  Use CleverCore AI&apos; interface to manage your calls
+                  Use Bug Smasher&apos; interface to manage your calls
                 </p>
               </div>
             </div>
@@ -342,7 +342,7 @@ export default function GettingStartedWithCleverCore() {
                   <p className="font-bold">Step Three</p>
                   <H3 className="p-0 ">Make Calls</H3>
                   <p className="text-gray-700">
-                    Use CleverCore AI&apos; interface to manage your calls
+                    Use Bug Smasher&apos; interface to manage your calls
                   </p>
                 </div>
               </div>
@@ -387,5 +387,5 @@ export default function GettingStartedWithCleverCore() {
         {/* <!-- right timeline --> */}
       </div>
     </div>
-  );
+  )
 }

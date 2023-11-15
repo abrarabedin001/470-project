@@ -1,8 +1,8 @@
-import React from 'react';
-import PrimaryButton from './ui/PrimaryButton';
-import H1 from './ui/H1';
-import P from './ui/P';
-import Image from 'next/image';
+import React from 'react'
+import PrimaryButton from './ui/PrimaryButton'
+import H1 from './ui/H1'
+import P from './ui/P'
+import Image from 'next/image'
 
 export default function HeroSection() {
   return (
@@ -11,11 +11,11 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 animated-text">
           <div className=" flex flex-col gap-2 items-center lg:items-start text-center lg:text-left max-lg:mx-4 space-y-10 p-5 lg:p-0 ">
             <H1>
-              Automate, Analyze, and Amplify your Communication Process with
-              CleverCore AI
+              Automate, Analyze, and Amplify your Communication Process with Bug
+              Smasher
             </H1>
             <P className="tracking-wide">
-              Clever Core extracts essential notes from calls, identifies key
+              Bug Smasher extracts essential notes from calls, identifies key
               discussion points, and suggests actionable steps derived from the
               call&apos;s content.
             </P>
@@ -37,5 +37,5 @@ export default function HeroSection() {
         />
       </div>
     </div>
-  );
+  )
 }

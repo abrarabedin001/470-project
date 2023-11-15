@@ -1,13 +1,13 @@
-import React from 'react';
-import Image from 'next/image';
-import H2 from './ui/H2';
-import H1 from './ui/H1';
+import React from 'react'
+import Image from 'next/image'
+import H2 from './ui/H2'
+import H1 from './ui/H1'
 
 export default function Testimonial() {
   return (
     <div className="w-screen m-auto text-center flex flex-col justify-center mt-10 lg:mt-36 ">
       <H1 className="text-center pb-10 lg:pb-36">
-        Getting Started with CleverCore AI is Easy!
+        Getting Started with Bug Smasher is Easy!
       </H1>
       {/* <H1 className=" w-full text-center my-10 px-5  lg:mt-36 ">
         What Our Customers Are Saying
@@ -849,5 +849,5 @@ export default function Testimonial() {
         </div>
       </div>
     </div>
-  );
+  )
 }

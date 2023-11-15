@@ -303,3 +303,56 @@ export const deleteTeam = async (teamId: string): Promise<void> => {
 }
 
 
+//chat for team
+const chatCollection = collection(db, 'teamChats');
+
+
+
+export const createChatForTeam = async (teamId: string, participants: string[]): Promise<string> => {
+  try {
+    // Create a new chat document
+    const chatDocRef = doc(chatCollection);
+    await setDoc(chatDocRef, {
+      teamId,
+      createdAt: new Date(),
+      participants
+    });
+
+    // Optionally, initialize the 'messages' subcollection with an empty document
+    // This step is not strictly necessary as Firestore allows adding to a subcollection directly
+    // But if you want to initialize it, you can do so like this:
+    const messagesCollectionRef = collection(chatDocRef, 'messages');
+    const initialMessageDocRef = doc(messagesCollectionRef);
+    await setDoc(initialMessageDocRef, {
+      // Add initial data for the message, or leave it empty
+    });
+
+    console.log('success: Chat created for team', teamId);
+    return chatDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to create chat for team', error);
+    throw error;
+  }
+};
+
+
+
+
+const chatsForTask= collection(db, 'taskChats');
+
+export const createChatForTask = async (taskId: string, participants: string[]): Promise<string> => {
+  try {
+    const chatDocRef = doc(chatsForTask);
+    await setDoc(chatDocRef, {
+      taskId,
+      createdAt: new Date(),
+      participants,
+      messages: []
+    });
+    console.log('success: Chat created for task', taskId);
+    return chatDocRef.id;
+  } catch (error) {
+    console.error('error: Failed to create chat for task', error);
+    throw error;
+  }
+}

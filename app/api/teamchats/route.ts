@@ -1,4 +1,4 @@
-import { createTeam } from "@/Controller/firestore/firebaseDb"
+import { createChatForTeam } from "@/Controller/firestore/firebaseDb"
 import user from "@/lib/token"
 
 
@@ -9,16 +9,16 @@ export async function POST(request: Request) {
   try {
     if (user) {
       console.log(user)
-      const {teamName,adminId,displayName}= await request.json()
+      const {teamId,participants}= await request.json()
       
-      let res = await createTeam(teamName,adminId,displayName)
+      let res = await createChatForTeam(teamId,participants)
       let something = JSON.stringify(res)
       return Response.json({ "hello": something })
 
     }
     return Response.json({ message: 'Success' });
   } catch (error) {
-    console.error('Failed to create team', error);
+    console.error('Failed to create chat for team', error);
     return Response.json({ error: 'Internal Server Error' });
   }
 }

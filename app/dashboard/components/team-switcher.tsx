@@ -35,7 +35,7 @@ import {
   PopoverTrigger,
 } from '@/components//ui/popover'
 
-import { createTeam } from '@/Controller/firestore/firebaseDb'
+import { createTeam } from '@/Database/firestore/firebaseDb'
 import TeamForm from '@/components/CreateTeamForm'
 import { useUserStore } from '@/Store/userStore'
 

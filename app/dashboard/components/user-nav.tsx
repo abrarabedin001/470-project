@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components//ui/avatar'
 import { Button } from '@/components//ui/button'
-import { signOutUser } from '@/Controller/auth'
+import { signOutUser } from '@/Database/auth'
 import {
   DropdownMenu,
   DropdownMenuContent,

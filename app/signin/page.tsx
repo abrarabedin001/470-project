@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signIn, signInWithGoogle } from '@/Controller/auth'
+import { signIn, signInWithGoogle } from '@/Database/auth'
 import { ToastContainer, toast } from 'react-toastify'
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')

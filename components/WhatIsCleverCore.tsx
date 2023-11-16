@@ -8,7 +8,7 @@ import H2 from './ui/H2'
 import PrimaryButton from './ui/PrimaryButton'
 import { motion, useInView, useAnimation } from 'framer-motion'
 
-export default function WhyChoseCleverCore() {
+export default function WhyChoseBugSmasher() {
   const ref1 = useRef(null)
   const ref2 = useRef(null)
   const ref3 = useRef(null)
@@ -121,7 +121,7 @@ export default function WhyChoseCleverCore() {
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-                Receive and call from your unique CleverCore phone number
+                Receive and call from your unique BugSmasher phone number
               </P>
             </div>
             <div className="flex">
@@ -211,7 +211,7 @@ export default function WhyChoseCleverCore() {
               ✔
               <P className="pb-5 pl-5">
                 Store, manage, and access all your voice interactions within
-                your CleverCore CRM.
+                your BugSmasher CRM.
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
@@ -233,14 +233,14 @@ export default function WhyChoseCleverCore() {
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-                Integrate CleverCore with your existing infrastructure for a
+                Integrate BugSmasher with your existing infrastructure for a
                 smooth and unified experience using API’s
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-                Set your team up with CleverCore to better support and assist
+                Set your team up with BugSmasher to better support and assist
                 their calls and communication
               </P>
             </div>

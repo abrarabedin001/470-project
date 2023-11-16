@@ -128,7 +128,7 @@ export default function Foot() {
             </div>
           </div>
           <div className=" text-zinc-800 dark:text-white text-base text-center font-medium leading-normal py-5">
-            © 2023 CleverCore.ai
+            © 2023 BugSmasher.ai
           </div>
         </div>
       </div>

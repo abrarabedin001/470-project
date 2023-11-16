@@ -4,7 +4,7 @@ export const Solutions = [
     title: 'Transforming Communication and Decision-Making',
     href: '/solutions/Transforming Communication and Decision-Making',
     description:
-      "CleverCore is a comprehensive solution designed to revolutionize how you communicate, make  decisions, and manage your workflow. Here's how CleverCore can provide unparalleled value across various industries:",
+      "BugSmasher is a comprehensive solution designed to revolutionize how you communicate, make  decisions, and manage your workflow. Here's how BugSmasher can provide unparalleled value across various industries:",
   },
   {
     title: 'Sales and Marketing',
@@ -16,7 +16,7 @@ export const Solutions = [
     title: 'Customer Service',
     href: '/solutions/Customer Service',
     description:
-      'Enhance your customer service with CleverCore. Our platform transcribes customer interactions, providing representatives with concise summaries of each conversation.This ensures swift and accurate responses, streamlining the resolution process.Integrated with leading CRM systems, all customer data is organized and at your fingertips That way you can deliver efficient and personalized support, boosting customer satisfaction.',
+      'Enhance your customer service with BugSmasher. Our platform transcribes customer interactions, providing representatives with concise summaries of each conversation.This ensures swift and accurate responses, streamlining the resolution process.Integrated with leading CRM systems, all customer data is organized and at your fingertips That way you can deliver efficient and personalized support, boosting customer satisfaction.',
   },
   {
     title: 'Legal Services',
@@ -57,6 +57,6 @@ export const Solutions = [
     title: 'Personal Individual Use',
     href: '/solutions/Personal Individual Use',
     description:
-      "Simplify your daily communications and decision-making with CleverCore. Whether you're attending meetings, conducting interviews, or managing personal projects, our real- time transcriptions, smart summaries, and actionable steps help you stay organized and efficient.",
+      "Simplify your daily communications and decision-making with BugSmasher. Whether you're attending meetings, conducting interviews, or managing personal projects, our real- time transcriptions, smart summaries, and actionable steps help you stay organized and efficient.",
   },
 ];

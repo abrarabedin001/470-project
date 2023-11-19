@@ -397,7 +397,7 @@ export const createChatForTeam = async (teamId: string, participants: string[]):
 
 export const addMessage = async (chatId: string, userId: string, text: string): Promise<void> => {
   try {
-    const messageDocRef = doc(collection(db, 'taskChats', chatId, 'messages'));
+    const messageDocRef = doc(collection(db, 'teamChats', chatId, 'messages'));
     await setDoc(messageDocRef, {
       userId,
       text,

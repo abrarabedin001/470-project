@@ -5,13 +5,15 @@ import { Button } from './ui/button'
 import { useUserStore } from '@/Store/userStore'
 import { send } from 'process'
 import { addMessage, getChatMessages } from '@/Database/firestore/firebaseDb'
+import { set } from 'date-fns'
 export default function Chat() {
   let [message, setMessage] = React.useState('')
   let teamId: any = useUserStore((state) => state.currrentTeam?.value)
+  let userId: any = useUserStore((state) => state.user?.uid)
   let [messageList, setMessageList] = React.useState<any[]>([])
   let chatId = 'lufLNHlDAlaJqhVkkhar'
   let func = async () => {
-    let list = await getChatMessages(chatId)
+    let list = await getChatMessages(teamId)
     setMessageList((prev) => list)
   }
   useEffect(() => {
@@ -25,7 +27,7 @@ export default function Chat() {
           //  @ts-ignore
           <MessageBox
             key={item.id}
-            position={'left'}
+            position={item.userId == userId ? 'left' : 'right'}
             type={'text'}
             title={'Message Box Title'}
             className="text-black "
@@ -45,15 +47,12 @@ export default function Chat() {
         />
         <Button
           className="ml-5"
-          onClick={() =>
-            addMessage(
-              'lufLNHlDAlaJqhVkkhar',
-              'XbQvclOgvBhcvX5WRrbuuB44j8j2',
-              message
-            ).then((res) => {
+          onClick={() => {
+            addMessage(teamId, userId, message).then((res) => {
               func()
             })
-          }
+            setMessage('')
+          }}
           title="Send"
         >
           Send

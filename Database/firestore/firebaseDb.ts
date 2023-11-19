@@ -5,7 +5,7 @@ import {
   getDocs,
   query,
   where,
-  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc, arrayUnion
+  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc, arrayUnion, orderBy
 } from 'firebase/firestore';
 import { BugDetails, TaskDetails } from '../../lib/type';
 export const db = getFirestore(firebase_app)
@@ -390,22 +390,11 @@ export const createChatForTask = async (taskId: string, participants: string[]):
 }
 
 
-// export const deleteChat = async (chatId: string): Promise<void> => {
-//   try {
-//     const chatDocRef = doc(chats, chatId);
-//     await runTransaction(db, async (transaction) => {
-//       transaction.delete(chatDocRef);
-//     });
-//     console.log('success: Chat deleted');
-//   } catch (error) {
-//     console.error('error: Failed to delete chat', error);
-//     throw error;
-//   }
-// }
+
 
 export const addMessage = async (chatId: string, userId: string, text: string): Promise<void> => {
   try {
-    const messageDocRef = doc(collection(db, 'chats', chatId, 'messages'));
+    const messageDocRef = doc(collection(db, 'taskChats', chatId, 'messages'));
     await setDoc(messageDocRef, {
       userId,
       text,
@@ -418,4 +407,24 @@ export const addMessage = async (chatId: string, userId: string, text: string): 
   }
 }
 
+export const getChatMessages = async (chatId: string) => {
+  try {
+    // Define the path to the messages subcollection
+    const messagesRef = collection(db, 'taskChats', chatId, 'messages');
 
+    // Create a query to get all messages
+    const q = query(messagesRef, orderBy('createdAt'));
+
+    // Fetch the messages
+    const querySnapshot = await getDocs(q);
+
+    // Map the documents into an array
+    const messages = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    console.log('success: Messages retrieved for chat', chatId);
+    return messages;
+  } catch (error) {
+    console.error('error: Failed to retrieve messages for chat', chatId, error);
+    throw error;
+  }
+}

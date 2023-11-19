@@ -57,9 +57,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 
   const [loading, setLoading] = React.useState(false)
   const user = useUserStore((state) => state.user)
-
-  const adminId = user?.uid // Replace with actual admin ID
-  React.useEffect(() => {
+  let populateTeamList = async () => {
     setTeamList()
     let array: { label: string; value: string }[] = []
     teamList.map((team) => {
@@ -70,7 +68,11 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
       })
     })
     setTeamListObj(array)
-  }, [open])
+  }
+  const adminId = user?.uid // Replace with actual admin ID
+  React.useEffect(() => {
+    populateTeamList()
+  }, [])
 
   const handleTeamSubmit = async (teamDetails: any) => {
     console.log('Team Details:', teamDetails)
@@ -90,8 +92,22 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   }
 
   return (
-    <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
-      <Popover open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={showNewTeamDialog}
+      onOpenChange={() => {
+        // setOpen((prev) => !prev)
+        populateTeamList()
+        setShowNewTeamDialog
+      }}
+    >
+      <Popover
+        open={open}
+        onOpenChange={() => {
+          setOpen((prev) => !prev)
+          populateTeamList()
+          // setShowNewTeamDialog
+        }}
+      >
         {/* {selectedTeam && ( */}
         <>
           <PopoverTrigger asChild>

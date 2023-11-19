@@ -20,17 +20,19 @@ export default function Chat() {
   return (
     <div className="w-[600px]  border border-gray-700 p-5 rounded-lg m-6">
       {/* @ts-ignore */}
-      {messageList.map((item) => (
-        //  @ts-ignore
-        <MessageBox
-          key={item.id}
-          position={'left'}
-          type={'text'}
-          title={'Message Box Title'}
-          className="text-black "
-          text={item.text}
-        />
-      ))}
+      <div className=" scroll-y">
+        {messageList.map((item) => (
+          //  @ts-ignore
+          <MessageBox
+            key={item.id}
+            position={'left'}
+            type={'text'}
+            title={'Message Box Title'}
+            className="text-black "
+            text={item.text}
+          />
+        ))}
+      </div>
 
       {/* @ts-ignore */}
 

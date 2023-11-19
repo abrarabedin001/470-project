@@ -1,3 +1,4 @@
+// import { createChatForTeam } from '@/Database/firestore/firebaseDb';
 // import { dateFormatOptions } from './firebaseDb';
 import firebase_app from '../config'
 
@@ -5,7 +6,7 @@ import {
   getDocs,
   query,
   where,
-  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc, arrayUnion
+  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc, arrayUnion, orderBy
 } from 'firebase/firestore';
 import { BugDetails, TaskDetails } from '../../lib/type';
 export const db = getFirestore(firebase_app)
@@ -154,6 +155,9 @@ export const createTeam = async (teamName: string, adminId: string, displayName:
     await updateDoc(userDocRef, {
       teams: arrayUnion({ id: teamDocRef.id, name: teamName }) // Assuming 'teams' is an array of team IDs
     });
+    const teamId = teamDocRef.id; // Get the team ID
+    await createChatForTeam(teamId, [adminId]); // Create a chat for the team using the team ID and admin ID as the initial participant
+
 
     return teamDocRef.id;
   } catch (error) {
@@ -309,79 +313,78 @@ const chatCollection = collection(db, 'teamChats');
 
 
 
-export const createChatForTeam = async (teamId: string, participants: string[]): Promise<string> => {
-  try {
-    // Create a new chat document
-    const chatDocRef = doc(chatCollection);
-    await setDoc(chatDocRef, {
-      teamId,
-      createdAt: new Date(),
-      participants
-    });
+// export const createChatForTeam = async (teamId: string, participants: string[]): Promise<string> => {
+//   try {
+//     // Create a new chat document
+//     const chatDocRef = doc(chatCollection);
+//     await setDoc(chatDocRef, {
+//       teamId,
+//       createdAt: new Date(),
+//       participants
+//     });
 
-    // Optionally, initialize the 'messages' subcollection with an empty document
-    // This step is not strictly necessary as Firestore allows adding to a subcollection directly
-    // But if you want to initialize it, you can do so like this:
-    const messagesCollectionRef = collection(chatDocRef, 'messages');
-    const initialMessageDocRef = doc(messagesCollectionRef);
-    await setDoc(initialMessageDocRef, {
-      // Add initial data for the message, or leave it empty
-    });
+//     // Optionally, initialize the 'messages' subcollection with an empty document
+//     // This step is not strictly necessary as Firestore allows adding to a subcollection directly
+//     // But if you want to initialize it, you can do so like this:
+//     const messagesCollectionRef = collection(chatDocRef, 'messages');
+//     const initialMessageDocRef = doc(messagesCollectionRef);
+//     await setDoc(initialMessageDocRef, {
+//       // Add initial data for the message, or leave it empty
+//     });
 
-    console.log('success: Chat created for team', teamId);
-    return chatDocRef.id;
-  } catch (error) {
-    console.error('error: Failed to create chat for team', error);
-    throw error;
-  }
-};
+//     console.log('success: Chat created for team', teamId);
+//     return chatDocRef.id;
+//   } catch (error) {
+//     console.error('error: Failed to create chat for team', error);
+//     throw error;
+//   }
+// };
 
-export const addMessageForTeam = async (chatId: string, userId: string, text: string): Promise<void> => {
-  try {
-    const messageDocRef = doc(collection(db, 'teamChats', chatId, 'messages'));
-    let res = await setDoc(messageDocRef, {
-      userId,
-      text,
-      createdAt: new Date()
-    });
-    console.log('success: Message added');
-    return res;
-  } catch (error) {
-    console.error('error: Failed to add message', error);
-    throw error;
-  }
-}
+// export const addMessageForTeam = async (chatId: string, userId: string, text: string): Promise<void> => {
+//   try {
+//     const messageDocRef = doc(collection(db, 'teamChats', chatId, 'messages'));
+//     let res = await setDoc(messageDocRef, {
+//       userId,
+//       text,
+//       createdAt: new Date()
+//     });
+//     console.log('success: Message added');
+//     return res;
+//   } catch (error) {
+//     console.error('error: Failed to add message', error);
+//     throw error;
+//   }
+// }
 
-//receive messages
-export const getAllChatMessagesInTeam = async (teamId: string): Promise<any[]> => {
-  try {
-    const chatQuery = query(chatCollection, where('teamId', '==', teamId));
-    const querySnapshot = await getDocs(chatQuery);
-    const allMessages = querySnapshot.docs.map(doc => doc.data());
-    console.log('success: Retrieved all chat messages in team');
-    return allMessages;
-  } catch (error) {
-    console.error('error: Failed to retrieve all chat messages in team', error);
-    throw error;
-  }
-};
+// //receive messages
+// export const getAllChatMessagesInTeam = async (teamId: string): Promise<any[]> => {
+//   try {
+//     const chatQuery = query(chatCollection, where('teamId', '==', teamId));
+//     const querySnapshot = await getDocs(chatQuery);
+//     const allMessages = querySnapshot.docs.map(doc => doc.data());
+//     console.log('success: Retrieved all chat messages in team');
+//     return allMessages;
+//   } catch (error) {
+//     console.error('error: Failed to retrieve all chat messages in team', error);
+//     throw error;
+//   }
+// };
 
 
 
 //chat for tasks
 
-const chatsForTask = collection(db, 'taskChats');
+const teamChats = collection(db, 'teamChats');
 
-export const createChatForTask = async (taskId: string, participants: string[]): Promise<string> => {
+export const createChatForTeam = async (teamId: string, participants: string[]): Promise<string> => {
   try {
-    const chatDocRef = doc(chatsForTask);
+    const chatDocRef = doc(teamChats, teamId);
     await setDoc(chatDocRef, {
-      taskId,
+      teamId,
       createdAt: new Date(),
       participants,
-      messages: []
     });
-    console.log('success: Chat created for task', taskId);
+    console.log('success: Chat created for task', teamId);
     return chatDocRef.id;
   } catch (error) {
     console.error('error: Failed to create chat for task', error);
@@ -390,22 +393,11 @@ export const createChatForTask = async (taskId: string, participants: string[]):
 }
 
 
-// export const deleteChat = async (chatId: string): Promise<void> => {
-//   try {
-//     const chatDocRef = doc(chats, chatId);
-//     await runTransaction(db, async (transaction) => {
-//       transaction.delete(chatDocRef);
-//     });
-//     console.log('success: Chat deleted');
-//   } catch (error) {
-//     console.error('error: Failed to delete chat', error);
-//     throw error;
-//   }
-// }
+
 
 export const addMessage = async (chatId: string, userId: string, text: string): Promise<void> => {
   try {
-    const messageDocRef = doc(collection(db, 'chats', chatId, 'messages'));
+    const messageDocRef = doc(collection(db, 'teamChats', chatId, 'messages'));
     await setDoc(messageDocRef, {
       userId,
       text,
@@ -418,4 +410,24 @@ export const addMessage = async (chatId: string, userId: string, text: string): 
   }
 }
 
+export const getChatMessages = async (chatId: string) => {
+  try {
+    // Define the path to the messages subcollection
+    const messagesRef = collection(db, 'teamChats', chatId, 'messages');
 
+    // Create a query to get all messages
+    const q = query(messagesRef, orderBy('createdAt'));
+
+    // Fetch the messages
+    const querySnapshot = await getDocs(q);
+
+    // Map the documents into an array
+    const messages = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    console.log('success: Messages retrieved for chat', chatId);
+    return messages;
+  } catch (error) {
+    console.error('error: Failed to retrieve messages for chat', chatId, error);
+    throw error;
+  }
+}

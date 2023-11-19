@@ -18,8 +18,10 @@ import { useUserStore } from '@/Store/userStore'
 export function UserNav() {
   const router = useRouter()
   let setCurrentTeam = useUserStore((state) => state.setCurrentTeam)
+  let setTeamList = useUserStore((state) => state.setTeamList)
   const handleLogout = () => {
     // setCurrentViewAccount({ name: '', id: '' })
+    setTeamList()
     setCurrentTeam(null)
     signOutUser(() => {
       router.push('/signin')

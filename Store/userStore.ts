@@ -37,12 +37,19 @@ export const useUserStore = create<UserStore>()(
         },
         teamList: [],
         setTeamList: () => {
-          getUserTeams(get().user?.uid!).then(
-            (teams) => {
-              console.log('teams', teams)
-              set({ teamList: teams })
-            }
-          )
+          if (get().user != null) {
+            getUserTeams(get().user?.uid!).then(
+              (teams) => {
+                console.log('teams', teams)
+                set({ teamList: teams })
+              }
+            )
+          } else {
+            // set({ teamList: [] })
+            set({ teamList: [] })
+            console.log('user is null')
+          }
+
           // set({ teamList: list }),
         },
         currrentTeam: null,

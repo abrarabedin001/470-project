@@ -209,15 +209,25 @@ export default function WhyChoseBugSmasher() {
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-                Engage with an intuitive AI Chatbot to effortlessly extract call
-                details from various users
+              Facilitate team communication through both group and private chat options, ensuring flexibility in discussions
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-                Store, manage, and access all your voice interactions within
-                your BugSmasher CRM.
+              Integrate real-time performance metrics directly into the collaboration hub for immediate insights
+              </P>
+              </div>{' '}
+            <div className="flex">
+              ✔
+              <P className="pb-5 pl-5">
+              Keep team members informed with a notification system for new messages, ensuring timely responses and updates
+              </P>
+              </div>{' '}
+            <div className="flex">
+              ✔
+              <P className="pb-5 pl-5">
+              Create a hub that enhances real-time collaboration, bringing together communication and performance metrics
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
@@ -225,6 +235,9 @@ export default function WhyChoseBugSmasher() {
             </div>
           </motion.div>
         </div>
+
+
+  
         <div className="w-[250px] lg:w-full  flex justify-center flex-col-reverse lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div
             className="md:w-[50%] lg:w-[50%] text-left py-10 lg:p-10"
@@ -234,27 +247,24 @@ export default function WhyChoseBugSmasher() {
             variants={leftVarients}
           >
             <H2 className=" mb-10 lg:text-3xl font-semibold">
-              Connect Information and streamline processes
+              Data-driven Decision Making
             </H2>{' '}
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-                Integrate BugSmasher with your existing infrastructure for a
-                smooth and unified experience using API’s
+              Generate custom reports based on specified criteria, providing a tailored view of task completion rates, bug severity distribution, and team member contributions
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-                Set your team up with BugSmasher to better support and assist
-                their calls and communication
+              Utilize graphs and charts as visualization aids to represent project data, fostering a more insightful analysis
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-                Ensure every voice interaction, whether professional or
-                personal, is meaningful and insightful.
+              Leverage robust reporting and analytics tools to make informed decisions based on a deeper understanding of project dynamics
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">

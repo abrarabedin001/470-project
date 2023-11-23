@@ -11,14 +11,10 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 animated-text">
           <div className=" flex flex-col gap-2 items-center lg:items-start text-center lg:text-left max-lg:mx-4 space-y-10 p-5 lg:p-0 ">
             <H1>
-              Automate, Analyze, and Amplify your Communication Process with Bug
-              Smasher
+              Revolutionizing Project Excellence Through Dynamic Bug Management and Collaborative Innovation with BugSmasher
             </H1>
             <P className="tracking-wide">
-              Bug Smasher extracts essential notes from calls, identifies key
-              discussion points, and suggests actionable steps derived from the
-              call&apos;s content.
-            </P>
+             Experience the epitome of project management with BugSmasher, a powerhouse solution meticulously crafted for efficient bug tracking, dynamic team collaboration, and data-driven decision-making. Elevate your team's potential and redefine success in every project.            </P>
             <div className="lg:space-x-5 space-y-5 lg:space-y-0 flex flex-col justify-center items-center lg:flex-row lg:justify-start">
               <PrimaryButton className="m-0">Get Started</PrimaryButton>
               <PrimaryButton className="m-0">Request Demo</PrimaryButton>

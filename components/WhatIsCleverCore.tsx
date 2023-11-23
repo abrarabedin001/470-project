@@ -188,6 +188,7 @@ export default function WhyChoseBugSmasher() {
             variants={rightVarients}
           ></motion.div>
         </div>
+
         <div className="w-[250px] lg:w-full  flex justify-center flex-col lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div
             className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
@@ -278,6 +279,54 @@ export default function WhyChoseBugSmasher() {
             animate={mainControls8}
             variants={rightVarients}
           ></motion.div>
+        </div>
+
+        <div className="w-[250px] lg:w-full  flex justify-center flex-col lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
+          <motion.div
+            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
+            ref={ref5}
+            initial="hidden"
+            animate={mainControls5}
+            variants={leftVarients}
+          ></motion.div>
+          <motion.div
+            className="md:w-[50%] lg:w-[50%] text-left lg:p-10"
+            ref={ref6}
+            initial="hidden"
+            animate={mainControls6}
+            variants={rightVarients}
+          >
+            <H2 className=" mb-10 lg:text-3xl font-semibold">
+              Secure and User-Friendly Platform
+            </H2>{' '}
+            <div className="flex">
+              ✔
+              <P className="pb-5 pl-5">
+              Strengthen security with user-friendly Multi-Factor Authentication options, enhancing account protection
+              </P>
+            </div>
+            <div className="flex">
+              ✔
+              <P className="pb-5 pl-5">
+                Personalize user roles and permissions for a secure platform experience
+              </P>
+              </div>{' '}
+            <div className="flex">
+              ✔
+              <P className="pb-5 pl-5">
+                Enable users to manage profiles and reset passwords, prioritizing security and user control
+              </P>
+              </div>{' '}
+            <div className="flex">
+              ✔
+              <P className="pb-5 pl-5">
+              Provide options for manual logout and automatic session expiry, ensuring user account security
+              </P>
+            </div>
+            <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
+              <PrimaryButton className="mt-5">Get Started</PrimaryButton>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>

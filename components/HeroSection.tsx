@@ -17,7 +17,6 @@ export default function HeroSection() {
              Experience the epitome of project management with BugSmasher, a powerhouse solution meticulously crafted for efficient bug tracking, dynamic team collaboration, and data-driven decision-making. Elevate your team&apos;s potential and redefine success in every project.            </P>
             <div className="lg:space-x-5 space-y-5 lg:space-y-0 flex flex-col justify-center items-center lg:flex-row lg:justify-start">
               <PrimaryButton className="m-0">Get Started</PrimaryButton>
-              <PrimaryButton className="m-0">Request Demo</PrimaryButton>
             </div>
           </div>
         </div>

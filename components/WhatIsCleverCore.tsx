@@ -17,6 +17,8 @@ export default function WhyChoseBugSmasher() {
   const ref6 = useRef(null)
   const ref7 = useRef(null)
   const ref8 = useRef(null)
+  const ref9 = useRef(null)
+  const ref10 = useRef(null)
   const inView1 = useInView(ref1, { once: true })
   const inView2 = useInView(ref2, { once: true })
   const inView3 = useInView(ref3, { once: true })
@@ -25,6 +27,8 @@ export default function WhyChoseBugSmasher() {
   const inView6 = useInView(ref6, { once: true })
   const inView7 = useInView(ref7, { once: true })
   const inView8 = useInView(ref8, { once: true })
+  const inView9 = useInView(ref9, { once: true })
+  const inView10 = useInView(ref10, { once: true })
   const mainControls1 = useAnimation()
   const mainControls2 = useAnimation()
   const mainControls3 = useAnimation()
@@ -284,14 +288,14 @@ export default function WhyChoseBugSmasher() {
         <div className="w-[250px] lg:w-full  flex justify-center flex-col lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div
             className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
-            ref={ref5}
+            ref={ref9}
             initial="hidden"
             animate={mainControls5}
             variants={leftVarients}
           ></motion.div>
           <motion.div
             className="md:w-[50%] lg:w-[50%] text-left lg:p-10"
-            ref={ref6}
+            ref={ref10}
             initial="hidden"
             animate={mainControls6}
             variants={rightVarients}

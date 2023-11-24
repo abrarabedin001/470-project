@@ -9,7 +9,7 @@ export default function P({
 }) {
   return (
     <div
-      className={`  text-md lg:text-lg font-semi-bold leading-7 text-gray-700 ${className}`}
+      className={`  text-md lg:text-lg font-semi-bold leading-7 text-gray-700 dark:text-[#C0C0C0] ${className}`}
     >
       {children}
     </div>

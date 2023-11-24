@@ -12,8 +12,11 @@ import TeamSwitcher from '@/app/dashboard/components/team-switcher'
 import { Search } from '@/app/dashboard/components/search'
 import { UserNav } from '@/app/dashboard/components/user-nav'
 import { ModeToggle } from './ModeToggle'
+import { useUserStore } from '@/Store/userStore'
+// import { useUserStore } from '@/app/stores/userStore'
 
 export default function TopMenu() {
+  let user = useUserStore((state) => state.user)
   const [navColor, setnavColor] = useState('bg-white')
   const listenScrollEvent = () => {
     window.scrollY <= 10 ? setnavColor('transparent') : setnavColor('bg-white')
@@ -26,9 +29,6 @@ export default function TopMenu() {
     }
   }, [])
   return (
-    // <div
-    //   className={`w-full    py-3 fixed left-0 top-0  z-50 flex justify-center items-center transition-all duration-500 ease-in-out ${navColor}`}
-    // >
     <div className="border-b w-full">
       <div className="flex h-16 items-center px-4">
         <a href="/" className="flex justify-start items-start ">
@@ -43,7 +43,7 @@ export default function TopMenu() {
         <MainNav className="mx-6" />
         <div className="ml-auto flex items-center space-x-4">
           <ModeToggle></ModeToggle>
-          <TeamSwitcher />
+          {user && <TeamSwitcher />}
 
           <Search />
           <UserNav />

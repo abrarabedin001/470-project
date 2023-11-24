@@ -39,17 +39,7 @@ function Page(): JSX.Element {
       console.log(error)
       return
     } else {
-      // toast('🦄 Wow so easy!', {
-      //   position: "top-center",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      //   });
-      createUser(result?.user?.uid!, result?.user?.email!)
+      createUser(result?.user?.uid!, userName, result?.user?.email!, '')
     }
     console.log(result, error)
     // Redirect to the admin page
@@ -66,26 +56,12 @@ function Page(): JSX.Element {
       console.log(error)
       return
     } else {
-      // toast('🦄 Wow so easy!', {
-      //   position: "top-center",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      //   });
-      // createUser(user?.uid!)
-      createUser(user?.uid!, user?.email!)
-      // console.log("user ki nai?")
-      // console.log(user)
+      createUser(user?.uid!, user?.displayName, user?.email!, '')
     }
     if (user) {
       console.log('user ase@')
     }
 
-    // Sign in successful
     console.log(user)
 
     // router.push('/')

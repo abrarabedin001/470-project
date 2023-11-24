@@ -22,7 +22,10 @@ export default function AuthWrapper(props: WrapperProps) {
       if (user) {
         // User is signed in
         console.log('should set user')
-        setUser(user)
+        console.log('user', user)
+
+        setUser({ ...user, displayName: user.displayName || '' })
+        // setUser(user )
         func()
       } else {
         // User is signed out
@@ -32,16 +35,7 @@ export default function AuthWrapper(props: WrapperProps) {
       // Set loading to false once authentication state is determined
       setLoading(false)
     })
-    // firebase
-    //   .auth()
-    //   .currentUser.getIdToken(/* forceRefresh */ true)
-    //   .then(function (idToken) {
-    //     // Send token to your backend via HTTPS
-    //     // ...
-    //   })
-    //   .catch(function (error) {
-    //     // Handle error
-    //   })
+
     console.log('Unsubscribe', unsubscribe)
 
     // Unsubscribe from the authentication state changes when the component is unmounted

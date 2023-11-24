@@ -48,7 +48,6 @@ function Page(): JSX.Element {
 
   // Handle Google sign-in
   const handleGoogleSignIn = async () => {
-    console.log('ki hoilo')
     const { user, error } = await signUpWithGoogle()
 
     if (error) {

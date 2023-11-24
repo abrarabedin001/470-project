@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   signOut,
   User,
+  updateProfile,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   deleteUser,
@@ -37,6 +38,12 @@ export async function signUp(userName: string, email: string, password: string) 
     error = null
   try {
     result = await createUserWithEmailAndPassword(auth, email, password)
+    if (result.user) {
+      // Update the user's display name
+      await updateProfile(result.user, {
+        displayName: userName,
+      });
+    }
   } catch (e) {
     error = e as FirebaseError
   }

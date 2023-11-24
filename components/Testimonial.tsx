@@ -56,9 +56,9 @@ export default function Testimonial() {
             </div>
             <div className="h-[196px] flex-col justify-start items-center gap-10 flex">
               <div className="self-stretch text-black text-lg font-medium leading-7">
-              "BugSmasher's impact on our design projects has been remarkable. 
+              "BugSmashers impact on our design projects has been remarkable. 
               Its user-friendly design simplifies bug reporting, allowing us to 
-              focus more on the creative process. The platform's responsiveness 
+              focus more on the creative process. The platforms responsiveness 
               has improved collaboration, making it an essential tool for our UX design team."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -110,7 +110,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has transformed our development process. 
               The detailed bug tracking and collaboration features 
-              have significantly improved our workflow. It's now our 
+              have significantly improved our workflow. Its now our 
               go-to platform for code releases, ensuring a smoother 
               and more organized development cycle."
               </div>
@@ -137,7 +137,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has revolutionized how we approach testing. The organized 
               bug tracking system and robust communication tools have elevated the 
-              quality of our software releases. It's made the testing process more 
+              quality of our software releases. Its made the testing process more 
               efficient and collaborative, positively impacting our QA efforts."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -246,9 +246,9 @@ export default function Testimonial() {
             </div>
             <div className="h-[196px] flex-col justify-start items-center gap-10 flex">
               <div className="self-stretch text-black text-lg font-medium leading-7">
-              "BugSmasher's impact on our design projects has been remarkable. 
+              "BugSmashers impact on our design projects has been remarkable. 
               Its user-friendly design simplifies bug reporting, allowing us to 
-              focus more on the creative process. The platform's responsiveness 
+              focus more on the creative process. The platforms responsiveness 
               has improved collaboration, making it an essential tool for our UX design team."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -300,7 +300,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has transformed our development process. 
               The detailed bug tracking and collaboration features 
-              have significantly improved our workflow. It's now our 
+              have significantly improved our workflow. Its now our 
               go-to platform for code releases, ensuring a smoother 
               and more organized development cycle."
               </div>
@@ -327,7 +327,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has revolutionized how we approach testing. The organized 
               bug tracking system and robust communication tools have elevated the 
-              quality of our software releases. It's made the testing process more 
+              quality of our software releases. Its made the testing process more 
               efficient and collaborative, positively impacting our QA efforts."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -433,9 +433,9 @@ export default function Testimonial() {
             </div>
             <div className="h-[196px] flex-col justify-start items-center gap-10 flex">
               <div className="self-stretch text-black text-lg font-medium leading-7">
-              "BugSmasher's impact on our design projects has been remarkable. 
+              "BugSmashers impact on our design projects has been remarkable. 
               Its user-friendly design simplifies bug reporting, allowing us to 
-              focus more on the creative process. The platform's responsiveness 
+              focus more on the creative process. The platforms responsiveness 
               has improved collaboration, making it an essential tool for our UX design team."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -487,7 +487,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has transformed our development process. 
               The detailed bug tracking and collaboration features 
-              have significantly improved our workflow. It's now our 
+              have significantly improved our workflow. Its now our 
               go-to platform for code releases, ensuring a smoother 
               and more organized development cycle."
               </div>
@@ -514,7 +514,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has revolutionized how we approach testing. The organized 
               bug tracking system and robust communication tools have elevated the 
-              quality of our software releases. It's made the testing process more 
+              quality of our software releases. Its made the testing process more 
               efficient and collaborative, positively impacting our QA efforts."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -621,9 +621,9 @@ export default function Testimonial() {
             </div>
             <div className="h-[196px] flex-col justify-start items-center gap-10 flex">
               <div className="self-stretch text-black text-lg font-medium leading-7">
-              "BugSmasher's impact on our design projects has been remarkable. 
+              "BugSmashers impact on our design projects has been remarkable. 
               Its user-friendly design simplifies bug reporting, allowing us to 
-              focus more on the creative process. The platform's responsiveness 
+              focus more on the creative process. The platforms responsiveness 
               has improved collaboration, making it an essential tool for our UX design team."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -675,7 +675,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has transformed our development process. 
               The detailed bug tracking and collaboration features 
-              have significantly improved our workflow. It's now our 
+              have significantly improved our workflow. Its now our 
               go-to platform for code releases, ensuring a smoother 
               and more organized development cycle."
               </div>
@@ -702,7 +702,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has revolutionized how we approach testing. The organized 
               bug tracking system and robust communication tools have elevated the 
-              quality of our software releases. It's made the testing process more 
+              quality of our software releases. Its made the testing process more 
               efficient and collaborative, positively impacting our QA efforts."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -808,9 +808,9 @@ export default function Testimonial() {
             </div>
             <div className="h-[196px] flex-col justify-start items-center gap-10 flex">
               <div className="self-stretch text-black text-lg font-medium leading-7">
-              "BugSmasher's impact on our design projects has been remarkable. 
+              "BugSmashers impact on our design projects has been remarkable. 
               Its user-friendly design simplifies bug reporting, allowing us to 
-              focus more on the creative process. The platform's responsiveness 
+              focus more on the creative process. The platforms responsiveness 
               has improved collaboration, making it an essential tool for our UX design team."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">
@@ -862,7 +862,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has transformed our development process. 
               The detailed bug tracking and collaboration features 
-              have significantly improved our workflow. It's now our 
+              have significantly improved our workflow. Its now our 
               go-to platform for code releases, ensuring a smoother 
               and more organized development cycle."
               </div>
@@ -889,7 +889,7 @@ export default function Testimonial() {
               <div className="self-stretch text-black text-lg font-medium leading-7">
               "BugSmasher has revolutionized how we approach testing. The organized 
               bug tracking system and robust communication tools have elevated the 
-              quality of our software releases. It's made the testing process more 
+              quality of our software releases. Its made the testing process more 
               efficient and collaborative, positively impacting our QA efforts."
               </div>
               <div className=" flex-col justify-start items-start flex w-full">

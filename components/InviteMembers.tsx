@@ -1,6 +1,7 @@
 'use client'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+// import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import Avatar from 'react-avatar'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -78,10 +79,15 @@ export function InviteMembers() {
                 <>
                   <div className="flex items-center justify-between space-x-4">
                     <div className="flex items-center space-x-4">
-                      <Avatar>
+                      {/* <Avatar>
                         <AvatarImage src="/avatars/03.png" />
                         <AvatarFallback>OM</AvatarFallback>
-                      </Avatar>
+                      </Avatar> */}
+                      <Avatar
+                        name={`${member?.displayName}`}
+                        size="30"
+                        round={true}
+                      />
                       <div>
                         <p className="text-sm font-medium leading-none">
                           {member.displayName}

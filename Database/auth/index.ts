@@ -32,11 +32,11 @@ export async function signIn(email: string, password: string) {
   }
   return { result, error }
 }
-export async function signUp(email: string, password: string) {
+export async function signUp(userName: string, email: string, password: string) {
   let result = null,
     error = null
   try {
-    result = await createUserWithEmailAndPassword(auth, email, password)
+    result = await createUserWithEmailAndPassword(auth, userName, email, password)
   } catch (e) {
     error = e as FirebaseError
   }

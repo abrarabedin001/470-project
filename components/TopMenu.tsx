@@ -37,7 +37,7 @@ export default function TopMenu() {
             alt="bug_smasher"
             width={50}
             height={50}
-            className=" h-auto w-[90px] "
+            className=" h-auto w-[70px] "
           />
         </a>
         <MainNav className="mx-6" />

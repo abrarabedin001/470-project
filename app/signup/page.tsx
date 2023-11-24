@@ -19,6 +19,7 @@ import { signUp, signUpWithGoogle } from '@/Database/auth'
 import { createUser } from '@/Database/firestore/firebaseDb'
 
 function Page(): JSX.Element {
+  const [userName, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
@@ -26,7 +27,7 @@ function Page(): JSX.Element {
     event.preventDefault()
 
     // Attempt to sign in with provided email and password
-    const { result, error } = await signUp(email, password)
+    const { result, error } = await signUp(userName, email, password)
     // createUser(result?.user?.uid!,result?.user?.displayName!)
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
@@ -115,6 +116,15 @@ function Page(): JSX.Element {
                     Or Continue With
                   </span>
                 </div>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="userName">User name</Label>
+                <Input
+                  onChange={(e) => setName(e.target.value)}
+                  id="userName"
+                  type="text"
+                  placeholder="Lionel Messi"
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>

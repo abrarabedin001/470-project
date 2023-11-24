@@ -45,7 +45,6 @@ export default function TopMenu() {
           <ModeToggle></ModeToggle>
           {user && <TeamSwitcher />}
 
-          <Search />
           <UserNav />
         </div>
       </div>

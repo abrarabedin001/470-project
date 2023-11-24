@@ -27,9 +27,9 @@ export default function Chat() {
           //  @ts-ignore
           <MessageBox
             key={item.id}
-            position={item.userId == userId ? 'left' : 'right'}
+            position={item.userId == userId ? 'right' : 'left'}
             type={'text'}
-            title={'Message Box Title'}
+            title={item.userId}
             className="text-black "
             text={item.text}
           />

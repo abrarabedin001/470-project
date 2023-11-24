@@ -19,6 +19,7 @@ import { signUp, signUpWithGoogle } from '@/Database/auth'
 import { createUser } from '@/Database/firestore/firebaseDb'
 
 function Page(): JSX.Element {
+  const [userName, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
@@ -26,7 +27,7 @@ function Page(): JSX.Element {
     event.preventDefault()
 
     // Attempt to sign in with provided email and password
-    const { result, error } = await signUp(email, password)
+    const { result, error } = await signUp(userName, email, password)
     // createUser(result?.user?.uid!,result?.user?.displayName!)
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
@@ -38,17 +39,7 @@ function Page(): JSX.Element {
       console.log(error)
       return
     } else {
-      // toast('🦄 Wow so easy!', {
-      //   position: "top-center",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      //   });
-      createUser(result?.user?.uid!, result?.user?.email!)
+      createUser(result?.user?.uid!, userName, result?.user?.email!, '')
     }
     console.log(result, error)
     // Redirect to the admin page
@@ -57,7 +48,6 @@ function Page(): JSX.Element {
 
   // Handle Google sign-in
   const handleGoogleSignIn = async () => {
-    console.log('ki hoilo')
     const { user, error } = await signUpWithGoogle()
 
     if (error) {
@@ -65,26 +55,12 @@ function Page(): JSX.Element {
       console.log(error)
       return
     } else {
-      // toast('🦄 Wow so easy!', {
-      //   position: "top-center",
-      //   autoClose: 5000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      //   });
-      // createUser(user?.uid!)
-      createUser(user?.uid!, user?.email!)
-      // console.log("user ki nai?")
-      // console.log(user)
+      createUser(user?.uid!, user?.displayName, user?.email!, '')
     }
     if (user) {
       console.log('user ase@')
     }
 
-    // Sign in successful
     console.log(user)
 
     // router.push('/')
@@ -115,6 +91,15 @@ function Page(): JSX.Element {
                     Or Continue With
                   </span>
                 </div>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="userName">User name</Label>
+                <Input
+                  onChange={(e) => setName(e.target.value)}
+                  id="userName"
+                  type="text"
+                  placeholder="Lionel Messi"
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>

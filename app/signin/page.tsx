@@ -15,13 +15,20 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signIn, signInWithGoogle, resetPassword, checkEmailInDatabase } from '@/Database/auth'
+import {
+  signIn,
+  signInWithGoogle,
+  resetPassword,
+  checkEmailInDatabase,
+} from '@/Database/auth'
 import { ToastContainer, toast } from 'react-toastify'
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [resetStatus, setResetStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [resetMessage, setResetMessage] = useState('');
+  const [resetStatus, setResetStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle')
+  const [resetMessage, setResetMessage] = useState('')
   const router = useRouter()
   const handleForm = async (event: { preventDefault: () => void }) => {
     event.preventDefault()
@@ -31,18 +38,16 @@ function Page(): JSX.Element {
 
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
-        toast('Wow so easy!')
       } else {
         // result?.currentUser?.displayName
       }
       console.log(error)
       return
     } else {
-      toast('Wow so easy!')
+      // console.log('result', result)
       router.push('/')
     }
-    toast('Wow so easy!')
-    // Redirect to the admin page
+
     //
   }
 
@@ -56,64 +61,63 @@ function Page(): JSX.Element {
       return
     } else {
       // toast.success('Login Successful')
+      router.push('/')
     }
 
     // Sign in successful
-    console.log(user)
-    // router.push('/')
+    // console.log(user)
   }
-    // Function to handle password reset
-    const handleForgotPassword = async () => {
-      if (!email){
-        setResetStatus('error');
-        setResetMessage('Please enter your email first.');
-        setTimeout(() => {
-          setResetStatus('idle');
-          setResetMessage('');
-        }, 3000);
-        return;
-      }
-      try {
-        setResetStatus('loading');
-        const isEmailRegistered = await checkEmailInDatabase(email);
-        console.log(isEmailRegistered)
-
-        if (isEmailRegistered.result == 0) {
-          setResetStatus('error');
-          setResetMessage('Email not registered in the database.');
-          
-          // Automatically clear the error message after 3 seconds
-          setTimeout(() => {
-            setResetStatus('idle');
-            setResetMessage('');
-          }, 3000);
-    
-          return;
-        }
-    
-        // If email is registered, proceed with password reset
-        const { result, error } = await resetPassword(email);
-
-        if (error) {
-          setResetStatus('error');
-          setResetMessage('Failed to send, enter a valid Email Address.');
-          console.error(error);
-        } else {
-          setResetStatus('success');
-          setResetMessage('Check your Email for further instruction.');
-          console.log(result);
-        }
-        setTimeout(() => {
-          setResetStatus('idle');
-          setResetMessage('');
-        }, 3000);
-      } catch (error) {
-        setResetStatus('error');
-        setResetMessage('Failed to send password reset email.');
-        console.error(error);
-      }
+  // Function to handle password reset
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setResetStatus('error')
+      setResetMessage('Please enter your email first.')
+      setTimeout(() => {
+        setResetStatus('idle')
+        setResetMessage('')
+      }, 3000)
+      return
     }
-  
+    try {
+      setResetStatus('loading')
+      const isEmailRegistered = await checkEmailInDatabase(email)
+      console.log(isEmailRegistered)
+
+      if (isEmailRegistered.result == 0) {
+        setResetStatus('error')
+        setResetMessage('Email not registered in the database.')
+
+        // Automatically clear the error message after 3 seconds
+        setTimeout(() => {
+          setResetStatus('idle')
+          setResetMessage('')
+        }, 3000)
+
+        return
+      }
+
+      // If email is registered, proceed with password reset
+      const { result, error } = await resetPassword(email)
+
+      if (error) {
+        setResetStatus('error')
+        setResetMessage('Failed to send, enter a valid Email Address.')
+        console.error(error)
+      } else {
+        setResetStatus('success')
+        setResetMessage('Check your Email for further instruction.')
+        console.log(result)
+      }
+      setTimeout(() => {
+        setResetStatus('idle')
+        setResetMessage('')
+      }, 3000)
+    } catch (error) {
+      setResetStatus('error')
+      setResetMessage('Failed to send password reset email.')
+      console.error(error)
+    }
+  }
 
   return (
     <div className="flex justify-center items-center container h-screen">
@@ -162,7 +166,10 @@ function Page(): JSX.Element {
             </Button>
           </form>
           <div className="text-center">
-            <a onClick={handleForgotPassword} className="text-sm text-blue-500 cursor-pointer hover:text-blue-700 hover:underline">
+            <a
+              onClick={handleForgotPassword}
+              className="text-sm text-blue-500 cursor-pointer hover:text-blue-700 hover:underline"
+            >
               Forgot Password?
             </a>
           </div>

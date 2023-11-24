@@ -28,7 +28,7 @@ export const dateFormatOptions = {
 
 
 
-export async function createUser(uid: string, displayName: string) {
+export async function createUser(uid: string, displayName: string, email: string, photoURL: string) {
   console.log('Checking for user with UID:', uid);
   const userRef = doc(db, "users", uid); // Specify the collection and document ID
 
@@ -45,6 +45,8 @@ export async function createUser(uid: string, displayName: string) {
         createdAt: new Date(),
         updatedAt: new Date(),
         displayName,
+        email,
+        photoURL,
         teams: [],
       });
       console.log("User created with UID: ", uid);

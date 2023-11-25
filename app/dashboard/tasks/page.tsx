@@ -119,7 +119,6 @@ export default function TaskPage() {
               </AlertDialogContent>
             </AlertDialog>
           </div>
-          <Chat></Chat>
         </>
       )}
     </>

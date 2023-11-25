@@ -1,45 +1,60 @@
-import React, { useEffect } from 'react'
-import { Input } from '@/components/ui/input'
-import { MessageBox, MessageList, Button as button2 } from 'react-chat-elements'
-import { Button } from './ui/button'
-import { useUserStore } from '@/Store/userStore'
-import { send } from 'process'
-import { addMessage, getChatMessages } from '@/Database/firestore/firebaseDb'
-import { set } from 'date-fns'
+import React, { useEffect, useRef } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from './ui/button';
+import { useUserStore } from '@/Store/userStore';
+import { addMessage, getChatMessages } from '@/Database/firestore/firebaseDb';
+
 export default function Chat() {
-  let [message, setMessage] = React.useState('')
-  let teamId: any = useUserStore((state) => state.currrentTeam?.value)
-  let userId: any = useUserStore((state) => state.user?.uid)
-  let [messageList, setMessageList] = React.useState<any[]>([])
-  let chatId = 'lufLNHlDAlaJqhVkkhar'
-  let func = async () => {
-    let list = await getChatMessages(teamId)
-    setMessageList((prev) => list)
-  }
+  const [message, setMessage] = React.useState('');
+  const teamId = useUserStore((state) => state.currrentTeam?.value);
+  const userId = useUserStore((state) => state.user?.uid);
+  const [messageList, setMessageList] = React.useState<any[]>([]);
+  const chatId = 'lufLNHlDAlaJqhVkkhar';
+
+  const chatContainerRef = useRef(null);
+
+  const fetchMessages = async () => {
+    let list = await getChatMessages(teamId);
+    setMessageList(list);
+  };
+
   useEffect(() => {
-    func()
-  }, [])
+    fetchMessages();
+  }, []);
+
+  useEffect(() => {
+    // Scroll to the bottom whenever the messageList is updated
+    scrollChatToBottom();
+  }, [messageList]);
+
+  const handleSendMessage = () => {
+    addMessage(teamId, userId, message).then(() => {
+      fetchMessages();
+    });
+    setMessage('');
+  };
+ 
+  const scrollChatToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+
   return (
-    <div className="w-[600px]  border border-gray-700 p-5 rounded-lg m-6">
-      {/* @ts-ignore */}
-      <div className=" scroll-y">
-        {messageList.map((item) => (
-          //  @ts-ignore
-          <MessageBox
-            key={item.id}
-            position={item.userId == userId ? 'right' : 'left'}
-            type={'text'}
-            title={item.userId}
-            className="text-black "
-            text={item.text}
-          />
-        ))}
+    <div className="w-[650px] border border-gray-700 px-5 rounded-lg mx-auto mb-6">
+      <div className="flex flex-col h-[240px] overflow-y-auto" ref={chatContainerRef}>
+      {messageList.map((item) => {
+      const className = `chat-message ${item.userId === userId ? 'right' : 'left'}`;
+      console.log(className); // Log class name to check
+      return (
+      <div key={item.id} className={className}>
+        <p className="text-white">{item.text}</p>
+      </div>
+  );
+})}
       </div>
 
-      {/* @ts-ignore */}
-
-      {/* @ts-ignore */}
-      <div className="flex flex-row pt-5 justify-between">
+      <div className="flex flex-row pt-5 justify-between mb-2">
         <Input
           placeholder="Type here..."
           value={message}
@@ -47,17 +62,12 @@ export default function Chat() {
         />
         <Button
           className="ml-5"
-          onClick={() => {
-            addMessage(teamId, userId, message).then((res) => {
-              func()
-            })
-            setMessage('')
-          }}
+          onClick={handleSendMessage}
           title="Send"
         >
           Send
         </Button>
       </div>
     </div>
-  )
+  );
 }

@@ -84,13 +84,13 @@ export function InviteMembers() {
                         <AvatarFallback>OM</AvatarFallback>
                       </Avatar> */}
                       <Avatar
-                        name={`${member?.displayName}`}
+                        name={`${member?.email}`}
                         size="30"
                         round={true}
                       />
                       <div>
                         <p className="text-sm font-medium leading-none">
-                          {member.displayName}
+                          {member.email}
                           {/* hello */}
                         </p>
                       </div>

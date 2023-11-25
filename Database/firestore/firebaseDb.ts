@@ -86,7 +86,9 @@ export const OverviewTasks= async (teamId: string): Promise<(TaskDetails & { id:
   try {
     const tasksQuery = query(tasks, 
       where('teamId', '==', teamId),
-      where('priority', '==', 'high') // Add this line to filter by high priority
+      where('status', '==', 'in progress'), // Add this line to filter by high priority
+      where('priority', '==', 'high'), // Add this line to filter by high priority
+  
     );
     const querySnapshot = await getDocs(tasksQuery);
     const overviewTasks = querySnapshot.docs.map(doc => {

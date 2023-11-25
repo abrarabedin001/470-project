@@ -14,7 +14,7 @@ export default function OverviewPage() {
   useEffect(() => {
     if (teamId) {
       OverviewTasks(teamId).then((res) => {
-        setTasks(res);
+        setTasks(res);console.log('tasks',tasks)
       });
     } else {
       setTasks([]);
@@ -25,20 +25,20 @@ export default function OverviewPage() {
 <>
   <div className="flex h-full flex-1 flex-col p-8">
     <div className="overflow-x-auto">
-      <table className="custom-table">
+      <table className="custom-table text-gray-700 dark:text-silver-700">
         <thead>
           <tr>
-            <th className="table-header">Title</th>
-            <th className="table-header">Priority</th>
-            <th className="table-header">Status</th>
+            <th className="owtable-header">Title</th>
+            <th className="owtable-header">Priority</th>
+            <th className="owtable-header">Status</th>
           </tr>
         </thead>
         <tbody>
           {tasks.map((tasks, index) => (
-            <tr key={index} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
-              <td>{tasks.title}</td>
-              <td>{tasks.priority}</td>
-              <td>{tasks.status}</td>
+            <tr key={index}>
+              <td className="text-center owtable-header">{tasks.title}</td>
+              <td className="text-center owtable-header">{tasks.priority}</td>
+              <td className="text-center owtable-header">{tasks.status}</td>
             </tr>
           ))}
         </tbody>

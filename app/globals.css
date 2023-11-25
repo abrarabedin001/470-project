@@ -230,16 +230,17 @@
   font-weight: 400;
   color: #777;
 }
+
 .custom-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.table-header {
+.owtable-header {
   background-color: rgba(5, 5, 5, 0);
   color: rgba(173, 166, 166, 0.797);
-  padding: 8px;
-  border-bottom: 1px solid steelblue;
+  padding: 10px;
+  border-bottom: 0.5px solid steelblue;
 }
 
 .even-row {

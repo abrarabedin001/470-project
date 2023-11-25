@@ -26,4 +26,10 @@ export interface BugDetails {
   // any other fields that you want to include
 }
 
-export interface TeamMembers { id: string; displayName: string; role: string; joinedAt: Date }[]
+export interface TeamMembers extends Array<{
+  id: string;
+  displayName: string;
+  email: string;
+  role: string;
+  joinedAt: Date;
+}> { }

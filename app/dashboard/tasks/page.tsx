@@ -24,12 +24,10 @@ import { Button } from '@/components/ui/button'
 import TaskForm from '@/components/TaskForm'
 import { getAllTasksInTeam } from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
-import { ta } from 'date-fns/locale'
+
 import { useEffect, useState } from 'react'
 import 'react-chat-elements/dist/main.css'
-import { Input } from '@/components/ui/input'
-import { MessageBox, MessageList, Button as button2 } from 'react-chat-elements'
-import Chat from '@/components/Chat'
+
 // import { AssignTeamForm } from '@/components/AssignTeamForm'
 
 export default function TaskPage() {

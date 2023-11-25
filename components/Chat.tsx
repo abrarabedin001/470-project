@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from './ui/button'
 import { useUserStore } from '@/Store/userStore'
 import { addMessage, getChatMessages } from '@/Database/firestore/firebaseDb'
+// import { MessageBox, MessageList, Button as button2 } from 'react-chat-elements'
 
 export default function Chat() {
   const [message, setMessage] = React.useState('')

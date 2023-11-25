@@ -249,7 +249,7 @@ export const addTeamMemberByEmail = async (teamId: string, teamName: string, ema
     const teamDocRef = doc(collection(db, "teams"));
     const userDocRef = doc(db, "users", userId);
     await updateDoc(userDocRef, {
-      teams: arrayUnion({ id: teamDocRef.id, name: teamName }) // Assuming 'teams' is an array of team IDs
+      teams: arrayUnion({ id: teamId, name: teamName }) // Assuming 'teams' is an array of team IDs
     });
   } catch (error) {
     console.error('error: Failed to add team member by displayName', error);

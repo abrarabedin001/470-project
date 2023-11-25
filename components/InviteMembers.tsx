@@ -37,7 +37,9 @@ export function InviteMembers() {
     let func = async () => {
       if (teamId) {
         try {
+          console.log('teamId:', teamId)
           let res = await getTeamMembers(teamId)
+          console.log('teamMembers:', res)
           setTeamMembers(res as unknown as TeamMembers)
         } catch {
           console.log('error')

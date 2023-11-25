@@ -7,6 +7,7 @@ import { addMessage, getChatMessages } from '@/Database/firestore/firebaseDb'
 export default function Chat() {
   const [message, setMessage] = React.useState('')
   const teamId = useUserStore((state) => state.currrentTeam?.value)
+  const teamMembers = useUserStore((state) => state.teamMembers)
   const userId = useUserStore((state) => state.user?.uid)
   const [messageList, setMessageList] = React.useState<any[]>([])
 
@@ -23,6 +24,12 @@ export default function Chat() {
   useEffect(() => {
     fetchMessages()
   }, [])
+
+  const retEmail = (id: string) => {
+    let ret = teamMembers!.filter((member) => member.id == id)[0].email
+    console.log('ret:', ret)
+    return ret
+  }
 
   useEffect(() => {
     // Scroll to the bottom whenever the messageList is updated
@@ -53,12 +60,14 @@ export default function Chat() {
       >
         {messageList.map((item) => {
           const className = `chat-message ${
-            item.userId === userId ? 'right' : 'left'
+            item.userId === userId ? 'right text-right' : 'left text-left'
           }`
           console.log(className) // Log class name to check
           return (
-            <div key={item.id} className={className}>
+            <div key={item.id} className={className + ' flex flex-col'}>
+              <p className="text-[7px]">{retEmail(item.userId)}</p>
               <p className="text-white">{item.text}</p>
+              <p className="text-[7px]">{String(item.createdAt)}</p>
             </div>
           )
         })}

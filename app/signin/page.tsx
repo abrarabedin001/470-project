@@ -45,7 +45,7 @@ function Page(): JSX.Element {
       return
     } else {
       // console.log('result', result)
-      router.push('/')
+      // router.push('/')
     }
 
     //
@@ -61,7 +61,7 @@ function Page(): JSX.Element {
       return
     } else {
       // toast.success('Login Successful')
-      router.push('/')
+      // router.push('/')
     }
 
     // Sign in successful

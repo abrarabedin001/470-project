@@ -23,7 +23,7 @@ export default function AuthWrapper(props: WrapperProps) {
         // User is signed in
         console.log('should set user')
         console.log('user', user)
-
+        console.log('user.displayName', user.displayName)
         setUser({ ...user, displayName: user.displayName || '' })
         // setUser(user )
         func()

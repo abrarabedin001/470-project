@@ -33,15 +33,15 @@ export const columns: ColumnDef<Task>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  // {
-  //   accessorKey: 'id',
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Task" />
-  //   ),
-  //   cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
-  //   enableSorting: false,
-  //   enableHiding: false,
-  // },
+  {
+    accessorKey: 'id',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Id" />
+    ),
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
+    enableSorting: true,
+    enableHiding: true,
+  },
   {
     accessorKey: 'title',
     header: ({ column }) => (

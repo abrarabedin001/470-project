@@ -39,7 +39,7 @@ const formSchema = z.object({
   priority: z.enum(['low', 'medium', 'high']),
   assigned: z.array(z.string()),
 })
-export default function TaskForm() {
+export default function TaskForm({ close }: { close: () => void }) {
   const teamMembers = useUserStore((state) => state.teamMembers)
   const currrentTeam = useUserStore((state) => state.currrentTeam)
   // 1. Define your form.
@@ -72,6 +72,7 @@ export default function TaskForm() {
     // ✅ This will be type-safe and validated.
     createTask({ ...values, teamId: currrentTeam?.value })
     console.log(values)
+    close()
   }
   return (
     <Form {...form}>

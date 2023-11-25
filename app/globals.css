@@ -231,27 +231,41 @@
   color: #777;
 }
 
-.custom-table {
+.owcustom-table {
   width: 100%;
   border-collapse: collapse;
+  /* border: 0.5px solid; You can adjust the color as needed */
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1) /* Adjust shadow as needed */
+}
+
+.owcustom-table th{
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
 }
 
 .owtable-header {
+  background-color: black;
+  color: rgba(243, 242, 242, 0.797);
+  padding: 10px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  /* border-bottom: 0.2px solid; */
+}
+
+.owtable-body {
   background-color: rgba(5, 5, 5, 0);
   color: rgba(173, 166, 166, 0.797);
   padding: 10px;
-  border-bottom: 0.5px solid steelblue;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1)
+
+  /* border-bottom: 0.2px solid; */
 }
 
-.even-row {
-  background-color: #5555554e;
-  color:rgba(255, 255, 255, 0.541);
-}
 
-.odd-row {
-  background-color: rgba(255, 255, 255, 0.541);
-  color:#5555554e
-}
 /* Hover Effect for the Slide */
 .slide:hover {
   /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); */

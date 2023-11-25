@@ -166,17 +166,17 @@ export default function DashboardPage() {
                     <div>
                       <CardTitle>Overview</CardTitle>
                       <CardDescription>
-                        Get a sense of the tasks that are most important here:
+                        Get a sense of the tasks that are highly priorotize:
                       </CardDescription>
                     </div>
                     {/* See Tasks button on the right */}
                     <div className="flex justify-self-end">
                       <Button>
-                        <Link href="/dashboard/tasks">See Tasks</Link>
+                        <Link href="/dashboard/tasks">See All Tasks</Link>
                       </Button>
                     </div>
                   </CardHeader>
-                  <CardContent className="pl-2 overflow-y-auto">
+                  <CardContent className="pl-2">
                     <Overview />
                   </CardContent>
                 </Card>

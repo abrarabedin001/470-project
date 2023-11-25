@@ -22,31 +22,29 @@ export default function OverviewPage() {
   }, [teamId]);
 
   return (
-    <>
-      {teamId && (
-        <div className="flex h-full flex-1 flex-col p-8">
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
-            <thead>
-              <tr className="text-black">
-                <th className="py-2 px-4 border-b">Title</th>
-                <th className="py-2 px-4 border-b">Priority</th>
-                <th className="py-2 px-4 border-b">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasks.map(task => (
-                <tr key={task.id} className="text-white border-b">
-                  <td className="py-2 px-4">{task.title}</td>
-                  <td className="py-2 px-4">{task.priority}</td>
-                  <td className="py-2 px-4">{task.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      )}
-    </>
+<>
+  <div className="flex h-full flex-1 flex-col p-8">
+    <div className="overflow-x-auto">
+      <table className="custom-table">
+        <thead>
+          <tr>
+            <th className="table-header">Title</th>
+            <th className="table-header">Priority</th>
+            <th className="table-header">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tasks.map((tasks, index) => (
+            <tr key={index} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
+              <td>{tasks.title}</td>
+              <td>{tasks.priority}</td>
+              <td>{tasks.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</>
   );
 }

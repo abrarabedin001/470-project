@@ -21,7 +21,7 @@ import {
 import { labels } from '../data/data'
 import { taskSchema } from '../data/schema'
 import Link from 'next/link'
-
+import { deleteTask } from '@/Database/firestore/firebaseDb'
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
@@ -62,7 +62,7 @@ export function DataTableRowActions<TData>({
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => deleteTask(row.getValue('id'))}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>

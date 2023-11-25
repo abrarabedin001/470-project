@@ -136,7 +136,7 @@ const teams = collection(db, 'teams');
 
 
 
-export const createTeam = async (teamName: string, adminId: string, displayName: string): Promise<string> => {
+export const createTeam = async (teamName: string, adminId: string, email: string): Promise<string> => {
   console.log('teamName', teamName);
   try {
     // Create a new team document reference in the "teams" collection
@@ -149,7 +149,7 @@ export const createTeam = async (teamName: string, adminId: string, displayName:
 
     const membersCollection = collection(db, 'teams', teamDocRef.id, 'members');
     const memberDocRef = doc(membersCollection, adminId);
-    await setDoc(memberDocRef, { userId: adminId, joinedAt: new Date(), displayName: displayName, role: 'admin' });
+    await setDoc(memberDocRef, { userId: adminId, joinedAt: new Date(), email: email, role: 'admin' });
     console.log('success: Team member added');
 
     // Update the user's document with the new team ID in the "users" collection
@@ -197,11 +197,11 @@ export const getUserTeams = async (userId: string): Promise<{ id: string, name: 
 
 // import { collection, query, where, getDocs, setDoc, doc } from 'firebase/firestore';
 
-export const addTeamMemberByEmail = async (teamId: string, teamName: string, displayName: string, role: string): Promise<void> => {
+export const addTeamMemberByEmail = async (teamId: string, teamName: string, email: string, role: string): Promise<void> => {
   try {
     // Query the user's ID using their email
     const usersCollection = collection(db, 'users');
-    const q = query(usersCollection, where('displayName', '==', displayName));
+    const q = query(usersCollection, where('email', '==', email));
     const querySnapshot = await getDocs(q);
     let userId = '';
 
@@ -216,7 +216,7 @@ export const addTeamMemberByEmail = async (teamId: string, teamName: string, dis
     // Use the user ID to add them as a team member
     const membersCollection = collection(db, 'teams', teamId, 'members');
     const memberDocRef = doc(membersCollection, userId);
-    await setDoc(memberDocRef, { userId: userId, joinedAt: new Date(), displayName: displayName, role: role?.toLowerCase() || 'view' });
+    await setDoc(memberDocRef, { userId: userId, joinedAt: new Date(), email: email, role: role?.toLowerCase() || 'view' });
     console.log('success: Team member added');
     // Update the user's document with the new team ID in the "users" collection
     const teamDocRef = doc(collection(db, "teams"));
@@ -252,14 +252,14 @@ export const getTeamMembers = async (teamId: string): Promise<any[]> => {
     const membersCollection = collection(db, 'teams', teamId, 'members');
     const q = query(membersCollection);
     const querySnapshot = await getDocs(q);
-    const members: { id: string, displayName: string, role: string, joinedAt: Date }[] = [];
+    const members: { id: string, email: string, role: string, joinedAt: Date }[] = [];
 
     querySnapshot.forEach((memberDoc) => {
       // Push each member's data into the members array
       // You might want to include more or fewer details here depending on your needs
       members.push({
         id: memberDoc.id,
-        ...memberDoc.data() as { displayName: string, role: string, joinedAt: Date },
+        ...memberDoc.data() as { email: string, role: string, joinedAt: Date },
       });
     });
 

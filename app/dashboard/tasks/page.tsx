@@ -34,8 +34,9 @@ import Chat from '@/components/Chat'
 
 export default function TaskPage() {
   let teamId: any = useUserStore((state) => state.currrentTeam?.value)
+  const [showNewTeamDialog, setShowNewTeamDialog] = useState(false)
   let [tasks, setTasks] = useState<any[]>([])
-  useEffect(() => {
+  let getTasks = async () => {
     if (teamId) {
       getAllTasksInTeam(teamId).then((res) => {
         setTasks(res)
@@ -43,6 +44,9 @@ export default function TaskPage() {
     } else {
       setTasks([])
     }
+  }
+  useEffect(() => {
+    getTasks()
   }, [teamId])
 
   return (
@@ -82,20 +86,34 @@ export default function TaskPage() {
             <DataTable data={tasks} columns={columns} />
           </div>
           <div>
-            <AlertDialog>
+            <AlertDialog
+              // onOpenChange={() => setShowNewTeamDialog((prev) => !prev)}
+              open={showNewTeamDialog}
+            >
               <AlertDialogTrigger>
-                <Button>Create Tasks</Button>
+                <Button onClick={() => setShowNewTeamDialog(true)}>
+                  Create Tasks
+                </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <AlertDialogTitle>Create Your Tasks:</AlertDialogTitle>
                   <AlertDialogDescription>
-                    <TaskForm></TaskForm>
+                    <TaskForm
+                      close={() => {
+                        setShowNewTeamDialog(false)
+                        getTasks()
+                      }}
+                    ></TaskForm>
                     {/* <AssignTeamForm></AssignTeamForm> */}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogCancel
+                    onClick={() => setShowNewTeamDialog((prev) => !prev)}
+                  >
+                    Cancel
+                  </AlertDialogCancel>
                   {/* <AlertDialogAction>Continue</AlertDialogAction> */}
                 </AlertDialogFooter>
               </AlertDialogContent>

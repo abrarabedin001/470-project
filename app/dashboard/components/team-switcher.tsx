@@ -38,6 +38,7 @@ import {
 import { createTeam } from '@/Database/firestore/firebaseDb'
 import TeamForm from '@/components/CreateTeamForm'
 import { useUserStore } from '@/Store/userStore'
+import Link from 'next/link'
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
@@ -97,9 +98,9 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     <Dialog
       open={showNewTeamDialog}
       onOpenChange={() => {
-        // setOpen((prev) => !prev)
+        setOpen((prev) => !prev)
         populateTeamList()
-        setShowNewTeamDialog
+        setShowNewTeamDialog(false)
       }}
     >
       <Popover
@@ -107,7 +108,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         onOpenChange={() => {
           setOpen((prev) => !prev)
           populateTeamList()
-          // setShowNewTeamDialog
+          setShowNewTeamDialog(false)
         }}
       >
         {/* {selectedTeam && ( */}
@@ -149,32 +150,35 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
 
                 <CommandGroup key={'Teams'} heading={'Teams'}>
                   {teamListObj.map((team) => (
-                    <CommandItem
-                      key={team.value}
-                      onSelect={() => {
-                        setCurrentTeam(team)
-                        setOpen(false)
-                      }}
-                      className="text-sm"
-                    >
-                      <Avatar className="mr-2 h-5 w-5">
-                        <AvatarImage
-                          src={`https://avatar.vercel.sh/${team.value}.png`}
-                          alt={team.label}
-                          className="grayscale"
+                    <Link key={team.value} href={'/dashboard'}>
+                      {' '}
+                      <CommandItem
+                        key={team.value}
+                        onSelect={() => {
+                          setCurrentTeam(team)
+                          setOpen(false)
+                        }}
+                        className="text-sm"
+                      >
+                        <Avatar className="mr-2 h-5 w-5">
+                          <AvatarImage
+                            src={`https://avatar.vercel.sh/${team.value}.png`}
+                            alt={team.label}
+                            className="grayscale"
+                          />
+                          <AvatarFallback>SC</AvatarFallback>
+                        </Avatar>
+                        {team.label}
+                        <CheckIcon
+                          className={cn(
+                            'ml-auto h-4 w-4',
+                            currrentTeam?.value === team.value
+                              ? 'opacity-100'
+                              : 'opacity-0'
+                          )}
                         />
-                        <AvatarFallback>SC</AvatarFallback>
-                      </Avatar>
-                      {team.label}
-                      <CheckIcon
-                        className={cn(
-                          'ml-auto h-4 w-4',
-                          currrentTeam?.value === team.value
-                            ? 'opacity-100'
-                            : 'opacity-0'
-                        )}
-                      />
-                    </CommandItem>
+                      </CommandItem>
+                    </Link>
                   ))}
                 </CommandGroup>
               </CommandList>

@@ -13,8 +13,8 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components//ui/tabs'
 import { CalendarDateRangePicker } from './components/date-range-picker'
 import { MainNav } from './components/main-nav'
-import { Overview } from './components/overview'
-import { RecentSales } from './components/recent-sales'
+import Overview  from './components/overview'
+// import { RecentSales } from './components/recent-sales'
 import  Chat  from '@/components/Chat'
 import { Search } from './components/search'
 import TeamSwitcher from './components/team-switcher'
@@ -43,7 +43,7 @@ export default function DashboardPage() {
             </div>
           </div>
           <Tabs defaultValue="overview" className="space-y-4">
-            <TabsList>
+            {/* <TabsList>
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="analytics" disabled>
                 Analytics
@@ -52,9 +52,9 @@ export default function DashboardPage() {
                 Reports
               </TabsTrigger>
               <TabsTrigger value="notifications" disabled>
-                Notifications
+                // Notifications
               </TabsTrigger>
-            </TabsList>
+            </TabsList> */}
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <Card>
@@ -161,8 +161,20 @@ export default function DashboardPage() {
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
                 <Card className="col-span-3 h-[400px] max-h-[400px]">
-                  <CardHeader>
-                    <CardTitle>Overview</CardTitle>
+                <CardHeader className="grid grid-cols-2 gap-4">
+                    {/* Overview title on the left */}
+                    <div>
+                      <CardTitle>Overview</CardTitle>
+                      <CardDescription>
+                      Get a sense of the tasks that are most important here:
+                    </CardDescription>
+                    </div>
+                    {/* See Tasks button on the right */}
+                    <div className='flex justify-self-end'>
+                      <Button>
+                        <Link href="/dashboard/tasks">See Tasks</Link>
+                      </Button>
+                    </div>
                   </CardHeader>
                   <CardContent className="pl-2">
                     <Overview />

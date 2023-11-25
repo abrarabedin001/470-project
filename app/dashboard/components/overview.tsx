@@ -1,78 +1,52 @@
-"use client"
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
+// OverviewPage.tsx
 
-const data = [
-  {
-    name: "Jan",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Feb",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Mar",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Apr",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "May",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jun",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Jul",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Aug",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Sep",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Oct",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Nov",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-  {
-    name: "Dec",
-    total: Math.floor(Math.random() * 5000) + 1000,
-  },
-]
+import React, { useEffect, useState } from 'react';
+import { DataTable } from '@/app/dashboard/tasks/components/data-table';
+import { columns } from '@/app/dashboard/tasks/components/columns';
+import { OverviewTasks } from '@/Database/firestore/firebaseDb';
+import { useUserStore } from '@/Store/userStore';
 
-export function Overview() {
+export default function OverviewPage() {
+  const teamId: any = useUserStore((state) => state.currrentTeam?.value);
+  const [tasks, setTasks] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (teamId) {
+      OverviewTasks(teamId).then((res) => {
+        setTasks(res);
+      });
+    } else {
+      setTasks([]);
+    }
+  }, [teamId]);
+
   return (
-    <ResponsiveContainer width="100%" height={350}>
-      <BarChart data={data}>
-        <XAxis
-          dataKey="name"
-          stroke="#888888"
-          fontSize={12}
-          tickLine={false}
-          axisLine={false}
-        />
-        <YAxis
-          stroke="#888888"
-          fontSize={12}
-          tickLine={false}
-          axisLine={false}
-          tickFormatter={(value) => `$${value}`}
-        />
-        <Bar dataKey="total" fill="#adfa1d" radius={[4, 4, 0, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
-  )
+    <>
+      {teamId && (
+        <div className="flex h-full flex-1 flex-col p-8">
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr className="text-black">
+                <th className="py-2 px-4 border-b">Title</th>
+                <th className="py-2 px-4 border-b">Priority</th>
+                <th className="py-2 px-4 border-b">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tasks.map(task => (
+                <tr key={task.id} className="text-white border-b">
+                  <td className="py-2 px-4">{task.title}</td>
+                  <td className="py-2 px-4">{task.priority}</td>
+                  <td className="py-2 px-4">{task.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      )}
+    </>
+  );
 }

@@ -15,6 +15,7 @@ import { CalendarDateRangePicker } from './components/date-range-picker'
 import { MainNav } from './components/main-nav'
 import { Overview } from './components/overview'
 import { RecentSales } from './components/recent-sales'
+import  Chat  from '@/components/Chat'
 import { Search } from './components/search'
 import TeamSwitcher from './components/team-switcher'
 import { UserNav } from './components/user-nav'
@@ -158,8 +159,8 @@ export default function DashboardPage() {
                   </CardContent>
                 </Card>
               </div>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                <Card className="col-span-4">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+                <Card className="col-span-3 h-[400px] max-h-[400px]">
                   <CardHeader>
                     <CardTitle>Overview</CardTitle>
                   </CardHeader>
@@ -167,15 +168,15 @@ export default function DashboardPage() {
                     <Overview />
                   </CardContent>
                 </Card>
-                <Card className="col-span-3">
-                  <CardHeader>
-                    <CardTitle>Recent Sales</CardTitle>
+                <Card className="col-span-3 h-[400px] max-h-[400px]">
+                  <CardHeader className="top-0 pt-2">
+                    <CardTitle>Chat Box</CardTitle>
                     <CardDescription>
-                      You made 265 sales this month.
+                      You can chat with your team here.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <RecentSales />
+                    <Chat />
                   </CardContent>
                 </Card>
               </div>

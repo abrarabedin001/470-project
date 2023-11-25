@@ -68,6 +68,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         value: team.id,
       })
     })
+    console.log('teamList:', array)
     setTeamListObj(array)
   }
   const adminId = user?.uid // Replace with actual admin ID

@@ -98,9 +98,9 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
     <Dialog
       open={showNewTeamDialog}
       onOpenChange={() => {
-        // setOpen((prev) => !prev)
+        setOpen((prev) => !prev)
         populateTeamList()
-        setShowNewTeamDialog
+        setShowNewTeamDialog(false)
       }}
     >
       <Popover
@@ -108,7 +108,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         onOpenChange={() => {
           setOpen((prev) => !prev)
           populateTeamList()
-          // setShowNewTeamDialog
+          setShowNewTeamDialog(false)
         }}
       >
         {/* {selectedTeam && ( */}

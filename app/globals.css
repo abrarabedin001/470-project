@@ -348,3 +348,69 @@
     @apply border border-gray-300 bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-transparent via-transparent to-transparent shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur;
   }
 }
+
+
+
+
+
+/* Add these styles to your stylesheet */
+
+
+
+/* Add these styles to your stylesheet */
+
+/* Avatar styles */
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7289da; /* You can set your own background color */
+  color: #ffffff; /* You can set your own text color */
+  font-weight: bold;
+}
+
+/* Message container styles */
+.chat-message-container {
+  max-width: 60%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #7289da;
+  display: flex;
+  flex-direction: column;
+}
+
+.current-user {
+  align-self: flex-end;
+  background-color: #7289da;
+  color: #ffffff;
+}
+
+.other-user {
+  align-self: flex-start;
+}
+
+/* Message header and footer styles */
+.message-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Message content styles */
+.message-content {
+  margin-top: 5px;
+}
+
+/* Text styles */
+.text-[7px] {
+  font-size: 7px;
+}
+
+.text-white {
+  color: #ffffff;
+}

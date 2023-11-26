@@ -82,43 +82,34 @@ export function InviteMembers() {
                     </div>
                     {/* {userPermission?.email} */}
                     {userPermission?.role == 'admin' ? (
-                      <div className="flex flex-row justify-end space-x-4">
-                        <Select
-                          onValueChange={(e) => {
-                            if (e == 'kickout') {
-                              console.log('remove member')
-                              if (teamId) {
-                                removeTeamMemberByEmail(
-                                  teamId,
-                                  member.email
-                                ).then((e) => setTeamMembers())
-                              }
-                            } else {
-                              updateTeamMemberRole(teamId!, member.id, e)
+                      <Select
+                        onValueChange={(e) => {
+                          if (e == 'kickout') {
+                            console.log('remove member')
+                            if (teamId) {
+                              removeTeamMemberByEmail(
+                                teamId,
+                                member.email
+                              ).then((e) => setTeamMembers())
                             }
+                          } else {
+                            updateTeamMemberRole(teamId!, member.id, e)
+                          }
 
-                            setTeamMembers()
-                          }}
-                          defaultValue={member.role}
-                        >
-                          <SelectTrigger className="ml-auto w-[110px]">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="admin">Admin</SelectItem>
-                            <SelectItem value="edit">Can edit</SelectItem>
-                            <SelectItem value="view">Can view</SelectItem>
-                            <SelectItem value="kickout">Kick out</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <button
-                          onClick={() => {
-                            ;() => {}
-                          }}
-                        >
-                          Kick out
-                        </button>
-                      </div>
+                          setTeamMembers()
+                        }}
+                        defaultValue={member.role}
+                      >
+                        <SelectTrigger className="ml-auto w-[110px]">
+                          <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="admin">Admin</SelectItem>
+                          <SelectItem value="edit">Can edit</SelectItem>
+                          <SelectItem value="view">Can view</SelectItem>
+                          <SelectItem value="kickout">Kick out</SelectItem>
+                        </SelectContent>
+                      </Select>
                     ) : (
                       ''
                     )}

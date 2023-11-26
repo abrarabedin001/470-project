@@ -3,13 +3,7 @@
 // import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Avatar from 'react-avatar'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import {
   Select,
@@ -19,14 +13,13 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUserStore } from '@/Store/userStore'
 import {
   addTeamMemberByEmail,
-  getTeamMembers,
   updateTeamMemberRole,
 } from '@/Database/firestore/firebaseDb'
-import { TeamMembers } from '@/lib/type'
+
 export function InviteMembers() {
   const [email, setEmail] = useState('')
   const userId = useUserStore((state) => state.user?.uid)

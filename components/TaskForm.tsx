@@ -60,6 +60,7 @@ export default function TaskForm({ close }: { close: () => void }) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: '',
+      description: '',
       status: 'in progress',
       label: 'documentation',
       priority: 'medium',
@@ -82,6 +83,20 @@ export default function TaskForm({ close }: { close: () => void }) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Title</FormLabel>
+              <FormControl>
+                <Input placeholder="Fix the signin bug..." {...field} />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
               <FormControl>
                 <Input placeholder="Fix the signin bug..." {...field} />
               </FormControl>

@@ -1,8 +1,10 @@
 'use client'
-import firebase from 'firebase/app'
+
 import React, { useEffect, useState } from 'react'
 import { useUserStore } from '@/Store/userStore'
 import { getUserCustomClaims, subscribeToAuthChanges } from '@/Database/auth'
+import { useRouter, usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 interface WrapperProps {
   children: React.ReactNode
@@ -10,36 +12,39 @@ interface WrapperProps {
 export default function AuthWrapper(props: WrapperProps) {
   const setUser = useUserStore((state) => state.setUser)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
+  const pathname = usePathname()
   useEffect(() => {
-    // Subscribe to the authentication state changes
-    let func = async () => {
-      let abc = await getUserCustomClaims()
-      console.log('token', abc)
-    }
+    const excludedRoutes = ['/forgotPassword', '/signin', '/signup', '/']
 
-    // console.log('abc', abc)
     const unsubscribe = subscribeToAuthChanges((user) => {
       if (user) {
-        // User is signed in
-        console.log('should set user')
-        console.log('user', user)
-        console.log('user.displayName', user.displayName)
         setUser({ ...user, displayName: user.displayName || '' })
-        // setUser(user )
-        func()
       } else {
-        // User is signed out
-        console.log('should set user null')
         setUser(null)
+        if (!excludedRoutes.includes(pathname)) {
+          router.push('/signin')
+        }
       }
       // Set loading to false once authentication state is determined
       setLoading(false)
     })
 
-    console.log('Unsubscribe', unsubscribe)
-
     // Unsubscribe from the authentication state changes when the component is unmounted
     return unsubscribe
-  }, [])
+  }, [pathname, router, setUser])
+  if (loading) {
+    return (
+      <div className="bg-black w-full h-screen flex items-center justify-center">
+        <Image
+          className="relative z-20 w-[22%] pulse1-animation"
+          src="/main_logo.png"
+          alt="logo"
+          width={2353}
+          height={384}
+        />
+      </div>
+    )
+  }
   return props.children
 }

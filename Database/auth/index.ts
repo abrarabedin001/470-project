@@ -22,6 +22,7 @@ import {
   doc,
   updateDoc,
 } from 'firebase/firestore'
+import { fa } from '@faker-js/faker'
 const googleAuthProvider = new GoogleAuthProvider();
 export async function signIn(email: string, password: string) {
   let result = null,
@@ -81,17 +82,16 @@ export async function signOutUser(onSignOut: () => void) {
 }
 
 export async function signInWithGoogle() {
-  let user = null,
+  let user = false,
     error = null
   signInWithPopup(auth, googleAuthProvider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
-      // The signed-in user info.
-      user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
+      user = true;
+      GoogleAuthProvider.credentialFromResult(result);
+
+
+
     }).catch((error) => {
       // Handle Errors here.
       error = error as FirebaseError

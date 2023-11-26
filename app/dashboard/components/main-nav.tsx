@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { useUserStore } from '@/Store/userStore'
+import { Button } from '@/components/ui/button'
 
 export function MainNav({
   className,
@@ -21,7 +22,8 @@ export function MainNav({
           href="/dashboard"
           className="text-sm font-medium transition-colors hover:text-primary"
         >
-          Dashboard
+          <Button>Dashboard</Button>
+          {/* Dashboard */}
         </Link>
       )}
     </nav>

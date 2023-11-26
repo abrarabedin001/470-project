@@ -121,7 +121,7 @@ export const CompleteTasks = async (teamId: string): Promise<(TaskDetails & { id
   try {
     const tasksQuery = query(tasks,
       where('teamId', '==', teamId),
-      where('status', '==', 'completed'), // Add this line to filter by high priorit
+      where('status', '==', 'done'), // Add this line to filter by high priorit
 
     );
     const querySnapshot = await getDocs(tasksQuery);
@@ -150,7 +150,7 @@ export const IncompleteTasks = async (teamId: string): Promise<(TaskDetails & { 
     const tasksQuery = query(
       tasks,
       where('teamId', '==', teamId),
-      where('status', 'in', ['in progress', 'backlog']), // Filter tasks where status is not 'completed'
+      where('status', 'in', ['in progress', 'backlog', 'todo', 'canceled']), // Filter tasks where status is not 'completed'
     );
     const querySnapshot = await getDocs(tasksQuery);
     const incompleteTasks = querySnapshot.docs.map(doc => {
@@ -183,6 +183,28 @@ export const createTask = async (details: TaskDetails): Promise<string> => {
     throw error;
   }
 }
+
+export const updateTaskPriority = async (taskId: string, newPriority: string): Promise<void> => {
+  try {
+    const taskDocRef = doc(tasks, taskId);
+    await updateDoc(taskDocRef, { priority: newPriority });
+    console.log('success: Task priority updated');
+  } catch (error) {
+    console.error('error: Failed to update task priority', error);
+    throw error;
+  }
+};
+
+export const updateTaskStatus = async (taskId: string, newStatus: string): Promise<void> => {
+  try {
+    const taskDocRef = doc(tasks, taskId);
+    await updateDoc(taskDocRef, { status: newStatus });
+    console.log('success: Task status updated');
+  } catch (error) {
+    console.error('error: Failed to update task status', error);
+    throw error;
+  }
+};
 
 export const assignTask = async (taskId: string, assigneeId: string): Promise<void> => {
   try {
@@ -400,70 +422,9 @@ export const deleteTeam = async (teamId: string): Promise<void> => {
 
 
 //chat for team
-const chatCollection = collection(db, 'teamChats');
 
 
 
-// export const createChatForTeam = async (teamId: string, participants: string[]): Promise<string> => {
-//   try {
-//     // Create a new chat document
-//     const chatDocRef = doc(chatCollection);
-//     await setDoc(chatDocRef, {
-//       teamId,
-//       createdAt: new Date(),
-//       participants
-//     });
-
-//     // Optionally, initialize the 'messages' subcollection with an empty document
-//     // This step is not strictly necessary as Firestore allows adding to a subcollection directly
-//     // But if you want to initialize it, you can do so like this:
-//     const messagesCollectionRef = collection(chatDocRef, 'messages');
-//     const initialMessageDocRef = doc(messagesCollectionRef);
-//     await setDoc(initialMessageDocRef, {
-//       // Add initial data for the message, or leave it empty
-//     });
-
-//     console.log('success: Chat created for team', teamId);
-//     return chatDocRef.id;
-//   } catch (error) {
-//     console.error('error: Failed to create chat for team', error);
-//     throw error;
-//   }
-// };
-
-// export const addMessageForTeam = async (chatId: string, userId: string, text: string): Promise<void> => {
-//   try {
-//     const messageDocRef = doc(collection(db, 'teamChats', chatId, 'messages'));
-//     let res = await setDoc(messageDocRef, {
-//       userId,
-//       text,
-//       createdAt: new Date()
-//     });
-//     console.log('success: Message added');
-//     return res;
-//   } catch (error) {
-//     console.error('error: Failed to add message', error);
-//     throw error;
-//   }
-// }
-
-// //receive messages
-// export const getAllChatMessagesInTeam = async (teamId: string): Promise<any[]> => {
-//   try {
-//     const chatQuery = query(chatCollection, where('teamId', '==', teamId));
-//     const querySnapshot = await getDocs(chatQuery);
-//     const allMessages = querySnapshot.docs.map(doc => doc.data());
-//     console.log('success: Retrieved all chat messages in team');
-//     return allMessages;
-//   } catch (error) {
-//     console.error('error: Failed to retrieve all chat messages in team', error);
-//     throw error;
-//   }
-// };
-
-
-
-//chat for tasks
 
 const teamChats = collection(db, 'teamChats');
 

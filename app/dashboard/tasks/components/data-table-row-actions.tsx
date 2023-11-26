@@ -18,10 +18,15 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-import { labels } from '../data/data'
+import { statuses } from '../data/data'
+import { priorities } from '../data/data'
 import { taskSchema } from '../data/schema'
-import Link from 'next/link'
-import { deleteTask } from '@/Database/firestore/firebaseDb'
+
+import {
+  deleteTask,
+  updateTaskPriority,
+  updateTaskStatus,
+} from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
 // import { getTasks } from '@/lib/getTasks'
 interface DataTableRowActionsProps<TData> {
@@ -47,18 +52,42 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>
-          <Link href={'/dashboard/tasks/task'}>Edit</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger>Status</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.label}>
-              {labels.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
+            <DropdownMenuRadioGroup value={task.status}>
+              {statuses.map((label) => (
+                <DropdownMenuRadioItem
+                  key={label.value}
+                  value={label.value}
+                  onClick={(e) => {
+                    updateTaskStatus(task.id, label.value).then((res) => {
+                      getTasks()
+                    })
+                    // console.log(label.value, task.id)
+                  }}
+                >
+                  {label.label}
+                </DropdownMenuRadioItem>
+              ))}
+            </DropdownMenuRadioGroup>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>Priority</DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuRadioGroup value={task.priority}>
+              {priorities.map((label) => (
+                <DropdownMenuRadioItem
+                  key={label.value}
+                  value={label.value}
+                  onClick={(e) => {
+                    updateTaskPriority(task.id, label.value).then((res) => {
+                      getTasks()
+                    })
+                    // console.log(label.value, task.id)
+                  }}
+                >
                   {label.label}
                 </DropdownMenuRadioItem>
               ))}

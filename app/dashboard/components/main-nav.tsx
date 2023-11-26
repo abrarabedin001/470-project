@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { Button } from '@/components/ui/Button'
 
 import { cn } from '@/lib/utils'
 import { useUserStore } from '@/Store/userStore'
+import { Button } from '@/components/ui/button'
 
 export function MainNav({
   className,

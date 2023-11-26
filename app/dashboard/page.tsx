@@ -17,6 +17,7 @@ import Overview from './components/overview'
 import  {CountMembers} from './components/countMembers'
 import  CountTasks from './components/countTasks'
 import  TasksComplete from './components/completeTasks'
+import  TasksInComplete from './components/incompleteTasks'
 
 import Chat from '@/components/Chat'
 import { Search } from './components/search'
@@ -142,7 +143,7 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
+                    <div className="text-2xl font-bold"><TasksInComplete/></div>
                   </CardContent>
                 </Card>
               </div>

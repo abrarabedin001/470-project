@@ -139,6 +139,32 @@ export const CompleteTasks= async (teamId: string): Promise<(TaskDetails & { id:
   }
 };
 
+export const IncompleteTasks = async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
+  try {
+    const tasksQuery = query(
+      tasks,
+      where('teamId', '==', teamId),
+      where('status', 'in', ['in progress', 'backlog']), // Filter tasks where status is not 'completed'
+    );
+    const querySnapshot = await getDocs(tasksQuery);
+    const incompleteTasks = querySnapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data.title,
+        priority: data.priority,
+        // Add other task details as needed
+      };
+    });
+
+    return incompleteTasks;
+  } catch (error) {
+    console.error('Error fetching incomplete tasks:', error);
+    throw error;
+  }
+};
+
+
 
 export const createTask = async (details: TaskDetails): Promise<string> => {
   try {

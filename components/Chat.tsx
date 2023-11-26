@@ -97,13 +97,16 @@ export default function Chat() {
                   >
                     {retEmail(item.userId) + ' '}
                   </p>
-                  <p style={{ fontSize: '8px', color: 'purple' }}>
+                  <p
+                    style={{ fontSize: '10px' }}
+                    className="text-gray-700 font-bold"
+                  >
                     {formatTimestamp(item.createdAt.toDate().getTime())}
                   </p>
                 </div>
               </div>
               <div className="ml-5  message-content">
-                <p style={{ fontSize: '14px', color: '#ffffff' }}>
+                <p style={{ fontSize: '15px', color: '#ffffff' }}>
                   {item.text}
                 </p>
               </div>

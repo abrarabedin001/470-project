@@ -59,7 +59,12 @@ export function InviteMembers() {
                 onClick={() => {
                   console.log('add member')
                   if (teamId && teamName) {
-                    addTeamMemberByEmail(teamId, teamName, email, 'view')
+                    addTeamMemberByEmail(teamId, teamName, email, 'view').then(
+                      () => {
+                        setTeamMembers()
+                        setEmail('')
+                      }
+                    )
                   }
                 }}
               >

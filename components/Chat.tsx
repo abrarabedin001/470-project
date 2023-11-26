@@ -92,17 +92,17 @@ export default function Chat() {
                       fontSize: '10px',
                       fontWeight: 'bold',
                       marginBottom: '2px',
-                      color: 'white',
+                      color: 'black',
                     }}
                   >
                     {retEmail(item.userId) + ' '}
                   </p>
-                  <p style={{ fontSize: '10px', color: 'white' }}>
+                  <p style={{ fontSize: '8px', color: 'purple' }}>
                     {formatTimestamp(item.createdAt.toDate().getTime())}
                   </p>
                 </div>
               </div>
-              <div className="message-content">
+              <div className="ml-5  message-content">
                 <p style={{ fontSize: '14px', color: '#ffffff' }}>
                   {item.text}
                 </p>
@@ -112,7 +112,7 @@ export default function Chat() {
         })}
       </div>
 
-      <div className="flex flex-row pt-5 justify-between mb-2">
+      <div className="flex flex-row pt-5 justify-between mb-2 mx-5">
         <Input
           placeholder="Type here..."
           value={message}

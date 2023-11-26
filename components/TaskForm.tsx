@@ -27,6 +27,7 @@ import { createTask } from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
 import { MultiSelect } from './MultiSelect'
 import { useEffect, useState } from 'react'
+import { Textarea } from './ui/textarea'
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -35,7 +36,7 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: 'description must be at least 2 characters.',
   }),
-  status: z.enum(['in progress', 'completed', 'backlog']),
+  status: z.enum(['in progress', 'done', 'backlog', 'todo', 'canceled']),
   label: z.enum(['documentation', 'bug', 'enhancement']),
   priority: z.enum(['low', 'medium', 'high']),
   assigned: z.array(z.string()),
@@ -60,6 +61,7 @@ export default function TaskForm({ close }: { close: () => void }) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: '',
+      description: '',
       status: 'in progress',
       label: 'documentation',
       priority: 'medium',
@@ -90,6 +92,20 @@ export default function TaskForm({ close }: { close: () => void }) {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Fix the signin bug..." {...field} />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}
@@ -104,9 +120,11 @@ export default function TaskForm({ close }: { close: () => void }) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="in progress">in progress</SelectItem>
-                  <SelectItem value="backlog">backlog</SelectItem>
-                  <SelectItem value="completed">completed</SelectItem>
+                  <SelectItem value="in progress">In progress</SelectItem>
+                  <SelectItem value="backlog">Backlog</SelectItem>
+                  <SelectItem value="done">Done</SelectItem>
+                  <SelectItem value="cancelled">Cancelled</SelectItem>
+                  <SelectItem value="todo">Todo</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -120,7 +138,7 @@ export default function TaskForm({ close }: { close: () => void }) {
           name="label"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>label</FormLabel>
+              <FormLabel>Label</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -143,7 +161,7 @@ export default function TaskForm({ close }: { close: () => void }) {
           name="priority"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>priority</FormLabel>
+              <FormLabel>Priority</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>

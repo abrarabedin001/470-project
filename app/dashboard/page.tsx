@@ -16,6 +16,7 @@ import { MainNav } from './components/main-nav'
 import Overview from './components/overview'
 import  {CountMembers} from './components/countMembers'
 import  CountTasks from './components/countTasks'
+import  TasksComplete from './components/completeTasks'
 
 import Chat from '@/components/Chat'
 import { Search } from './components/search'
@@ -116,7 +117,7 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+12,234</div>
+                    <div className="text-2xl font-bold"><TasksComplete/></div>
                   </CardContent>
                 </Card>
                 <Card>

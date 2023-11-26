@@ -1,17 +1,12 @@
 'use client'
 // import { promises as fs } from 'fs'
-import path from 'path'
-import { Metadata } from 'next'
-import Image from 'next/image'
-import { z } from 'zod'
 
 import { columns } from './components/columns'
 import { DataTable } from './components/data-table'
 import { UserNav } from './components/user-nav'
-import { taskSchema } from './data/schema'
+
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -22,14 +17,12 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import TaskForm from '@/components/TaskForm'
-import { getAllTasksInTeam } from '@/Database/firestore/firebaseDb'
+
 import { useUserStore } from '@/Store/userStore'
-import { ta } from 'date-fns/locale'
+
 import { useEffect, useState } from 'react'
 import 'react-chat-elements/dist/main.css'
-import { Input } from '@/components/ui/input'
-import { MessageBox, MessageList, Button as button2 } from 'react-chat-elements'
-import Chat from '@/components/Chat'
+
 // import { AssignTeamForm } from '@/components/AssignTeamForm'
 
 export default function TaskPage() {

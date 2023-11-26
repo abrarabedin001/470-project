@@ -87,22 +87,26 @@ export const OverviewTasks = async (teamId: string): Promise<(TaskDetails & { id
   try {
     const tasksQuery = query(tasks,
       where('teamId', '==', teamId),
-      where('status', '==', 'in progress'), // Add this line to filter by high priority
-      where('priority', '==', 'high'), // Add this line to filter by high priority
-
+      where('status', '==', 'in progress'),
+      where('priority', '==', 'high'),
     );
+
     const querySnapshot = await getDocs(tasksQuery);
+
     const overviewTasks = querySnapshot.docs.map(doc => {
       const data = doc.data();
       return {
-        id: doc.id, // This is the unique ID of the document
+        id: doc.id,
         title: data.title,
         priority: data.priority,
         status: data.status,
-        // Only include the fields you need
         createdAt: data.createdAt.toDate('en-us', { year: "numeric", month: "short", day: "numeric" }),
       } as TaskDetails & { id: string };
     });
+
+    // Manually sort the tasks by createdAt in descending order
+    overviewTasks.sort((a: any, b: any) => a.createdAt.getTime() - b.createdAt.getTime());
+
     console.log('success: Retrieved overview tasks in team');
     console.log('overviewTasks', overviewTasks);
     return overviewTasks;
@@ -111,6 +115,7 @@ export const OverviewTasks = async (teamId: string): Promise<(TaskDetails & { id
     throw error;
   }
 };
+
 
 export const CompleteTasks = async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
   try {

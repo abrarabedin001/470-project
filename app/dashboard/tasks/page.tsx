@@ -22,12 +22,18 @@ import { useUserStore } from '@/Store/userStore'
 
 import { useEffect, useState } from 'react'
 import 'react-chat-elements/dist/main.css'
+import user from '@/lib/token'
 
 // import { AssignTeamForm } from '@/components/AssignTeamForm'
 
 export default function TaskPage() {
   let teamId: any = useUserStore((state) => state.currrentTeam?.value)
   let getTasks = useUserStore((state) => state.getTasks)
+  const userId = useUserStore((state) => state.user?.uid)
+
+  const teamMembers = useUserStore((state) => state.teamMembers)
+
+  let userPermission = teamMembers?.filter((member) => member.id == userId)[0]
 
   let tasks = useUserStore((state) => state.tasks)
   const [showNewTeamDialog, setShowNewTeamDialog] = useState(false)
@@ -60,35 +66,37 @@ export default function TaskPage() {
             </div>
             <DataTable data={tasks} columns={columns} />
           </div>
-          <div>
-            <AlertDialog open={showNewTeamDialog}>
-              <AlertDialogTrigger>
-                <Button onClick={() => setShowNewTeamDialog(true)}>
-                  Create Tasks
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Create Your Tasks:</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    <TaskForm
-                      close={() => {
-                        setShowNewTeamDialog(false)
-                        getTasks()
-                      }}
-                    ></TaskForm>
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel
-                    onClick={() => setShowNewTeamDialog((prev) => !prev)}
-                  >
-                    Cancel
-                  </AlertDialogCancel>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
+          {userPermission?.role != 'view' && (
+            <div>
+              <AlertDialog open={showNewTeamDialog}>
+                <AlertDialogTrigger>
+                  <Button onClick={() => setShowNewTeamDialog(true)}>
+                    Create Tasks
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Create Your Tasks:</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      <TaskForm
+                        close={() => {
+                          setShowNewTeamDialog(false)
+                          getTasks()
+                        }}
+                      ></TaskForm>
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel
+                      onClick={() => setShowNewTeamDialog((prev) => !prev)}
+                    >
+                      Cancel
+                    </AlertDialogCancel>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          )}
         </>
       )}
     </>

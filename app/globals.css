@@ -260,25 +260,7 @@
   border-top-right-radius: 20px;
 }
 /* Set fixed widths for each column */
-.owcustom-table th:nth-child(1),
-.owcustom-table td:nth-child(1) {
-  width: 30%; /* Adjust the width as needed */
-}
 
-.owcustom-table th:nth-child(2),
-.owcustom-table td:nth-child(2) {
-  width: 16%; /* Adjust the width as needed */
-}
-
-.owcustom-table th:nth-child(3),
-.owcustom-table td:nth-child(3) {
-  width: 20%; /* Adjust the width as needed */
-}
-
-.owcustom-table th:nth-child(4),
-.owcustom-table td:nth-child(4) {
-  width: 34%; /* Adjust the width as needed */
-}
 
 .owtable-header {
   background-color: black;
@@ -291,12 +273,7 @@
 
   /* border-bottom: 0.2px solid; */
 }
-.truncate-custom {
-  width: 20px; /* Adjust the width as needed */
-  white-space: nowrap; /* Keeps the text in a single line */
-  overflow: hidden; /* Ensures content that overflows will be hidden */
-  text-overflow: ellipsis; /* Adds an ellipsis (...) at the end of the truncated text */
-}
+
 .owtable-header-light {
   background-color: black;
   color: rgba(243, 242, 242, 0.797);
@@ -313,6 +290,7 @@
   background-color: rgba(5, 5, 5, 0);
   /* color: rgba(173, 166, 166, 0.797); */
   padding: 10px;
+
   /* border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); */
 
   /* border-bottom: 0.2px solid; */

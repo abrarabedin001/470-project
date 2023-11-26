@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signUp, signUpWithGoogle } from '@/Database/auth'
+import { signIn, signUp, signUpWithGoogle } from '@/Database/auth'
 import { createUser } from '@/Database/firestore/firebaseDb'
 
 function Page(): JSX.Element {
@@ -80,6 +80,15 @@ function Page(): JSX.Element {
             <Button variant="outline" onClick={handleGoogleSignIn}>
               <Icons.google className="mr-2 h-4 w-4" />
               Google
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                signIn('guest@gmail.com', '123456789')
+              }}
+            >
+              <Icons.sun className="mr-2 h-4 w-4" />
+              Use Guest Account
             </Button>
             <form onSubmit={handleForm} className="space-y-4">
               <div className="relative">

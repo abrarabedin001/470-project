@@ -122,7 +122,7 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       let date: string = row.getValue('createdAt')
 
-      return <div className="w-[80px]">{date}</div>
+      return <div className="w-[80px]">{'sd'}</div>
     },
     enableSorting: true,
     enableHiding: true,

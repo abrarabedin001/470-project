@@ -38,23 +38,13 @@ export default function TaskPage() {
 
   let tasks = useUserStore((state) => state.tasks)
   const [showNewTeamDialog, setShowNewTeamDialog] = useState(false)
-  let [tasks2, setTasks] = useState<any[]>([])
-  let getTasks2 = async () => {
-    if (teamId) {
-      getAllTasksInTeam(teamId).then((res) => {
-        setTasks(res)
-      })
-    } else {
-      setTasks([])
-    }
-  }
+
   useEffect(() => {
-    getTasks2()
+    getTasks()
     console.log('tasks baby!', tasks)
   }, [teamId])
   useEffect(() => {
     console.log('tasks baby!', tasks)
-    console.log('tasks2 baby!', tasks2)
   }, [tasks])
 
   return (

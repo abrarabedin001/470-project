@@ -32,6 +32,9 @@ const formSchema = z.object({
   title: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
   }),
+  description: z.string().min(2, {
+    message: 'description must be at least 2 characters.',
+  }),
   status: z.enum(['in progress', 'completed', 'backlog']),
   label: z.enum(['documentation', 'bug', 'enhancement']),
   priority: z.enum(['low', 'medium', 'high']),

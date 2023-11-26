@@ -27,8 +27,6 @@ import { createTask } from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
 import { MultiSelect } from './MultiSelect'
 import { useEffect, useState } from 'react'
-// import { AssignTeamForm } from './AssignTeamForm'
-// import {useUserStore}
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -48,8 +46,8 @@ export default function TaskForm({ close }: { close: () => void }) {
     if (teamMembers) {
       let arr = (teamMembers as unknown as Array<any>).map((member) => {
         return {
-          value: member.displayName,
-          label: member.displayName,
+          value: member.email,
+          label: member.email,
         }
       })
       setOptions(arr)
@@ -68,8 +66,6 @@ export default function TaskForm({ close }: { close: () => void }) {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     createTask({ ...values, teamId: currrentTeam?.value })
     console.log(values)
     close()
@@ -115,7 +111,6 @@ export default function TaskForm({ close }: { close: () => void }) {
             </FormItem>
           )}
         />
-        {/* label: z.enum(['documentation', 'bug', 'enhancement']), */}
 
         <FormField
           control={form.control}
@@ -184,41 +179,7 @@ export default function TaskForm({ close }: { close: () => void }) {
             )
           }}
         />
-        {/* <FormField
-          control={form.control}
-          name="assigned"
-          render={({ field }) => {
-            if (field.value === undefined) {
-              field.value = []
-            }
-            return (
-              <FormItem className="w-[80%] flex flex-col items-center ">
-                <FormLabel
-                  className="text-xl"
-                  placeholder="Select the architectural style of the property"
-                >
-                  Architectural Style
-                </FormLabel>
-                <AssignTeamForm
-                  selected={field.value}
-                  options={[
-                    {
-                      value: 'Colonial',
-                      label: 'Colonial',
-                    },
-                    {
-                      value: 'Modern',
-                      label: 'Modern',
-                    },
-                  ]}
-                  {...field}
-                  // className="sm:w-[510px]"
-                />
-                <FormMessage />
-              </FormItem>
-            )
-          }}
-        /> */}
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>

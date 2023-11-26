@@ -48,8 +48,8 @@ export default function TaskForm({ close }: { close: () => void }) {
     if (teamMembers) {
       let arr = (teamMembers as unknown as Array<any>).map((member) => {
         return {
-          value: member.displayName,
-          label: member.displayName,
+          value: member.email,
+          label: member.email,
         }
       })
       setOptions(arr)
@@ -184,41 +184,7 @@ export default function TaskForm({ close }: { close: () => void }) {
             )
           }}
         />
-        {/* <FormField
-          control={form.control}
-          name="assigned"
-          render={({ field }) => {
-            if (field.value === undefined) {
-              field.value = []
-            }
-            return (
-              <FormItem className="w-[80%] flex flex-col items-center ">
-                <FormLabel
-                  className="text-xl"
-                  placeholder="Select the architectural style of the property"
-                >
-                  Architectural Style
-                </FormLabel>
-                <AssignTeamForm
-                  selected={field.value}
-                  options={[
-                    {
-                      value: 'Colonial',
-                      label: 'Colonial',
-                    },
-                    {
-                      value: 'Modern',
-                      label: 'Modern',
-                    },
-                  ]}
-                  {...field}
-                  // className="sm:w-[510px]"
-                />
-                <FormMessage />
-              </FormItem>
-            )
-          }}
-        /> */}
+
         <Button type="submit">Submit</Button>
       </form>
     </Form>

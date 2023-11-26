@@ -34,9 +34,12 @@ import Chat from '@/components/Chat'
 
 export default function TaskPage() {
   let teamId: any = useUserStore((state) => state.currrentTeam?.value)
+  let getTasks = useUserStore((state) => state.getTasks)
+
+  let tasks = useUserStore((state) => state.tasks)
   const [showNewTeamDialog, setShowNewTeamDialog] = useState(false)
-  let [tasks, setTasks] = useState<any[]>([])
-  let getTasks = async () => {
+  let [tasks2, setTasks] = useState<any[]>([])
+  let getTasks2 = async () => {
     if (teamId) {
       getAllTasksInTeam(teamId).then((res) => {
         setTasks(res)
@@ -46,8 +49,13 @@ export default function TaskPage() {
     }
   }
   useEffect(() => {
-    getTasks()
+    getTasks2()
+    console.log('tasks baby!', tasks)
   }, [teamId])
+  useEffect(() => {
+    console.log('tasks baby!', tasks)
+    console.log('tasks2 baby!', tasks2)
+  }, [tasks])
 
   return (
     <>

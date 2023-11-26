@@ -167,11 +167,11 @@ export default function DashboardPage() {
                       </Button>
                     </div>
                   </CardHeader>
-                  <CardContent >
+                  <CardContent>
                     <Overview />
                   </CardContent>
                 </Card>
-                <Card className="col-span-3 h-[400px] max-h-[400px]">
+                <Card className="col-span-3 h-[400px] max-h-[400px] ">
                   <CardHeader className="top-0 pt-2">
                     <CardTitle>Chat Box</CardTitle>
                     <CardDescription>

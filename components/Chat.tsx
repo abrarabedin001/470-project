@@ -53,7 +53,7 @@ export default function Chat() {
   }
 
   return (
-    <div className="w-[650px] border border-gray-700 px-5 rounded-lg mx-auto mb-6">
+    <div className=" border border-gray-700 px-5 rounded-lg mx-auto mb-6">
       <div
         className="flex flex-col h-[240px] overflow-y-auto custom-scrollbar"
         ref={chatContainerRef}

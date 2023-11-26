@@ -27,8 +27,6 @@ import { createTask } from '@/Database/firestore/firebaseDb'
 import { useUserStore } from '@/Store/userStore'
 import { MultiSelect } from './MultiSelect'
 import { useEffect, useState } from 'react'
-// import { AssignTeamForm } from './AssignTeamForm'
-// import {useUserStore}
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -68,8 +66,6 @@ export default function TaskForm({ close }: { close: () => void }) {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     createTask({ ...values, teamId: currrentTeam?.value })
     console.log(values)
     close()
@@ -115,7 +111,6 @@ export default function TaskForm({ close }: { close: () => void }) {
             </FormItem>
           )}
         />
-        {/* label: z.enum(['documentation', 'bug', 'enhancement']), */}
 
         <FormField
           control={form.control}

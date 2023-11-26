@@ -11,16 +11,30 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 animated-text">
           <div className=" flex flex-col gap-2 items-center lg:items-start text-center lg:text-left max-lg:mx-4 space-y-10 p-5 lg:p-0 ">
             <H1>
-              Revolutionizing Project Excellence Through Dynamic Bug Management and Collaborative Innovation with BugSmasher
+              Revolutionizing Project Excellence Through Dynamic Bug Management
+              and Collaborative Innovation with BugSmasher
             </H1>
             <P className="tracking-wide">
-             Experience the epitome of project management with BugSmasher, a powerhouse solution meticulously crafted for efficient bug tracking, dynamic team collaboration, and data-driven decision-making. Elevate your team&apos;s potential and redefine success in every project.            </P>
+              Experience the epitome of project management with BugSmasher, a
+              powerhouse solution meticulously crafted for efficient bug
+              tracking, dynamic team collaboration, and data-driven
+              decision-making. Elevate your team&apos;s potential and redefine
+              success in every project.{' '}
+            </P>
             <div className="lg:space-x-5 space-y-5 lg:space-y-0 flex flex-col justify-center items-center lg:flex-row lg:justify-start">
               <PrimaryButton className="m-0">Get Started</PrimaryButton>
             </div>
           </div>
         </div>
-        <div className="lg:w-1/2 bg-slate-300 hidden lg:block h-3/5 animated-image"></div>
+        <div className="lg:w-1/2 bg-slate-300 hidden lg:block h-3/5 animated-image">
+          <Image
+            src="/main_logo.png"
+            alt="bug_smasher"
+            width={50}
+            height={50}
+            className=" h-auto w-[70px] "
+          />
+        </div>
       </div>
       <div className="absolute bottom-5 z-10" id="features">
         <Image

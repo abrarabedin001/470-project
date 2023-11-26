@@ -24,13 +24,14 @@ export default function OverviewPage() {
   return (
     <>
       {/* <div className="flex h-full flex-1 flex-col p-8 overflow-y-auto"> */}
-        <div className="card p-4 max-h-[250px] overflow-y-auto">
+        <div className="card px-4 pb-4 max-h-[250px] overflow-y-auto custom-scrollbar">
         <table className="owcustom-table text-gray-700 dark:text-silver-700">
-            <thead>
+            <thead className="owtable-head">
               <tr>
                 <th className="owtable-header">Title</th>
                 <th className="owtable-header">Priority</th>
                 <th className="owtable-header">Status</th>
+                <th className="owtable-header">CreatedAt</th>
               </tr>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@ export default function OverviewPage() {
                   <td className="text-center owtable-body">{task.title}</td>
                   <td className="text-center owtable-body">{task.priority}</td>
                   <td className="text-center owtable-body">{task.status}</td>
+                  <td className="text-center owtable-body">{task.createdAt.toLocaleString()}</td>
                 </tr>
               ))}
             </tbody>

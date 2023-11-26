@@ -55,7 +55,7 @@ export default function Chat() {
   return (
     <div className="w-[650px] border border-gray-700 px-5 rounded-lg mx-auto mb-6">
       <div
-        className="flex flex-col h-[240px] overflow-y-auto"
+        className="flex flex-col h-[240px] overflow-y-auto custom-scrollbar"
         ref={chatContainerRef}
       >
         {messageList.map((item) => {
@@ -73,13 +73,13 @@ export default function Chat() {
         })}
       </div>
 
-      <div className="flex flex-row pt-5 justify-between mb-2">
+      <div className="flex flex-row pt-5 justify-between mb-2 ml-5">
         <Input
           placeholder="Type here..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button className="ml-5" onClick={handleSendMessage} title="Send">
+        <Button className="mx-5" onClick={handleSendMessage} title="Send">
           Send
         </Button>
       </div>

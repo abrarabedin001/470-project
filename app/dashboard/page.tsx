@@ -167,7 +167,7 @@ export default function DashboardPage() {
                       </Button>
                     </div>
                   </CardHeader>
-                  <CardContent className="pl-2">
+                  <CardContent >
                     <Overview />
                   </CardContent>
                 </Card>

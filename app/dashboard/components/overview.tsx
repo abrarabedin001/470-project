@@ -28,7 +28,7 @@ export default function OverviewPage() {
   <table className="owcustom-table-white dark:owcustom-table text-gray-700 dark:text-silver-700 rounded-2xl">
     <thead className="">
       <tr className="rounded-xl">
-        <th className="owtable-header-light dark:owtable-header custom-head-1" style={{ width: '32%' }}>
+        <th className="owtable-header-light dark:owtable-header custom-head-1" style={{ width: '32%'}}>
           Title
         </th>
         <th className="owtable-header-light dark:owtable-header" style={{ width: '16%' }}>
@@ -45,7 +45,7 @@ export default function OverviewPage() {
     <tbody>
       {tasks.map((task, index) => (
         <tr key={index} className="border divide-y divide-solid divide-x">
-          <td className="text-center owtable-body text-black dark:text-white" style={{ width: '32%', wordBreak: 'break-all', overflowWrap: 'break-word'}}>
+          <td className="text-center owtable-body text-black dark:text-white" style={{ width: '32%', wordWrap: "break-word", hyphens: "auto" }}>
             {task.title}
           </td>
           <td className="text-center owtable-body text-black dark:text-white" style={{ width: '16%' }}>

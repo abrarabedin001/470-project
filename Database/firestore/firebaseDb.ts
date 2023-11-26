@@ -71,6 +71,7 @@ export const getAllTasksInTeam = async (teamId: string): Promise<(TaskDetails & 
         id: doc.id, // This is the unique ID of the document
         ...doc.data()
         ,
+        // createdAt: doc.data().createdAt.toDate('en-us', { year: "numeric", month: "short", day: "numeric" }),
         createdAt: doc.data().createdAt.toDate('en-us', { year: "numeric", month: "short", day: "numeric" }),
       } as TaskDetails & { id: string };
     });
@@ -82,13 +83,13 @@ export const getAllTasksInTeam = async (teamId: string): Promise<(TaskDetails & 
     throw error;
   }
 };
-export const OverviewTasks= async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
+export const OverviewTasks = async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
   try {
-    const tasksQuery = query(tasks, 
+    const tasksQuery = query(tasks,
       where('teamId', '==', teamId),
       where('status', '==', 'in progress'), // Add this line to filter by high priority
       where('priority', '==', 'high'), // Add this line to filter by high priority
-  
+
     );
     const querySnapshot = await getDocs(tasksQuery);
     const overviewTasks = querySnapshot.docs.map(doc => {
@@ -111,12 +112,12 @@ export const OverviewTasks= async (teamId: string): Promise<(TaskDetails & { id:
   }
 };
 
-export const CompleteTasks= async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
+export const CompleteTasks = async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
   try {
-    const tasksQuery = query(tasks, 
+    const tasksQuery = query(tasks,
       where('teamId', '==', teamId),
       where('status', '==', 'completed'), // Add this line to filter by high priorit
-  
+
     );
     const querySnapshot = await getDocs(tasksQuery);
     const overviewTasks = querySnapshot.docs.map(doc => {

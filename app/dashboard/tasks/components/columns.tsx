@@ -120,9 +120,10 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="CreatedAt" />
     ),
     cell: ({ row }) => {
-      let date: string = row.getValue('createdAt')
+      let date = row.getValue('createdAt') as Date
 
-      return <div className="w-[80px]">{'sd'}</div>
+      // return <div className="w-[80px]">{date.toString()}</div>
+      return <div className="w-[80px]">{date.toLocaleString()}</div>
     },
     enableSorting: true,
     enableHiding: true,

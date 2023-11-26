@@ -63,7 +63,7 @@ export const useUserStore = create<UserStore>()(
         getTasks: () => {
 
           // get().currrentTeam?.value!
-          getTasks('VD25GYiHtF01f8X8ZiMM', (res: any) => {
+          getTasks(get().currrentTeam?.value!, (res: any) => {
             console.log('respoded', res)
             set({ tasks: res })
           })

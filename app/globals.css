@@ -9,7 +9,6 @@
     font-family: 'DM Sans', sans-serif;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-
   }
 }
 
@@ -191,7 +190,6 @@
   padding: 12px;
   border-radius: 8px;
   background-color: #f0f0f0; /* Set a background color for the message block */
-  
 }
 
 .chat-message.left {
@@ -202,7 +200,7 @@
 .chat-message.right {
   align-self: flex-end;
   background-color: #0084ff; /* Set the background color for right messages */
-
+  text-align: left; /* Add this line to set the text alignment to left */
 }
 
 .chat-input {
@@ -238,35 +236,32 @@
 .owcustom-table {
   width: 100%;
   border-collapse: collapse;
-  /* border: 0.5px solid; You can adjust the color as needed */
+  border: 0.5px solid;
+  /* //You can adjust the color as needed */
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1) /* Adjust shadow as needed */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Adjust shadow as needed */
+}
+.owcustom-table-white {
+  width: 100%;
+  border-collapse: collapse;
+  border: 0.5px;
+  /* //You can adjust the color as needed */
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Adjust shadow as needed */
 }
 
-.owcustom-table th{
+.owcustom-table th {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 }
+.custom-head-1 {
+  border-top-left-radius: 20px;
+}
+.custom-head-2 {
+  border-top-right-radius: 20px;
+}
 /* Set fixed widths for each column */
-.owcustom-table th:nth-child(1),
-.owcustom-table td:nth-child(1) {
-  width: 30%; /* Adjust the width as needed */
-}
 
-.owcustom-table th:nth-child(2),
-.owcustom-table td:nth-child(2) {
-  width: 16%; /* Adjust the width as needed */
-}
-
-.owcustom-table th:nth-child(3),
-.owcustom-table td:nth-child(3) {
-  width: 20%; /* Adjust the width as needed */
-}
-
-.owcustom-table th:nth-child(4),
-.owcustom-table td:nth-child(4) {
-  width: 34%; /* Adjust the width as needed */
-}
 
 .owtable-header {
   background-color: black;
@@ -280,15 +275,27 @@
   /* border-bottom: 0.2px solid; */
 }
 
-.owtable-body {
-  background-color: rgba(5, 5, 5, 0);
-  color: rgba(173, 166, 166, 0.797);
+.owtable-header-light {
+  background-color: black;
+  color: rgba(243, 242, 242, 0.797);
   padding: 10px;
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1)
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 2;
 
   /* border-bottom: 0.2px solid; */
 }
 
+.owtable-body {
+  background-color: rgba(5, 5, 5, 0);
+  /* color: rgba(173, 166, 166, 0.797); */
+  padding: 10px;
+
+  /* border-bottom: 0.5px solid rgba(255, 255, 255, 0.1); */
+
+  /* border-bottom: 0.2px solid; */
+}
 
 /* Hover Effect for the Slide */
 .slide:hover {
@@ -300,11 +307,9 @@
 .custom-scrollbar {
   max-height: 250px;
   overflow-y: auto;
-  scrollbar-width: thin ;
-   /* Firefox */
+  scrollbar-width: thin;
+  /* Firefox */
 }
-
-
 
 @layer base {
   :root {
@@ -329,7 +334,7 @@
     --ring: 262.1 83.3% 57.8%;
     --radius: 1rem;
   }
- 
+
   .dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
@@ -352,7 +357,6 @@
     --ring: 263.4 70% 50.4%;
   }
 }
-
 
 @layer base {
   * {

@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@/components//ui/button'
 import {
   Card,
   CardContent,
@@ -22,6 +21,7 @@ import { useUserStore } from '@/Store/userStore'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { InviteMembers } from '@/components/InviteMembers'
+import { Button } from '@/components/ui/button'
 
 export default function DashboardPage() {
   const user = useUserStore((state) => state.user)

@@ -3,7 +3,6 @@ import HeroSection from '../components/HeroSection'
 import GettingStartedWithCleverCore from '../components/GettingStartedWithCleverCore'
 import TestimonialV2 from '../components/TestimonialV2'
 
-import Testimonial from '../components/Testimonial'
 import WhyChoseCleverCore from '../components/WhatIsCleverCore'
 import { ToastContainer, toast } from 'react-toastify'
 

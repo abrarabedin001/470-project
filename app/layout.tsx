@@ -23,22 +23,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
+      <body className="  gradient-container  w-full flex flex-col justify-center items-center ">
         <AuthWrapper>
-          <body className="  gradient-container  w-full flex flex-col justify-center items-center ">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <TopMenu />
 
             {children}
 
             <Foot />
-          </body>
+          </ThemeProvider>
         </AuthWrapper>
-      </ThemeProvider>
+      </body>
     </html>
   )
 }

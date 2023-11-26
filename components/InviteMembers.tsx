@@ -38,31 +38,42 @@ export function InviteMembers() {
   }, [teamId])
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Invite Members</CardTitle>
-      </CardHeader>
+      {userPermission?.role == 'admin' && (
+        <CardHeader>
+          <CardTitle>Invite Members</CardTitle>
+        </CardHeader>
+      )}
+
       <CardContent>
-        <div className="flex space-x-2">
-          <Input
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Button
-            variant="secondary"
-            className="shrink-0"
-            onClick={() => {
-              console.log('add member')
-              if (teamId && teamName) {
-                addTeamMemberByEmail(teamId, teamName, email, 'view')
-              }
-            }}
-          >
-            Add
-          </Button>
-        </div>
-        <Separator className="my-4" />
+        {userPermission?.role == 'admin' ? (
+          <>
+            {' '}
+            <div className="flex space-x-2">
+              <Input
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Button
+                variant="secondary"
+                className="shrink-0"
+                onClick={() => {
+                  console.log('add member')
+                  if (teamId && teamName) {
+                    addTeamMemberByEmail(teamId, teamName, email, 'view')
+                  }
+                }}
+              >
+                Add
+              </Button>
+            </div>{' '}
+            <Separator className="my-4" />
+          </>
+        ) : (
+          ''
+        )}
+
         <div className="space-y-4">
-          <h4 className="text-sm font-medium">People with access</h4>
+          <h4 className="text-sm font-medium mt-5">People with access</h4>
           <div className="grid gap-6">
             {teamMembers &&
               Object.values(teamMembers).map((member: any) => (

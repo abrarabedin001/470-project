@@ -92,6 +92,7 @@
 
 
 import React, { useEffect, useRef } from 'react';
+import Avatar from 'react-avatar';
 import { Input } from '@/components/ui/input';
 import { Button } from './ui/button';
 import { useUserStore } from '@/Store/userStore';
@@ -145,16 +146,6 @@ export default function Chat() {
     }
   };
 
-  // Function to create an avatar from the first two letters of the email
-  const getAvatarFromEmail = (email: string) => {
-    const initials = email.substring(0, 2).toUpperCase();
-    return (
-      <div className="avatar">
-        {initials}
-      </div>
-    );
-  };
-
   // Function to format the timestamp
   const formatTimestamp = (timestamp: number) => {
     const date = new Date(timestamp);
@@ -164,26 +155,28 @@ export default function Chat() {
   };
 
   return (
-    <div className=" border border-gray-700 px-5 rounded-lg mx-auto mb-6">
-      <div
-        className="flex flex-col h-[240px] overflow-y-auto custom-scrollbar"
-        ref={chatContainerRef}
-      >
+    <div className="w-[650px] border border-gray-700 px-5 rounded-lg mx-auto mb-6">
+      <div className="flex flex-col h-[240px] overflow-y-auto" ref={chatContainerRef}>
         {messageList.map((item) => {
           const isCurrentUser = item.userId === userId;
-          const messageContainerClass = `chat-message-container ${
-            isCurrentUser ? 'current-user' : 'other-user'
+          const messageContainerClass = `chat-message ${
+            isCurrentUser ? 'right text-right' : 'left text-left'
           }`;
 
           return (
             <div key={item.id} className={messageContainerClass}>
-              <div className="message-header">
-                {getAvatarFromEmail(retEmail(item.userId))}
+              <div className="flex flex-row justify-left">
+                <Avatar
+                  name={retEmail(item.userId)}
+                  size="30"
+                  round
+                  style={{ marginRight: '10px' }}
+                />
                 <div>
-                  <p style={{ fontSize: '10px', fontWeight: 'bold', marginBottom: '2px' }}>
-                    {retEmail(item.userId)}
+                  <p style={{ fontSize: '10px', fontWeight: 'bold', marginBottom: '2px'}}>
+                    {retEmail(item.userId)+" "}
                   </p>
-                  <p style={{ fontSize: '10px', color: 'white' /*color: '#72767d'*/ }}>
+                  <p style={{ fontSize: '10px', color: 'white' }}>
                     {formatTimestamp(item.createdAt.toDate().getTime())}
                   </p>
                 </div>
@@ -196,13 +189,13 @@ export default function Chat() {
         })}
       </div>
 
-      <div className="flex flex-row pt-5 justify-between mb-2 ml-5">
+      <div className="flex flex-row pt-5 justify-between mb-2">
         <Input
           placeholder="Type here..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button className="mx-5" onClick={handleSendMessage} title="Send">
+        <Button className="ml-5" onClick={handleSendMessage} title="Send">
           Send
         </Button>
       </div>

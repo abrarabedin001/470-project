@@ -8,6 +8,8 @@
   html {
     font-family: 'DM Sans', sans-serif;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+
   }
 }
 
@@ -185,10 +187,11 @@
 .chat-message {
   max-width: 60%; /* Set the maximum width for the message container */
   word-wrap: break-word; /* Allow long words to wrap to the next line */
-  margin: 8px;
+  margin: 16px;
   padding: 12px;
   border-radius: 8px;
   background-color: #f0f0f0; /* Set a background color for the message block */
+  
 }
 
 .chat-message.left {
@@ -199,6 +202,7 @@
 .chat-message.right {
   align-self: flex-end;
   background-color: #0084ff; /* Set the background color for right messages */
+
 }
 
 .chat-input {
@@ -243,6 +247,26 @@
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 }
+/* Set fixed widths for each column */
+.owcustom-table th:nth-child(1),
+.owcustom-table td:nth-child(1) {
+  width: 30%; /* Adjust the width as needed */
+}
+
+.owcustom-table th:nth-child(2),
+.owcustom-table td:nth-child(2) {
+  width: 16%; /* Adjust the width as needed */
+}
+
+.owcustom-table th:nth-child(3),
+.owcustom-table td:nth-child(3) {
+  width: 20%; /* Adjust the width as needed */
+}
+
+.owcustom-table th:nth-child(4),
+.owcustom-table td:nth-child(4) {
+  width: 34%; /* Adjust the width as needed */
+}
 
 .owtable-header {
   background-color: black;
@@ -251,7 +275,7 @@
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 
   /* border-bottom: 0.2px solid; */
 }
@@ -272,6 +296,14 @@
   transform: scale(1.02);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
+.custom-scrollbar {
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin ;
+   /* Firefox */
+}
+
 
 
 @layer base {

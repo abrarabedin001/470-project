@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-
 import { Button } from '@/components//ui/button'
 import {
   Card,
@@ -10,19 +8,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components//ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components//ui/tabs'
-import { CalendarDateRangePicker } from './components/date-range-picker'
-import { MainNav } from './components/main-nav'
+import { Tabs, TabsContent } from '@/components//ui/tabs'
+
 import Overview from './components/overview'
-import  {CountMembers} from './components/countMembers'
-import  CountTasks from './components/countTasks'
-import  TasksComplete from './components/completeTasks'
-import  TasksInComplete from './components/incompleteTasks'
+import { CountMembers } from './components/countMembers'
+import CountTasks from './components/countTasks'
+import TasksComplete from './components/completeTasks'
+import TasksInComplete from './components/incompleteTasks'
 
 import Chat from '@/components/Chat'
-import { Search } from './components/search'
-import TeamSwitcher from './components/team-switcher'
-import { UserNav } from './components/user-nav'
+
 import { useUserStore } from '@/Store/userStore'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -30,6 +25,7 @@ import { InviteMembers } from '@/components/InviteMembers'
 
 export default function DashboardPage() {
   const user = useUserStore((state) => state.user)
+  const currrentTeam = useUserStore((state) => state.currrentTeam?.label)
   const router = useRouter()
   // if (!user) {
   //   return 'null'
@@ -42,7 +38,7 @@ export default function DashboardPage() {
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
             <div className="flex items-center space-x-2">
               <Link href="/dashboard/tasks">
-                <Button>See Tasks </Button>
+                <Button>{currrentTeam}</Button>
               </Link>
             </div>
           </div>
@@ -50,7 +46,7 @@ export default function DashboardPage() {
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
                       Total Members
                     </CardTitle>
@@ -70,8 +66,9 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-4xl font-bold"><CountMembers/></div>
-
+                    <div className="text-4xl font-bold">
+                      <CountMembers />
+                    </div>
                   </CardContent>
                 </Card>
                 <Card>
@@ -89,43 +86,22 @@ export default function DashboardPage() {
                       strokeWidth="2"
                       className="h-4 w-4 text-muted-foreground"
                     >
-                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                              <line x1="7" y1="9" x2="17" y2="9" />
-                              <line x1="7" y1="13" x2="17" y2="13" />
-                              <line x1="7" y1="17" x2="17" y2="17" />
-
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                      <line x1="7" y1="9" x2="17" y2="9" />
+                      <line x1="7" y1="13" x2="17" y2="13" />
+                      <line x1="7" y1="17" x2="17" y2="17" />
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-3xl font-bold"><CountTasks/></div>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Completed Tasks</CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                <polyline points="9 11 12 14 22 4" />
-                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7" />
-                    </svg>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold"><TasksComplete/></div>
+                    <div className="text-4xl font-bold">
+                      <CountTasks />
+                    </div>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Incomplete Tasks
-                      
+                      Completed Tasks
                     </CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -137,13 +113,40 @@ export default function DashboardPage() {
                       strokeWidth="2"
                       className="h-4 w-4 text-muted-foreground"
                     >
-             <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-        <line x1="9" y1="9" x2="15" y2="15" />
-        <line x1="15" y1="9" x2="9" y2="15" />
+                      <polyline points="9 11 12 14 22 4" />
+                      <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7" />
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold"><TasksInComplete/></div>
+                    <div className="text-4xl font-bold">
+                      <TasksComplete />
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Incomplete Tasks
+                    </CardTitle>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="h-4 w-4 text-muted-foreground"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <line x1="9" y1="9" x2="15" y2="15" />
+                      <line x1="15" y1="9" x2="9" y2="15" />
+                    </svg>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-4xl font-bold">
+                      <TasksInComplete />
+                    </div>
                   </CardContent>
                 </Card>
               </div>
@@ -164,11 +167,11 @@ export default function DashboardPage() {
                       </Button>
                     </div>
                   </CardHeader>
-                  <CardContent className="pl-2">
+                  <CardContent>
                     <Overview />
                   </CardContent>
                 </Card>
-                <Card className="col-span-3 h-[400px] max-h-[400px]">
+                <Card className="col-span-3 h-[400px] max-h-[400px] ">
                   <CardHeader className="top-0 pt-2">
                     <CardTitle>Chat Box</CardTitle>
                     <CardDescription>

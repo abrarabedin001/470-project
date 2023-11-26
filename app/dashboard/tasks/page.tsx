@@ -34,41 +34,23 @@ import Chat from '@/components/Chat'
 
 export default function TaskPage() {
   let teamId: any = useUserStore((state) => state.currrentTeam?.value)
+  let getTasks = useUserStore((state) => state.getTasks)
+
+  let tasks = useUserStore((state) => state.tasks)
   const [showNewTeamDialog, setShowNewTeamDialog] = useState(false)
-  let [tasks, setTasks] = useState<any[]>([])
-  let getTasks = async () => {
-    if (teamId) {
-      getAllTasksInTeam(teamId).then((res) => {
-        setTasks(res)
-      })
-    } else {
-      setTasks([])
-    }
-  }
+
   useEffect(() => {
     getTasks()
+    console.log('tasks baby!', tasks)
   }, [teamId])
+  useEffect(() => {
+    console.log('tasks baby!', tasks)
+  }, [tasks])
 
   return (
     <>
       {teamId && (
         <>
-          {/* <div className="">
-            <Image
-              src="/examples/tasks-light.png"
-              width={1280}
-              height={998}
-              alt="Playground"
-              className="block dark:hidden"
-            />
-            <Image
-              src="/examples/tasks-dark.png"
-              width={1280}
-              height={998}
-              alt="Playground"
-              className="hidden dark:block"
-            />
-          </div> */}
           <div className="flex h-full flex-1 flex-col space-y-8 p-8 ">
             <div className="flex items-center justify-between space-y-2">
               <div>
@@ -86,10 +68,7 @@ export default function TaskPage() {
             <DataTable data={tasks} columns={columns} />
           </div>
           <div>
-            <AlertDialog
-              // onOpenChange={() => setShowNewTeamDialog((prev) => !prev)}
-              open={showNewTeamDialog}
-            >
+            <AlertDialog open={showNewTeamDialog}>
               <AlertDialogTrigger>
                 <Button onClick={() => setShowNewTeamDialog(true)}>
                   Create Tasks
@@ -105,7 +84,6 @@ export default function TaskPage() {
                         getTasks()
                       }}
                     ></TaskForm>
-                    {/* <AssignTeamForm></AssignTeamForm> */}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
@@ -114,7 +92,6 @@ export default function TaskPage() {
                   >
                     Cancel
                   </AlertDialogCancel>
-                  {/* <AlertDialogAction>Continue</AlertDialogAction> */}
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>

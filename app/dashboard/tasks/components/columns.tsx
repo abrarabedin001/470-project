@@ -122,7 +122,8 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       let date = row.getValue('createdAt') as Date
 
-      return <div className="w-[80px]">{date.toLocaleDateString()}</div>
+      // return <div className="w-[80px]">{date.toString()}</div>
+      return <div className="w-[80px]">{date.toLocaleString()}</div>
     },
     enableSorting: true,
     enableHiding: true,

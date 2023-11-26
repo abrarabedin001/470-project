@@ -1,3 +1,4 @@
+import { getTasks } from '@/lib/getTasks';
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { User, getAuth } from 'firebase/auth'
@@ -20,6 +21,8 @@ interface UserStore {
   setCurrentTeam: (team: { label: string, value: string } | null) => void;
   teamMembers: TeamMembers | null;
   setTeamMembers: (members: TeamMembers) => void;
+  tasks: any[];
+  getTasks: () => void;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -55,7 +58,13 @@ export const useUserStore = create<UserStore>()(
         currrentTeam: null,
         setCurrentTeam: (team: { label: string, value: string } | null) => set({ currrentTeam: team }),
         teamMembers: null,
-        setTeamMembers: (members: TeamMembers) => set({ teamMembers: members })
+        setTeamMembers: (members: TeamMembers) => set({ teamMembers: members }),
+        tasks: [],
+        getTasks: () => {
+          getTasks(get().currrentTeam?.value!, (res: any) => {
+            set({ tasks: res })
+          })
+        }
       }),
       { name: 'userStore470' }
     )

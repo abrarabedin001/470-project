@@ -22,6 +22,8 @@ import { labels } from '../data/data'
 import { taskSchema } from '../data/schema'
 import Link from 'next/link'
 import { deleteTask } from '@/Database/firestore/firebaseDb'
+import { useUserStore } from '@/Store/userStore'
+// import { getTasks } from '@/lib/getTasks'
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
@@ -30,6 +32,8 @@ export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original)
+  // let teamId: any = useUserStore((state) => state.currrentTeam?.value)
+  let getTasks = useUserStore((state) => state.getTasks)
 
   return (
     <DropdownMenu>
@@ -62,7 +66,12 @@ export function DataTableRowActions<TData>({
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => deleteTask(row.getValue('id'))}>
+        <DropdownMenuItem
+          onClick={() => {
+            deleteTask(row.getValue('id'))
+            getTasks()
+          }}
+        >
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>

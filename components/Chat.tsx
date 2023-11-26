@@ -26,7 +26,7 @@ export default function Chat() {
   }, [])
 
   const retEmail = (id: string) => {
-    let ret = teamMembers!.filter((member) => member.id == id)[0].email
+    let ret = teamMembers!.filter((member) => member.id == id)[0]?.email
     console.log('ret:', ret)
     return ret
   }

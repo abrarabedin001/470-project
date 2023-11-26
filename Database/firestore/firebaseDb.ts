@@ -111,6 +111,60 @@ export const OverviewTasks= async (teamId: string): Promise<(TaskDetails & { id:
   }
 };
 
+export const CompleteTasks= async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
+  try {
+    const tasksQuery = query(tasks, 
+      where('teamId', '==', teamId),
+      where('status', '==', 'completed'), // Add this line to filter by high priorit
+  
+    );
+    const querySnapshot = await getDocs(tasksQuery);
+    const overviewTasks = querySnapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id, // This is the unique ID of the document
+        title: data.title,
+        priority: data.priority,
+        status: data.status,
+        // Only include the fields you need
+        createdAt: data.createdAt.toDate('en-us', { year: "numeric", month: "short", day: "numeric" }),
+      } as TaskDetails & { id: string };
+    });
+    console.log('success: Retrieved overview tasks in team');
+    console.log('overviewTasks', overviewTasks);
+    return overviewTasks;
+  } catch (error) {
+    console.error('error: Failed to retrieve overview tasks in team', error);
+    throw error;
+  }
+};
+
+export const IncompleteTasks = async (teamId: string): Promise<(TaskDetails & { id: string })[]> => {
+  try {
+    const tasksQuery = query(
+      tasks,
+      where('teamId', '==', teamId),
+      where('status', 'in', ['in progress', 'backlog']), // Filter tasks where status is not 'completed'
+    );
+    const querySnapshot = await getDocs(tasksQuery);
+    const incompleteTasks = querySnapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        title: data.title,
+        priority: data.priority,
+        // Add other task details as needed
+      };
+    });
+
+    return incompleteTasks;
+  } catch (error) {
+    console.error('Error fetching incomplete tasks:', error);
+    throw error;
+  }
+};
+
+
 
 export const createTask = async (details: TaskDetails): Promise<string> => {
   try {

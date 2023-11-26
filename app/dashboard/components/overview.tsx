@@ -44,11 +44,11 @@ export default function OverviewPage() {
           </thead>
           <tbody>
             {tasks.map((task, index) => (
-              <tr key={index}>
-                <td className="text-center owtable-body text-black dark:text-white">
+              <tr key={index} className="border divide-y divide-solid divide-x">
+                <td className="text-center owtable-body text-black dark:text-white truncate-custom">
                   {task.title}
                 </td>
-                <td className="text-center owtable-body text-black dark:text-white">
+                <td className="text-center owtable-body text-black dark:text-white ">
                   {task.priority}
                 </td>
                 <td className="text-center owtable-body text-black dark:text-white">

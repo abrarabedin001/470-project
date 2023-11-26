@@ -17,8 +17,10 @@ import { useEffect, useState } from 'react'
 import { useUserStore } from '@/Store/userStore'
 import {
   addTeamMemberByEmail,
+  removeTeamMemberByEmail,
   updateTeamMemberRole,
 } from '@/Database/firestore/firebaseDb'
+import { get } from 'http'
 
 export function InviteMembers() {
   const [email, setEmail] = useState('')
@@ -80,22 +82,43 @@ export function InviteMembers() {
                     </div>
                     {/* {userPermission?.email} */}
                     {userPermission?.role == 'admin' ? (
-                      <Select
-                        onValueChange={(e) => {
-                          updateTeamMemberRole(teamId!, member.id, e)
-                          setTeamMembers()
-                        }}
-                        defaultValue={member.role}
-                      >
-                        <SelectTrigger className="ml-auto w-[110px]">
-                          <SelectValue placeholder="Select" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="admin">Admin</SelectItem>
-                          <SelectItem value="edit">Can edit</SelectItem>
-                          <SelectItem value="view">Can view</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <div className="flex flex-row justify-end space-x-4">
+                        <Select
+                          onValueChange={(e) => {
+                            if (e == 'kickout') {
+                              console.log('remove member')
+                              if (teamId) {
+                                removeTeamMemberByEmail(
+                                  teamId,
+                                  member.email
+                                ).then((e) => setTeamMembers())
+                              }
+                            } else {
+                              updateTeamMemberRole(teamId!, member.id, e)
+                            }
+
+                            setTeamMembers()
+                          }}
+                          defaultValue={member.role}
+                        >
+                          <SelectTrigger className="ml-auto w-[110px]">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="admin">Admin</SelectItem>
+                            <SelectItem value="edit">Can edit</SelectItem>
+                            <SelectItem value="view">Can view</SelectItem>
+                            <SelectItem value="kickout">Kick out</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <button
+                          onClick={() => {
+                            ;() => {}
+                          }}
+                        >
+                          Kick out
+                        </button>
+                      </div>
                     ) : (
                       ''
                     )}

@@ -13,19 +13,7 @@ export function CountMembers() {
   const teamMembers = useUserStore((state) => state.teamMembers)
   const setTeamMembers = useUserStore((state) => state.setTeamMembers)
   useEffect(() => {
-    let func = async () => {
-      if (teamId) {
-        try {
-          console.log('teamId:', teamId)
-          let res = await getTeamMembers(teamId)
-          console.log('teamMembers:', res)
-          setTeamMembers(res as unknown as TeamMembers)
-        } catch {
-          console.log('error')
-        }
-      }
-    }
-    func()
+    setTeamMembers()
   }, [teamId])
   return (
     <>

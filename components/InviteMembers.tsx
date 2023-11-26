@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useUserStore } from '@/Store/userStore'
 import {
   addTeamMemberByEmail,
@@ -29,24 +29,17 @@ import {
 import { TeamMembers } from '@/lib/type'
 export function InviteMembers() {
   const [email, setEmail] = useState('')
+  const userId = useUserStore((state) => state.user?.uid)
   const teamId = useUserStore((state) => state.currrentTeam?.value)
   const teamName = useUserStore((state) => state.currrentTeam?.label)
   const teamMembers = useUserStore((state) => state.teamMembers)
   const setTeamMembers = useUserStore((state) => state.setTeamMembers)
+
+  let userPermission = teamMembers?.filter((member) => member.id == userId)[0]
+  console.log('userPermission:', userPermission)
+
   useEffect(() => {
-    let func = async () => {
-      if (teamId) {
-        try {
-          console.log('teamId:', teamId)
-          let res = await getTeamMembers(teamId)
-          console.log('teamMembers:', res)
-          setTeamMembers(res as unknown as TeamMembers)
-        } catch {
-          console.log('error')
-        }
-      }
-    }
-    func()
+    setTeamMembers()
   }, [teamId])
   return (
     <Card>
@@ -81,10 +74,6 @@ export function InviteMembers() {
                 <>
                   <div className="flex items-center justify-between space-x-4">
                     <div className="flex items-center space-x-4">
-                      {/* <Avatar>
-                        <AvatarImage src="/avatars/03.png" />
-                        <AvatarFallback>OM</AvatarFallback>
-                      </Avatar> */}
                       <Avatar
                         name={`${member?.email}`}
                         size="30"
@@ -93,25 +82,30 @@ export function InviteMembers() {
                       <div>
                         <p className="text-sm font-medium leading-none">
                           {member.email}
-                          {/* hello */}
                         </p>
                       </div>
                     </div>
-                    <Select
-                      onValueChange={(e) =>
-                        updateTeamMemberRole(teamId!, member.id, e)
-                      }
-                      defaultValue={member.role}
-                    >
-                      <SelectTrigger className="ml-auto w-[110px]">
-                        <SelectValue placeholder="Select" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="admin">Admin</SelectItem>
-                        <SelectItem value="edit">Can edit</SelectItem>
-                        <SelectItem value="view">Can view</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    {/* {userPermission?.email} */}
+                    {userPermission?.role == 'admin' ? (
+                      <Select
+                        onValueChange={(e) => {
+                          updateTeamMemberRole(teamId!, member.id, e)
+                          setTeamMembers()
+                        }}
+                        defaultValue={member.role}
+                      >
+                        <SelectTrigger className="ml-auto w-[110px]">
+                          <SelectValue placeholder="Select" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="admin">Admin</SelectItem>
+                          <SelectItem value="edit">Can edit</SelectItem>
+                          <SelectItem value="view">Can view</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </>
               ))}

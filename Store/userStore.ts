@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { User, getAuth } from 'firebase/auth'
 import firebase_app from '@/Database/config'
-import { getUserTeams } from '@/Database/firestore/firebaseDb'
+import { getTeamMembers, getUserTeams } from '@/Database/firestore/firebaseDb'
 import { TeamMembers } from '@/lib/type'
 
 interface UserStore {
@@ -20,7 +20,7 @@ interface UserStore {
   } | null;
   setCurrentTeam: (team: { label: string, value: string } | null) => void;
   teamMembers: TeamMembers | null;
-  setTeamMembers: (members: TeamMembers) => void;
+  setTeamMembers: () => void;
   tasks: any[];
   getTasks: () => void;
 }
@@ -58,7 +58,14 @@ export const useUserStore = create<UserStore>()(
         currrentTeam: null,
         setCurrentTeam: (team: { label: string, value: string } | null) => set({ currrentTeam: team }),
         teamMembers: null,
-        setTeamMembers: (members: TeamMembers) => set({ teamMembers: members }),
+        setTeamMembers: async () => {
+          let teamId = get().currrentTeam?.value!;
+          if (teamId) {
+            let res = await getTeamMembers(teamId);
+            set({ teamMembers: res })
+          }
+        },
+
         tasks: [],
         getTasks: () => {
 

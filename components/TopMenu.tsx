@@ -33,11 +33,11 @@ export default function TopMenu() {
       <div className="flex h-16 items-center px-4">
         <a href="/" className="flex justify-start items-start ">
           <Image
-            src="/main_logo.png"
+            src="/main_logo_svg.svg"
             alt="bug_smasher"
             width={50}
             height={50}
-            className=" h-auto w-[70px] "
+            className=" h-auto w-[300px] "
           />
         </a>
         <MainNav className="mx-6" />

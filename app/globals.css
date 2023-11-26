@@ -200,6 +200,7 @@
 .chat-message.right {
   align-self: flex-end;
   background-color: #0084ff; /* Set the background color for right messages */
+  text-align: left; /* Add this line to set the text alignment to left */
 }
 
 .chat-input {

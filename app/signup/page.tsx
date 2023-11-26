@@ -23,10 +23,12 @@ function Page(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
-  const handleForm = async (event: { preventDefault: () => void }) => {
-    event.preventDefault()
 
-    // Attempt to sign in with provided email and password
+  let handleSignup = async (
+    userName: string,
+    email: string,
+    password: string
+  ) => {
     const { result, error } = await signUp(userName, email, password)
     // createUser(result?.user?.uid!,result?.user?.displayName!)
     if (error) {
@@ -41,7 +43,13 @@ function Page(): JSX.Element {
     } else {
       createUser(result?.user?.uid!, userName, result?.user?.email!, '')
     }
-    console.log(result, error)
+  }
+
+  const handleForm = async (event: { preventDefault: () => void }) => {
+    event.preventDefault()
+
+    // Attempt to sign in with provided email and password
+    handleSignup(userName, email, password)
     // Redirect to the admin page
     // router.push('/')
   }

@@ -173,7 +173,7 @@ export default function Chat() {
                   style={{ marginRight: '10px' }}
                 />
                 <div>
-                  <p style={{ fontSize: '10px', fontWeight: 'bold', marginBottom: '2px'}}>
+                  <p style={{ fontSize: '10px', fontWeight: 'bold', marginBottom: '2px', color: 'white'}}>
                     {retEmail(item.userId)+" "}
                   </p>
                   <p style={{ fontSize: '10px', color: 'white' }}>

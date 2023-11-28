@@ -271,7 +271,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step One</p>
                   <H3 className="p-0 ">Get Started</H3>
-                  <p className="text-gray-700">
+                  <p className="text-white">
                     Create Your Account In Minutes
                   </p>
                 </div>

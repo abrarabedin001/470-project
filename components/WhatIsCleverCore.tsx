@@ -95,16 +95,24 @@ export default function WhyChoseBugSmasher() {
 
   return (
     <div className="container lg:p-8 text-center pt-16 lg:mt-36 flex flex-col ">
-      <H2 className="lg:mb-36">What is Bug Smasher?</H2>
+      <H2 className="lg:mb-36">Why choose Work Flow?</H2>
       <div className="flex flex-col justify-center items-center">
         <div className="w-[250px] lg:w-full  flex justify-center flex-col  lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div
             ref={ref1}
-            className=" lg:p-5 min-w-[250px] min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
+            className=" lg:p-5 min-w-[250px] min-h-[250px] md:w-[50%] lg:w-[50%]   "
             initial="hidden"
             animate={mainControls1}
             variants={leftVarients}
-          ></motion.div>
+          >
+            <Image
+            src="/1-2.svg"
+            alt="bug_smasher"
+            width={500}
+            height={700}
+            className=" h-auto w-[1000px] "
+          />
+          </motion.div>
 
           <motion.div
             className="md:w-[50%] lg:w-[50%] text-left lg:p-10"
@@ -114,34 +122,34 @@ export default function WhyChoseBugSmasher() {
             variants={rightVarients}
           >
             <H2 className=" mb-10 lg:text-3xl font-semibold">
-                Comprehensive Bug Management
+                Maximize Team Productivity
             </H2>{' '}
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-              Efficiently log and track bugs with comprehensive details such as severity, description, and screenshots
+              Simplify team workload with intuitive and efficient task management.
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-              Seamlessly integrate bug tracking with task management, allowing for a unified approach to project coordination
+              Boost productivity by automating repetitive processes and reducing manual effort.
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-              Easily assign bugs to specific team members, fostering collaboration and accountability
+              Easily focus on what matters most with effective task prioritization features.
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-              Keep teams informed with status updates, indicating whether a bug is open, in progress, or resolved
+              Enhance teamwork through streamlined communication.
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
-              <PrimaryButton className="mt-5">Get Started</PrimaryButton>
+              <PrimaryButton className="mt-5">Start Streamlining</PrimaryButton>
             </div>
           </motion.div>
         </div>
@@ -171,7 +179,7 @@ export default function WhyChoseBugSmasher() {
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-                Enable real-time communication through integrated chat features, supporting both group and private conversations
+                Enable real-time communication through live chat features supporting group conversations
               </P>
             </div>{' '}
             <div className="flex">
@@ -181,26 +189,42 @@ export default function WhyChoseBugSmasher() {
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
-              <PrimaryButton className="mt-5">Get Started</PrimaryButton>
+              <PrimaryButton className="mt-5">Build Teams Now</PrimaryButton>
             </div>
           </motion.div>
           <motion.div
-            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
+            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  "
             ref={ref4}
             initial="hidden"
             animate={mainControls4}
             variants={rightVarients}
-          ></motion.div>
+          >
+            <Image
+            src="/1-3.svg"
+            alt="bug_smasher"
+            width={500}
+            height={700}
+            className=" h-auto w-[1000px] "
+          />
+          </motion.div>
         </div>
 
         <div className="w-[250px] lg:w-full  flex justify-center flex-col lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div
-            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
+            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  "
             ref={ref5}
             initial="hidden"
             animate={mainControls5}
             variants={leftVarients}
-          ></motion.div>
+          >
+            <Image
+            src="/1-4.svg"
+            alt="bug_smasher"
+            width={500}
+            height={700}
+            className=" h-auto w-[1000px] "
+          />
+          </motion.div>
           <motion.div
             className="md:w-[50%] lg:w-[50%] text-left lg:p-10"
             ref={ref6}
@@ -214,7 +238,7 @@ export default function WhyChoseBugSmasher() {
             <div className="flex">
               ✔
               <P className="pb-5 pl-5">
-              Facilitate team communication through both group and private chat options, ensuring flexibility in discussions
+              Facilitate team communication through group chat, ensuring flexibility in discussions
               </P>
             </div>
             <div className="flex">
@@ -236,7 +260,7 @@ export default function WhyChoseBugSmasher() {
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
-              <PrimaryButton className="mt-5">Get Started</PrimaryButton>
+              <PrimaryButton className="mt-5">Join the Hub</PrimaryButton>
             </div>
           </motion.div>
         </div>
@@ -252,47 +276,63 @@ export default function WhyChoseBugSmasher() {
             variants={leftVarients}
           >
             <H2 className=" mb-10 lg:text-3xl font-semibold">
-              Data-driven Decision Making
+              Seamless Growth and Connectivity
             </H2>{' '}
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-              Generate custom reports based on specified criteria, providing a tailored view of task completion rates, bug severity distribution, and team member contributions
+              Effortlessly scale your operations as your team and projects evolve.
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-              Utilize graphs and charts as visualization aids to represent project data, fostering a more insightful analysis
+              Integrate seamlessly with your preferred tools, enhancing overall functionality.
               </P>
             </div>
             <div className="flex">
               ✔
               <P className="pb-5 pl-5 ">
-              Leverage robust reporting and analytics tools to make informed decisions based on a deeper understanding of project dynamics
+              Customize and extend capabilities to perfectly align with your unique needs.
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
-              <PrimaryButton className="mt-5">Get Started</PrimaryButton>
+              <PrimaryButton className="mt-5">Connect Effortlessly</PrimaryButton>
             </div>
           </motion.div>
           <motion.div
-            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
+            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  "
             ref={ref8}
             initial="hidden"
             animate={mainControls8}
             variants={rightVarients}
-          ></motion.div>
+          >
+            <Image
+            src="/1-5.svg"
+            alt="bug_smasher"
+            width={500}
+            height={700}
+            className=" h-auto w-[1000px] "
+          />
+          </motion.div>
         </div>
 
         <div className="w-[250px] lg:w-full  flex justify-center flex-col lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div
-            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]  bg-gray-400 "
+            className="p-5 min-w-[250px]   min-h-[250px] md:w-[50%] lg:w-[50%]   "
             ref={ref9}
             initial="hidden"
             animate={mainControls5}
             variants={leftVarients}
-          ></motion.div>
+          >
+            <Image
+            src="/1-6.svg"
+            alt="bug_smasher"
+            width={500}
+            height={700}
+            className=" h-auto w-[1000px] "
+          />
+          </motion.div>
           <motion.div
             className="md:w-[50%] lg:w-[50%] text-left lg:p-10"
             ref={ref10}
@@ -328,7 +368,7 @@ export default function WhyChoseBugSmasher() {
               </P>
             </div>
             <div className="w-[250px] md:w-[300px] lg:w-full flex justify-center lg:justify-start md:justify-start">
-              <PrimaryButton className="mt-5">Get Started</PrimaryButton>
+              <PrimaryButton className="mt-5">Explore Secure Experience</PrimaryButton>
             </div>
           </motion.div>
         </div>

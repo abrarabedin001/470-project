@@ -11,7 +11,7 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 animated-text">
           <div className=" flex flex-col gap-2 items-center lg:items-start text-center lg:text-left max-lg:mx-4 space-y-10 p-5 lg:p-0 ">
             <H1>
-            Empower Your Workflow: Streamline Task Management for Peak Efficiency
+            Unlock Efficiency: Optimize Task Management with WorkFlow Mastery
             </H1>
             <P className="tracking-wide">
             Supercharge your team's productivity with Work Flow. Our task management 
@@ -25,7 +25,7 @@ export default function HeroSection() {
         </div>
         <div className="lg:w-1/2 hidden lg:block h-3/5 animated-image">
           <Image
-            src="/cover.png"
+            src="/1-1.svg"
             alt="bug_smasher"
             width={500}
             height={700}

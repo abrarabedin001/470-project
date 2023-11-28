@@ -11,12 +11,13 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 animated-text">
           <div className=" flex flex-col gap-2 items-center lg:items-start text-center lg:text-left max-lg:mx-4 space-y-10 p-5 lg:p-0 ">
             <H1>
-            Unlock Efficiency: Optimize Task Management with WorkFlow Mastery
+              Unlock Efficiency: Optimize Task Management with WorkFlow Mastery
             </H1>
             <P className="tracking-wide">
-            Supercharge your team's productivity with Work Flow. Our task management 
-            platform revolutionizes workflow efficiency, making task handling a breeze. 
-            Elevate your work experience and achieve peak performance effortlessly.{' '}
+              Supercharge your team&apos productivity with Work Flow. Our task
+              management platform revolutionizes workflow efficiency, making
+              task handling a breeze. Elevate your work experience and achieve
+              peak performance effortlessly.{' '}
             </P>
             <div className="lg:space-x-5 space-y-5 lg:space-y-0 flex flex-col justify-center items-center lg:flex-row lg:justify-start">
               <PrimaryButton className="m-0">Get Started</PrimaryButton>

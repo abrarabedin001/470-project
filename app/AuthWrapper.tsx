@@ -35,7 +35,7 @@ export default function AuthWrapper(props: WrapperProps) {
   }, [pathname, router, setUser])
   if (loading) {
     return (
-      <div className="bg-black h-screen flex items-center justify-center">
+      <div className="bg-black w-full h-screen flex items-center justify-center">
         <Image
           className="relative z-20 w-[22%] pulse1-animation"
           src="/main_logo.png"

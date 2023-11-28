@@ -66,7 +66,6 @@
     "eslint-config-next": "latest",
     "framer-motion": "^10.16.4",
     "postcss": "latest",
-    "prisma": "^5.3.1",
     "tailwindcss": "latest",
     "typescript": "latest"
   }

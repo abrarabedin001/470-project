@@ -138,6 +138,13 @@ function Page(): JSX.Element {
             <Icons.google className="mr-2 h-4 w-4" />
             Google
           </Button>
+          <Button
+            variant="outline"
+            onClick={() => signIn('guest@gmail.com', '123456789')}
+          >
+            <Icons.sun className="mr-2 h-4 w-4" />
+            Use Guest Account
+          </Button>
           <form onSubmit={handleForm} className="space-y-4">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">

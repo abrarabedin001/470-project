@@ -95,7 +95,7 @@ export default function WhyChoseBugSmasher() {
 
   return (
     <div className="container lg:p-8 text-center pt-16 lg:mt-36 flex flex-col ">
-      <H2 className="lg:mb-36">Why choose Work Flow?</H2>
+      <H2 className="lg:mb-36">Why choose TaskFlow?</H2>
       <div className="flex flex-col justify-center items-center">
         <div className="w-[250px] lg:w-full  flex justify-center flex-col  lg:flex-row  mt-20 space-y-10 lg:space-y-0 md:w-full md:gap-6 md:flex-row md:space-y-0">
           <motion.div

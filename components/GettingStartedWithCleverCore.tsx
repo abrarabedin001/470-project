@@ -102,7 +102,7 @@ export default function GettingStartedWithCleverCore() {
   return (
     <div className="container flex flex-col justify-center items-center mx-auto w-full h-full mt-10 lg:mt-36 ">
       <H1 className="text-center pb-10 lg:pb-18">
-        Getting Started with Work Flow is Easy!
+        Getting Started with TaskFlow is Easy!
       </H1>
       <PrimaryButton className=" w-[250px] mb-10">Try Now</PrimaryButton>
       {/* for large screens */}

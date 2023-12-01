@@ -134,7 +134,9 @@ export default function GettingStartedWithCleverCore() {
               <div>
                 <p className="font-bold">Step One</p>
                 <H3 className="p-0 ">Account Creation</H3>
-                <p className="text-white">Secure, personalized signup in a few steps.</p>
+                <p className="text-white">
+                  Secure, personalized signup in a few steps.
+                </p>
               </div>
             </div>
           </motion.div>
@@ -167,7 +169,7 @@ export default function GettingStartedWithCleverCore() {
                 <p className="font-bold">Step Two</p>
                 <H3 className="p-0 ">Team Creation</H3>
                 <p className="text-white">
-                Form project teams for smooth collaboration.
+                  Form project teams for smooth collaboration.
                 </p>
               </div>
             </div>
@@ -202,7 +204,7 @@ export default function GettingStartedWithCleverCore() {
                 <p className="font-bold">Step Three</p>
                 <H3 className="p-0 ">Member Invitation</H3>
                 <p className="text-white">
-                Invite team members via email or direct links.
+                  Invite team members via email or direct links.
                 </p>
               </div>
             </div>
@@ -236,7 +238,7 @@ export default function GettingStartedWithCleverCore() {
                 <p className="font-bold">Step Four</p>
                 <H3 className="p-0 ">Task Assignment</H3>
                 <p className="text-white">
-                Assign tasks and prioritize for a seamless workflow.
+                  Assign tasks and prioritize for a seamless workflow.
                 </p>
               </div>
             </div>
@@ -271,7 +273,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step One</p>
                   <H3 className="p-0 ">Get Started</H3>
-                  <p className="text-white">
+                  <p className="text-gray-700 dark:text-white">
                     Create Your Account In Minutes
                   </p>
                 </div>
@@ -305,7 +307,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step Two</p>
                   <H3 className="p-0 ">Import Data</H3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-white">
                     Sync your existing CRM or start fresh
                   </p>
                 </div>
@@ -341,7 +343,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step Three</p>
                   <H3 className="p-0 ">Make Calls</H3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-white">
                     Use Bug Smasher&apos; interface to manage your calls
                   </p>
                 </div>
@@ -375,7 +377,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step Four</p>
                   <H3 className="p-0 ">Analyze & Act</H3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-white">
                     Leverage AI insights to improve your sales
                   </p>
                 </div>

@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Server Live Link: 470-project-ank7.vercel.app
+Server Live Link: <a name="470-project-ank7.vercel.app">470-project-ank7.vercel.app</a>
 
 Table of Contents
 

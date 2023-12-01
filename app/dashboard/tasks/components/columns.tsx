@@ -56,12 +56,32 @@ export const columns: ColumnDef<Task>[] = [
       return (
         <div className="flex space-x-2">
           {/* {label && <Badge variant="outline">{label.label}</Badge>} */}
-          <span
+          {/* <span
             className="max-w-[100px] truncate font-medium"
             style={{ width: '100%', wordWrap: 'break-word', hyphens: 'auto' }}
           >
             {row.getValue('title')}
-          </span>
+          </span> */}
+          <Popover>
+            <PopoverTrigger>
+              <Button variant="outline">
+                <div
+                  className="max-w-[100px] truncate font-medium"
+                  style={{
+                    width: '100%',
+                    wordWrap: 'break-word',
+                    hyphens: 'auto',
+                  }}
+                >
+                  {row.getValue('title')}
+                </div>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="">
+              {' '}
+              {row.getValue('title')}
+            </PopoverContent>
+          </Popover>
         </div>
       )
     },

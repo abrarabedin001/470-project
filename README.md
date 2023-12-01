@@ -14,108 +14,133 @@ pnpm dev
 bun dev
 ```
 
-Server Live Link: 470-project-ank7.vercel.app
+# Bug and Task Management Tool
 
-Table of Contents
+## Server Live Link
 
-    Introduction
-        1.1 Purpose
-        1.2 Scope
-    Non-Functional Requirements
-        2.1 User Interface
-        2.2 Compatibility
-        2.3 Security
-        2.4 Performance
-        2.5 Scalability
-        2.6 Reliability
-        2.7 Maintainability
-    Functional Requirements
-        3.1 Bug Tracking
-        3.2 Task Management
-        3.3 Team Creation
-        3.4 Dashboard
-        3.5 Chat Communication
-        3.6 Invitation Handling
-        3.7 Data Filtering, Querying, and Download
-        3.8 Reporting and Analytics
-        3.9 User Authentication and Authorization
-    Conclusion
+[470-project-ank7.vercel.app](https://470-project-ank7.vercel.app)
 
-Introduction<a name="introduction"></a>
+## Table of Contents
 
-Purpose<a name="purpose"></a>
+- [Bug and Task Management Tool](#bug-and-task-management-tool)
+  - [Server Live Link](#server-live-link)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+    - [Purpose](#purpose)
+    - [Scope](#scope)
+  - [Non-Functional Requirements](#non-functional-requirements)
+    - [User Interface](#user-interface)
+    - [Compatibility](#compatibility)
+    - [Security](#security)
+    - [Performance](#performance)
+    - [Scalability](#scalability)
+    - [Reliability](#reliability)
+    - [Maintainability](#maintainability)
+  - [Functional Requirements](#functional-requirements)
+    - [Bug Tracking](#bug-tracking)
+    - [Task Management](#task-management)
+    - [Team Creation](#team-creation)
+    - [Dashboard](#dashboard)
+    - [Chat Communication](#chat-communication)
+    - [Invitation Handling](#invitation-handling)
+    - [Data Filtering, Querying, and Download](#data-filtering-querying-and-download)
+    - [Reporting and Analytics](#reporting-and-analytics)
+  - [Learn More](#learn-more)
+  - [Deploy on Vercel](#deploy-on-vercel)
+
+## Introduction<a name="introduction"></a>
+
+### Purpose<a name="purpose"></a>
+
 This document outlines the software requirements for a Bug and Task Management Tool designed to streamline the processes of software development teams. The tool aims to provide a comprehensive solution for bug tracking, task management, team collaboration, and data analysis.
 
-Scope<a name="scope"></a>
+### Scope<a name="scope"></a>
+
 The Bug and Task Management Tool will encompass features such as bug tracking, task management, team creation, a dynamic dashboard, chat communication, invitation handling, and advanced data filtering and querying.
 
-Non-Functional Requirements<a name="non-functional-requirements"></a>
+## Non-Functional Requirements<a name="non-functional-requirements"></a>
 
-User Interface<a name="user-interface"></a>
+### User Interface<a name="user-interface"></a>
+
 The tool will feature a user-friendly interface that ensures ease of navigation and operation.
 
-Compatibility<a name="compatibility"></a>
+### Compatibility<a name="compatibility"></a>
+
 The software will be web-based, ensuring compatibility across various platforms and devices.
 
-Security<a name="security"></a>
+### Security<a name="security"></a>
+
 Stringent encryption and security measures will be implemented to safeguard data integrity and confidentiality.
 
-Performance<a name="performance"></a>
+### Performance<a name="performance"></a>
+
 The software will respond promptly to user inputs and requests, ensuring a seamless user experience.
 
-Scalability<a name="scalability"></a>
+### Scalability<a name="scalability"></a>
+
 The tool will support a growing number of tasks, bugs, and team members without compromising performance.
 
-Reliability<a name="reliability"></a>
+### Reliability<a name="reliability"></a>
+
 Minimal downtime and rapid recovery from failures will be ensured to maintain a reliable user experience.
 
-Maintainability<a name="maintainability"></a>
+### Maintainability<a name="maintainability"></a>
+
 The software will be modular and well-documented to facilitate easy updates and modifications.
 
-Functional Requirements<a name="functional-requirements"></a>
+## Functional Requirements<a name="functional-requirements"></a>
 
-Bug Tracking<a name="bug-tracking"></a>
+### Bug Tracking<a name="bug-tracking"></a>
+
 Users can log bugs with relevant details.
 Bugs can be assigned to specific team members.
 Status updates for bugs (e.g., Open, In-progress, Resolved) will be supported.
 
-Task Management<a name="task-management"></a>
+### Task Management<a name="task-management"></a>
+
 Creation, assignment, and updates for tasks.
 Prioritization and categorization of tasks.
 Setting deadlines and reminders for tasks.
 
-Team Creation<a name="team-creation"></a>
+### Team Creation<a name="team-creation"></a>
+
 Ability to create teams.
 Adding or removing team members.
 Assigning roles and permissions to team members.
 Team deletion feature.
 
-Dashboard<a name="dashboard"></a>
+### Dashboard<a name="dashboard"></a>
+
 A comprehensive dashboard displaying task progress, bug statistics, and team performance metrics.
 Real-time updates on the dashboard as tasks progress or bugs are resolved.
 
-Chat Communication<a name="chat-communication"></a>
+### Chat Communication<a name="chat-communication"></a>
+
 Integrated chat feature for team members.
 Group and private chat options.
 Notification system for new messages.
 
-Invitation Handling<a name="invitation-handling"></a>
+### Invitation Handling<a name="invitation-handling"></a>
+
 Inviting team members via email.
 Setting expiration dates for invitations.
 Option to resend or revoke invitations.
 Invitation deletion feature.
 
-Data Filtering, Querying, and Download<a name="data-filtering-querying-and-download"></a>
+### Data Filtering, Querying, and Download<a name="data-filtering-querying-and-download"></a>
+
 Advanced search feature to filter and query data.
 Options to sort data based on various parameters.
 Download filtered data in various formats (e.g., CSV, PDF).
 
-Reporting and Analytics<a name="reporting-and-analytics"></a>
+### Reporting and Analytics<a name="reporting-and-analytics"></a>
+
 Custom Reports
 Users can generate custom reports based on specified criteria.
 
 Visualization Tools
 The tool will offer visualization aids like graphs, charts, and heat maps.
+
 Historical Data Analysis
 The software will maintain historical data for trend analysis.
 

@@ -17,11 +17,12 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
   signIn,
-  signInWithGoogle,
+  signUpWithGoogle,
   resetPassword,
   checkEmailInDatabase,
 } from '@/Database/auth'
 import { ToastContainer, toast } from 'react-toastify'
+import { createUser } from '@/Database/firestore/firebaseDb'
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -55,22 +56,22 @@ function Page(): JSX.Element {
 
   // Handle Google sign-in
   const handleGoogleSignIn = async () => {
-    const { user, error } = await signInWithGoogle()
+    const { user, error } = await signUpWithGoogle()
 
     if (error) {
       // Display and log any sign-in errors
       console.log(error)
       return
     } else {
-      // toast.success('Login Successful')
-      router.push('/')
+      createUser(user?.uid!, user?.displayName, user?.email!, '')
     }
     if (user) {
-      router.push('/')
+      console.log('user ase@')
     }
 
-    // Sign in successful
-    // console.log(user)
+    console.log(user)
+
+    router.push('/')
   }
   // Function to handle password reset
   const handleForgotPassword = async () => {

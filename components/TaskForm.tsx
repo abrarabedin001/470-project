@@ -71,9 +71,8 @@ export default function TaskForm({ close }: { close: () => void }) {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    createTask({ ...values, teamId: currrentTeam?.value })
+    createTask({ ...values, teamId: currrentTeam?.value }).then(() => close())
     console.log(values)
-    close()
   }
   return (
     <Form {...form}>

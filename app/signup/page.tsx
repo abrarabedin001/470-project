@@ -51,7 +51,7 @@ function Page(): JSX.Element {
     // Attempt to sign in with provided email and password
     handleSignup(userName, email, password)
     // Redirect to the admin page
-    // router.push('/')
+    router.push('/')
   }
 
   // Handle Google sign-in
@@ -71,7 +71,7 @@ function Page(): JSX.Element {
 
     console.log(user)
 
-    // router.push('/')
+    router.push('/')
   }
 
   return (
@@ -92,7 +92,12 @@ function Page(): JSX.Element {
             <Button
               variant="outline"
               onClick={() => {
-                signIn('guest@gmail.com', '123456789')
+                try {
+                  signIn('guest@gmail.com', '123456789')
+                  router.push('/')
+                } catch {
+                  console.log('error')
+                }
               }}
             >
               <Icons.sun className="mr-2 h-4 w-4" />

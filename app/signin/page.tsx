@@ -63,7 +63,7 @@ function Page(): JSX.Element {
       return
     } else {
       // toast.success('Login Successful')
-      // router.push('/')
+      router.push('/')
     }
     if (user) {
       router.push('/')
@@ -140,7 +140,14 @@ function Page(): JSX.Element {
           </Button>
           <Button
             variant="outline"
-            onClick={() => signIn('guest@gmail.com', '123456789')}
+            onClick={() => {
+              try {
+                signIn('guest@gmail.com', '123456789')
+                router.push('/')
+              } catch {
+                console.log('error')
+              }
+            }}
           >
             <Icons.sun className="mr-2 h-4 w-4" />
             Use Guest Account

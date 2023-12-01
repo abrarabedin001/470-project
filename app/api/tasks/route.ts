@@ -1,16 +1,6 @@
-import { createTask } from "@/Database/firestore/firebaseDb"
+import { createTask, getAllTasksInTeam } from "@/Database/firestore/firebaseDb"
 import user from "@/lib/token"
-
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
-// const auth = getAuth();
-// let user = onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     return user
-//   } else {
-//     return null
-//   }
-// });
-
+import { NextRequest } from "next/server"
 
 export async function POST(request: Request) {
   console.log(user)
@@ -31,8 +21,17 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Internal Server Error' });
   }
 }
-export async function GET(req: Request) {
-  const data = await req.json();
-  console.log(data);
+
+export async function GET(req: NextRequest) {
+  const url = new URL(req.url)
+
+  const teamId = url.searchParams.get("teamId")
+  // const take = url.searchParams.get("take")
+  if (!teamId) {
+    return Response.json({ error: 'Missing teamId' });
+  }
+  let res = await getAllTasksInTeam(teamId)
+  console.log('axios call:', res)
+  return Response.json(res);
   return new Response("Hello, Next.js!");
 }

@@ -106,6 +106,24 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090a;
+}
+::-webkit-scrollbar-thumb {
+  background: #9898cf;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d7d4ff;
+}
+
 .moving-div-container {
   display: flex;
   overflow: hidden; /* Hide overflow to prevent scrollbars */
@@ -199,7 +217,11 @@
 
 .chat-message.right {
   align-self: flex-end;
-  background-color: rgb(72, 97, 170); /* Set the background color for right messages */
+  background-color: rgb(
+    72,
+    97,
+    170
+  ); /* Set the background color for right messages */
   text-align: left; /* Add this line to set the text alignment to left */
 }
 
@@ -261,7 +283,6 @@
   border-top-right-radius: 20px;
 }
 /* Set fixed widths for each column */
-
 
 .owtable-header {
   background-color: black;

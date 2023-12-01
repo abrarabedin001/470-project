@@ -11,7 +11,8 @@ export default function HeroSection() {
         <div className="w-full lg:w-1/2 animated-text">
           <div className=" flex flex-col gap-2 items-center lg:items-start text-center lg:text-left max-lg:mx-4 space-y-10 p-5 lg:p-0 ">
             <H1>
-              Unlock Efficiency: Optimize Task Management with WorkFlow Mastery
+              Unlock Efficiency and Optimize Task Management with WorkFlow
+              Mastery
             </H1>
             <P className="tracking-wide">
               Supercharge your team&apos productivity with Work Flow. Our task

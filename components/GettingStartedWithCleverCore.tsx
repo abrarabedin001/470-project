@@ -102,7 +102,7 @@ export default function GettingStartedWithCleverCore() {
   return (
     <div className="container flex flex-col justify-center items-center mx-auto w-full h-full mt-10 lg:mt-36 ">
       <H1 className="text-center pb-10 lg:pb-18">
-        Getting Started with Bug Smasher is Easy!
+        Getting Started with TaskFlow is Easy!
       </H1>
       <PrimaryButton className=" w-[250px] mb-10">Try Now</PrimaryButton>
       {/* for large screens */}
@@ -123,18 +123,20 @@ export default function GettingStartedWithCleverCore() {
           >
             <div className="lg:w-[50%] p-8 border-r-sky-700 flex justify-center items-center">
               <Image
-                src={'/CTA/Object/Secure_login.png'}
-                width={184}
-                height={224}
-                className="max-w-[224px] max-h-[224px] "
+                src={'/a1.svg'}
+                width={600}
+                height={600}
+                className="max-w-[600px] max-h-[600px] "
                 alt="Secure Login"
               ></Image>
             </div>
             <div className="text-center lg:w-[50%] lg:text-left p-8 grid items-center  ">
               <div>
                 <p className="font-bold">Step One</p>
-                <H3 className="p-0 ">Get Started</H3>
-                <p className="text-gray-700">Create Your Account In Minutes</p>
+                <H3 className="p-0 ">Account Creation</H3>
+                <p className="text-white">
+                  Secure, personalized signup in a few steps.
+                </p>
               </div>
             </div>
           </motion.div>
@@ -155,19 +157,19 @@ export default function GettingStartedWithCleverCore() {
           >
             <div className="lg:w-[50%] p-8 border-r-sky-700 flex justify-center items-center">
               <Image
-                src={'/CTA/Object/Other 09.png'}
-                width={224}
-                height={224}
-                className="max-w-[224px] max-h-[224px] float-left"
+                src={'/b1.svg'}
+                width={600}
+                height={600}
+                className="max-w-[600px] max-h-[600px] float-left"
                 alt="Import Data"
               ></Image>
             </div>
             <div className="text-center lg:w-[50%] lg:text-left p-8 grid items-center  ">
               <div>
                 <p className="font-bold">Step Two</p>
-                <H3 className="p-0 ">Import Data</H3>
-                <p className="text-gray-700">
-                  Sync your existing CRM or start fresh
+                <H3 className="p-0 ">Team Creation</H3>
+                <p className="text-white">
+                  Form project teams for smooth collaboration.
                 </p>
               </div>
             </div>
@@ -189,10 +191,10 @@ export default function GettingStartedWithCleverCore() {
           >
             <div className="lg:w-[50%] p-8 border-r-sky-700 flex justify-center items-center">
               <Image
-                src={'/CTA/Object/Make_call.png'}
-                width={224}
-                height={224}
-                className="max-w-[224px] max-h-[224px] float-right"
+                src={'/c1.svg'}
+                width={600}
+                height={600}
+                className="max-w-[600px] max-h-[600px] float-right"
                 alt="Make Calls"
               ></Image>
             </div>
@@ -200,9 +202,9 @@ export default function GettingStartedWithCleverCore() {
             <div className="text-center lg:w-[50%] lg:text-left p-8 grid items-center  ">
               <div>
                 <p className="font-bold">Step Three</p>
-                <H3 className="p-0 ">Make Calls</H3>
-                <p className="text-gray-700">
-                  Use Bug Smasher&apos; interface to manage your calls
+                <H3 className="p-0 ">Member Invitation</H3>
+                <p className="text-white">
+                  Invite team members via email or direct links.
                 </p>
               </div>
             </div>
@@ -224,19 +226,19 @@ export default function GettingStartedWithCleverCore() {
           >
             <div className="lg:w-[50%] p-8 border-r-sky-700 flex justify-center items-center">
               <Image
-                src={'/CTA/Object/Other 11.png'}
-                width={224}
-                height={224}
-                className="max-w-[224px] max-h-[224px] float-left"
+                src={'/d1.svg'}
+                width={600}
+                height={600}
+                className="max-w-[600px] max-h-[600px] float-left"
                 alt="Analyze & Act"
               ></Image>
             </div>
             <div className="text-center lg:w-[50%] lg:text-left p-3 grid items-center  ">
               <div>
                 <p className="font-bold">Step Four</p>
-                <H3 className="p-0 ">Analyze & Act</H3>
-                <p className="text-gray-700">
-                  Leverage AI insights to improve your sales
+                <H3 className="p-0 ">Task Assignment</H3>
+                <p className="text-white">
+                  Assign tasks and prioritize for a seamless workflow.
                 </p>
               </div>
             </div>
@@ -271,7 +273,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step One</p>
                   <H3 className="p-0 ">Get Started</H3>
-                  <p className="text-white">
+                  <p className="text-gray-700 dark:text-white">
                     Create Your Account In Minutes
                   </p>
                 </div>
@@ -305,7 +307,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step Two</p>
                   <H3 className="p-0 ">Import Data</H3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-white">
                     Sync your existing CRM or start fresh
                   </p>
                 </div>
@@ -341,7 +343,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step Three</p>
                   <H3 className="p-0 ">Make Calls</H3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-white">
                     Use Bug Smasher&apos; interface to manage your calls
                   </p>
                 </div>
@@ -375,7 +377,7 @@ export default function GettingStartedWithCleverCore() {
                 <div>
                   <p className="font-bold">Step Four</p>
                   <H3 className="p-0 ">Analyze & Act</H3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-white">
                     Leverage AI insights to improve your sales
                   </p>
                 </div>

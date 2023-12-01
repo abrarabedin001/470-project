@@ -1,16 +1,19 @@
 'use client'
 
 import { ColumnDef } from '@tanstack/react-table'
-
 import { Badge } from '@/components/ui/badge'
-
 import { Checkbox } from '@/components/ui/checkbox'
-
 import { labels, priorities, statuses } from '../data/data'
 import { Task } from '../data/schema'
 import { DataTableColumnHeader } from './data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
-
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 export const columns: ColumnDef<Task>[] = [
   {
     id: 'select',
@@ -73,13 +76,26 @@ export const columns: ColumnDef<Task>[] = [
 
       return (
         <div className="flex space-x-2">
-          {/* {label && <Badge variant="outline">{label.label}</Badge>} */}
-          <span
-            className="max-w-[100px] truncate font-medium"
-            style={{ width: '100%', wordWrap: 'break-word', hyphens: 'auto' }}
-          >
-            {row.getValue('description')}
-          </span>
+          <Popover>
+            <PopoverTrigger>
+              <Button variant="outline">
+                <div
+                  className="max-w-[100px] truncate font-medium"
+                  style={{
+                    width: '100%',
+                    wordWrap: 'break-word',
+                    hyphens: 'auto',
+                  }}
+                >
+                  {row.getValue('description')}
+                </div>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="">
+              {' '}
+              {row.getValue('description')}
+            </PopoverContent>
+          </Popover>
         </div>
       )
     },

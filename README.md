@@ -42,8 +42,7 @@ bun dev
     - [Team Creation](#team-creation)
     - [Dashboard](#dashboard)
     - [Chat Communication](#chat-communication)
-    - [Invitation Handling](#invitation-handling)
-    - [Data Filtering, Querying, and Download](#data-filtering-querying-and-download)
+    - [Data Filtering, Querying](#data-filtering-querying)
     - [Reporting and Analytics](#reporting-and-analytics)
   - [Learn More](#learn-more)
   - [Deploy on Vercel](#deploy-on-vercel)
@@ -120,57 +119,27 @@ Integrated chat feature for team members.
 Group and private chat options.
 Notification system for new messages.
 
-### Invitation Handling<a name="invitation-handling"></a>
-
-Inviting team members via email.
-Setting expiration dates for invitations.
-Option to resend or revoke invitations.
-Invitation deletion feature.
-
-### Data Filtering, Querying, and Download<a name="data-filtering-querying-and-download"></a>
+### Data Filtering, Querying<a name="data-filtering-querying-and-download"></a>
 
 Advanced search feature to filter and query data.
 Options to sort data based on various parameters.
-Download filtered data in various formats (e.g., CSV, PDF).
 
 ### Reporting and Analytics<a name="reporting-and-analytics"></a>
-
-Custom Reports
-Users can generate custom reports based on specified criteria.
-
-Visualization Tools
-The tool will offer visualization aids like graphs, charts, and heat maps.
-
-Historical Data Analysis
-The software will maintain historical data for trend analysis.
 
 User Authentication and Authorization<a name="user-authentication-and-authorization"></a>
 User Registration
 New users can sign up, providing necessary details.
-Email verification mechanism for authenticity.
-
 Login System
 Users can log in using their registered email and password.
 CAPTCHA or similar mechanisms for login security.
 Session management for user login duration.
-
 Multi-factor Authentication (MFA)
 Option for users to enable MFA for added security.
-
 Password Management
-Password reset mechanism and strength checks.
+Password reset mechanism .
 
 Role-based Access Control (RBAC)
 Users can have different roles with corresponding permissions.
-
-Account Settings & Profile Management
-Users can view and edit their profiles, including contact details.
-
-Logout and Session Expiry
-Manual logout and automatic logout after inactivity.
-
-Account Deactivation & Deletion
-Option for temporary account deactivation and permanent account deletion.
 
 Conclusion<a name="conclusion"></a>
 

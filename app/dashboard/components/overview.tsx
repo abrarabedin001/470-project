@@ -24,7 +24,15 @@ export default function OverviewPage() {
   return (
     <>
       {/* <div className="flex h-full flex-1 flex-col p-8 overflow-y-auto"> */}
-      <div className="card px-4 pb-4 max-h-[250px] overflow-y-auto custom-scrollbar rounded-2xl">
+      <div className="card flex flex-col items-center justify-center px-4 pb-4 max-h-[250px] overflow-y-auto custom-scrollbar rounded-2xl">
+      {tasks.length === 0 ? (
+           <div className="text-center">
+           <p className="text-gray-500">No results found.</p>
+           <p className="text-sm text-gray-500 mt-2">
+             Click "See All tasks" to assign tasks.
+           </p>
+         </div>
+        ) : (
         <table className="owcustom-table-white dark:owcustom-table text-gray-700 dark:text-silver-700 rounded-2xl">
           <thead className="">
             <tr className="rounded-xl">
@@ -89,6 +97,7 @@ export default function OverviewPage() {
             ))}
           </tbody>
         </table>
+        )}
       </div>
 
       {/* </div> */}

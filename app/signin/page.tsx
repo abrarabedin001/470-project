@@ -39,10 +39,16 @@ function Page(): JSX.Element {
 
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
+        setResetStatus('error');
+        setResetMessage('Email is not registered or the password is incorrect.');
       } else {
         // result?.currentUser?.displayName
       }
       console.log(error)
+      setTimeout(() => {
+        setResetStatus('idle')
+        setResetMessage('')
+      }, 3000)
       return
     } else {
       // console.log('result', result)

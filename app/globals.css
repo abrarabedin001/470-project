@@ -212,16 +212,12 @@
 
 .chat-message.left {
   align-self: flex-start;
-  background-color: #4c91af; /* Set the background color for left messages */
+  background-color: #377f9e; /* Set the background color for left messages */
 }
 
 .chat-message.right {
   align-self: flex-end;
-  background-color: rgb(
-    72,
-    97,
-    170
-  ); /* Set the background color for right messages */
+  background-color: rgb(116, 118, 124); /* Set the background color for right messages */
   text-align: left; /* Add this line to set the text alignment to left */
 }
 

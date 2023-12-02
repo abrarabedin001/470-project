@@ -26,10 +26,10 @@ export default function OverviewPage() {
       {/* <div className="flex h-full flex-1 flex-col p-8 overflow-y-auto"> */}
       <div className="card flex flex-col items-center justify-center px-4 pb-4 max-h-[250px] overflow-y-auto custom-scrollbar rounded-2xl">
       {tasks.length === 0 ? (
-           <div className="text-center">
-           <p className="text-gray-500">No results found.</p>
-           <p className="text-sm text-gray-500 mt-2">
-             Click "See All tasks" to assign tasks.
+           <div className="text-center mt-10">
+           <p className="text-bold text-gray-600">No results found.</p>
+           <p className="text-sm text-gray-700 mt-2">
+             Click "See All Tasks" to assign tasks.
            </p>
          </div>
         ) : (

@@ -27,9 +27,7 @@ export default function DashboardPage() {
   const user = useUserStore((state) => state.user)
   const currrentTeam = useUserStore((state) => state.currrentTeam?.label)
   const router = useRouter()
-  // if (!user) {
-  //   return 'null'
-  // }
+
   return (
     <>
       <div className=" flex-col flex">

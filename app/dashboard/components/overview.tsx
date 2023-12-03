@@ -25,78 +25,81 @@ export default function OverviewPage() {
     <>
       {/* <div className="flex h-full flex-1 flex-col p-8 overflow-y-auto"> */}
       <div className="card flex flex-col items-center justify-center px-4 pb-4 max-h-[250px] overflow-y-auto custom-scrollbar rounded-2xl">
-      {tasks.length === 0 ? (
-           <div className="text-center mt-10">
-           <p className="text-bold text-gray-600">No results found.</p>
-           <p className="text-sm text-gray-700 mt-2">
-             Click "See All Tasks" to assign tasks.
-           </p>
-         </div>
+        {tasks.length === 0 ? (
+          <div className="text-center mt-10">
+            <p className="text-bold text-gray-600">No results found.</p>
+            <p className="text-sm text-gray-700 mt-2">
+              Click &quot;See All Tasks&quot; to assign tasks.
+            </p>
+          </div>
         ) : (
-        <table className="owcustom-table-white dark:owcustom-table text-gray-700 dark:text-silver-700 rounded-2xl">
-          <thead className="">
-            <tr className="rounded-xl">
-              <th
-                className="owtable-header-light dark:owtable-header custom-head-1"
-                style={{ width: '32%' }}
-              >
-                Title
-              </th>
-              <th
-                className="owtable-header-light dark:owtable-header"
-                style={{ width: '16%' }}
-              >
-                Priority
-              </th>
-              <th
-                className="owtable-header-light dark:owtable-header"
-                style={{ width: '18%' }}
-              >
-                Status
-              </th>
-              <th
-                className="owtable-header-light dark:owtable-header custom-head-2"
-                style={{ width: '34%' }}
-              >
-                CreatedAt
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {tasks.map((task, index) => (
-              <tr key={index} className="border divide-y divide-solid divide-x">
-                <td
-                  className="text-center owtable-body text-black dark:text-white max-w-[100px]"
-                  style={{
-                    width: '32%',
-                    wordWrap: 'break-word',
-                    hyphens: 'auto',
-                  }}
+          <table className="owcustom-table-white dark:owcustom-table text-gray-700 dark:text-silver-700 rounded-2xl">
+            <thead className="">
+              <tr className="rounded-xl">
+                <th
+                  className="owtable-header-light dark:owtable-header custom-head-1"
+                  style={{ width: '32%' }}
                 >
-                  {task.title}
-                </td>
-                <td
-                  className="text-center owtable-body text-black dark:text-white"
+                  Title
+                </th>
+                <th
+                  className="owtable-header-light dark:owtable-header"
                   style={{ width: '16%' }}
                 >
-                  {task.priority}
-                </td>
-                <td
-                  className="text-center owtable-body text-black dark:text-white"
+                  Priority
+                </th>
+                <th
+                  className="owtable-header-light dark:owtable-header"
                   style={{ width: '18%' }}
                 >
-                  {task.status}
-                </td>
-                <td
-                  className="text-center owtable-body text-black dark:text-white"
+                  Status
+                </th>
+                <th
+                  className="owtable-header-light dark:owtable-header custom-head-2"
                   style={{ width: '34%' }}
                 >
-                  {task.createdAt.toLocaleString()}
-                </td>
+                  CreatedAt
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {tasks.map((task, index) => (
+                <tr
+                  key={index}
+                  className="border divide-y divide-solid divide-x"
+                >
+                  <td
+                    className="text-center owtable-body text-black dark:text-white max-w-[100px]"
+                    style={{
+                      width: '32%',
+                      wordWrap: 'break-word',
+                      hyphens: 'auto',
+                    }}
+                  >
+                    {task.title}
+                  </td>
+                  <td
+                    className="text-center owtable-body text-black dark:text-white"
+                    style={{ width: '16%' }}
+                  >
+                    {task.priority}
+                  </td>
+                  <td
+                    className="text-center owtable-body text-black dark:text-white"
+                    style={{ width: '18%' }}
+                  >
+                    {task.status}
+                  </td>
+                  <td
+                    className="text-center owtable-body text-black dark:text-white"
+                    style={{ width: '34%' }}
+                  >
+                    {task.createdAt.toLocaleString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
 

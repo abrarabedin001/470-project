@@ -104,7 +104,7 @@ export const OverviewTasks = async (teamId: string): Promise<(TaskDetails & { id
       } as TaskDetails & { id: string };
     });
 
-    // Manually sort the tasks by createdAt in descending order
+    // Manually sort the tasks by createdAt in descending orders
     overviewTasks.sort((a: any, b: any) => a.createdAt.getTime() - b.createdAt.getTime());
 
     console.log('success: Retrieved overview tasks in team');

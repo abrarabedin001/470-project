@@ -57,11 +57,8 @@ export default function TaskPage() {
                   Welcome back!
                 </h2>
                 <p className="text-muted-foreground">
-                  Here&apos;s a list of your tasks for this month!
+                  Here&apos;s a list of your tasks!
                 </p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <UserNav />
               </div>
             </div>
             <DataTable data={tasks} columns={columns} />

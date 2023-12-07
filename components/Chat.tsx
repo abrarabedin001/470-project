@@ -180,6 +180,8 @@ export default function Chat() {
                     {formatTimestamp(item.createdAt.toDate().getTime())}
                   </p>
                 </div>
+                <div>
+                </div>
               </div>
               <div className="message-content">
                 <p style={{ fontSize: '14px', color: '#ffffff' }}>{item.text}</p>

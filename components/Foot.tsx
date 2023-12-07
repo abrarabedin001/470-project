@@ -16,7 +16,7 @@ const Foot = () => {
         <div className="footer-section">
           <h3>About Task Flow</h3>
           <p>
-          Task Flow - Simplifying Work, Resolving Bugs, and Enhancing Efficiency Since September, 2023. Founded by Abrar, Anik, Shahdat, and Sadia, our dedicated team envisions a seamless task and bug management experience for businesses worldwide. Task Flow is your go-to solution for navigating the intricacies of project management with ease. Join us in optimizing your workflow and achieving your project goals effortlessly.
+          Task Flow - Simplifying Work, Resolving Bugs, and Enhancing Efficiency Since September, 2023. Founded by Abrar, MOHIUZZAMAN, Shahadat, and Sadia, our dedicated team envisions a seamless task and bug management experience for businesses worldwide. Task Flow is your go-to solution for navigating the intricacies of project management with ease. Join us in optimizing your workflow and achieving your project goals effortlessly.
           </p>
         </div>
         <div className="footer-section">

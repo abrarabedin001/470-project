@@ -12,8 +12,8 @@ import AuthWrapper from './AuthWrapper'
 const inter = Inter({ subsets: ['latin'] })
 import { Toaster } from '@/components/ui/toaster'
 export const metadata: Metadata = {
-  title: 'BugSmasher',
-  description: 'BugSmasher is a bug tracking tool for developers.',
+  title: 'TaskFlow',
+  description: 'TaskFlow is a bug tracking tool for developers.',
 }
 
 export default function RootLayout({

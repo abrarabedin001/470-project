@@ -6,7 +6,7 @@ import {
   getDocs,
   query,
   where,
-  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc, arrayUnion, orderBy
+  addDoc, collection, doc, getFirestore, runTransaction, setDoc, updateDoc, getDoc, arrayUnion, orderBy, deleteDoc, arrayRemove
 } from 'firebase/firestore';
 import { BugDetails, TaskDetails } from '../../lib/type';
 export const db = getFirestore(firebase_app)
@@ -104,7 +104,7 @@ export const OverviewTasks = async (teamId: string): Promise<(TaskDetails & { id
       } as TaskDetails & { id: string };
     });
 
-    // Manually sort the tasks by createdAt in descending order
+    // Manually sort the tasks by createdAt in descending orders
     overviewTasks.sort((a: any, b: any) => a.createdAt.getTime() - b.createdAt.getTime());
 
     console.log('success: Retrieved overview tasks in team');
@@ -340,6 +340,38 @@ export const addTeamMemberByEmail = async (teamId: string, teamName: string, ema
     throw error;
   }
 }
+
+export const removeTeamMemberByEmail = async (teamId: string, email: string): Promise<void> => {
+  console.log("ki re hoise")
+  try {
+    // Query the user's ID using their email
+    const usersCollection = collection(db, 'users');
+    const q = query(usersCollection, where('email', '==', email));
+    const querySnapshot = await getDocs(q);
+    let userId = '';
+
+    querySnapshot.forEach((doc) => {
+      userId = doc.id;
+    });
+
+    // If no user found with that email, throw an error
+    if (!userId) throw new Error('No user found with the provided email');
+
+    // Remove the user from the team's 'members' collection
+    const memberDocRef = doc(db, 'teams', teamId, 'members', userId);
+    await deleteDoc(memberDocRef);
+    console.log('success: Team member removed');
+
+    // Update the user's document to remove the team ID
+    const userDocRef = doc(db, "users", userId);
+    await updateDoc(userDocRef, {
+      teams: arrayRemove({ id: teamId }) // Assuming 'teams' is an array of team IDs
+    });
+  } catch (error) {
+    console.error('error: Failed to remove team member by email', error);
+    throw error;
+  }
+};
 
 export const updateTeamMemberRole = async (teamId: string, memberId: string, newRole: string): Promise<void> => {
   try {

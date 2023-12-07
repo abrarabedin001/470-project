@@ -17,11 +17,12 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
   signIn,
-  signInWithGoogle,
+  signUpWithGoogle,
   resetPassword,
   checkEmailInDatabase,
 } from '@/Database/auth'
 import { ToastContainer, toast } from 'react-toastify'
+import { createUser } from '@/Database/firestore/firebaseDb'
 function Page(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -38,10 +39,16 @@ function Page(): JSX.Element {
 
     if (error) {
       if (error.code === 'auth/invalid-login-credentials') {
+        setResetStatus('error')
+        setResetMessage('Email is not registered or the password is incorrect.')
       } else {
         // result?.currentUser?.displayName
       }
       console.log(error)
+      setTimeout(() => {
+        setResetStatus('idle')
+        setResetMessage('')
+      }, 3000)
       return
     } else {
       // console.log('result', result)
@@ -55,22 +62,22 @@ function Page(): JSX.Element {
 
   // Handle Google sign-in
   const handleGoogleSignIn = async () => {
-    const { user, error } = await signInWithGoogle()
+    const { user, error } = await signUpWithGoogle()
 
     if (error) {
       // Display and log any sign-in errors
       console.log(error)
       return
     } else {
-      // toast.success('Login Successful')
-      // router.push('/')
+      createUser(user?.uid!, user?.displayName, user?.email!, '')
     }
     if (user) {
-      router.push('/')
+      console.log('user ase@')
     }
 
-    // Sign in successful
-    // console.log(user)
+    console.log(user)
+
+    router.push('/')
   }
   // Function to handle password reset
   const handleForgotPassword = async () => {
@@ -137,6 +144,20 @@ function Page(): JSX.Element {
           <Button variant="outline" onClick={handleGoogleSignIn}>
             <Icons.google className="mr-2 h-4 w-4" />
             Google
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              try {
+                signIn('guest@gmail.com', '123456789')
+                router.push('/')
+              } catch {
+                console.log('error')
+              }
+            }}
+          >
+            <Icons.sun className="mr-2 h-4 w-4" />
+            Use Guest Account
           </Button>
           <form onSubmit={handleForm} className="space-y-4">
             <div className="relative">

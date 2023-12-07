@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { signUp, signUpWithGoogle } from '@/Database/auth'
+import { signIn, signUp, signUpWithGoogle } from '@/Database/auth'
 import { createUser } from '@/Database/firestore/firebaseDb'
 
 function Page(): JSX.Element {
@@ -23,10 +23,12 @@ function Page(): JSX.Element {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
-  const handleForm = async (event: { preventDefault: () => void }) => {
-    event.preventDefault()
 
-    // Attempt to sign in with provided email and password
+  let handleSignup = async (
+    userName: string,
+    email: string,
+    password: string
+  ) => {
     const { result, error } = await signUp(userName, email, password)
     // createUser(result?.user?.uid!,result?.user?.displayName!)
     if (error) {
@@ -41,9 +43,15 @@ function Page(): JSX.Element {
     } else {
       createUser(result?.user?.uid!, userName, result?.user?.email!, '')
     }
-    console.log(result, error)
+  }
+
+  const handleForm = async (event: { preventDefault: () => void }) => {
+    event.preventDefault()
+
+    // Attempt to sign in with provided email and password
+    handleSignup(userName, email, password)
     // Redirect to the admin page
-    // router.push('/')
+    router.push('/')
   }
 
   // Handle Google sign-in
@@ -63,7 +71,7 @@ function Page(): JSX.Element {
 
     console.log(user)
 
-    // router.push('/')
+    router.push('/')
   }
 
   return (
@@ -80,6 +88,20 @@ function Page(): JSX.Element {
             <Button variant="outline" onClick={handleGoogleSignIn}>
               <Icons.google className="mr-2 h-4 w-4" />
               Google
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                try {
+                  signIn('guest@gmail.com', '123456789')
+                  router.push('/')
+                } catch {
+                  console.log('error')
+                }
+              }}
+            >
+              <Icons.sun className="mr-2 h-4 w-4" />
+              Use Guest Account
             </Button>
             <form onSubmit={handleForm} className="space-y-4">
               <div className="relative">

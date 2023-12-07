@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import React, { useEffect, useState } from 'react';
-import PrimaryButton from './ui/PrimaryButton';
-import Link from 'next/link';
-import Image from 'next/image';
-import HamburgerMenu from './HamburgerMenu';
-import { NavigationMenu } from '@radix-ui/react-navigation-menu';
-import { NavigationMenuTop } from './ui/NavigationMenuTop';
+import React, { useEffect, useState } from 'react'
+import PrimaryButton from './ui/PrimaryButton'
+import Link from 'next/link'
+import Image from 'next/image'
+import HamburgerMenu from './HamburgerMenu'
+import { NavigationMenu } from '@radix-ui/react-navigation-menu'
+import { NavigationMenuTop } from './ui/NavigationMenuTop'
 
 export default function TopMenu() {
-  const [navColor, setnavColor] = useState('bg-white');
+  const [navColor, setnavColor] = useState('bg-white')
   const listenScrollEvent = () => {
-    window.scrollY <= 10 ? setnavColor('transparent') : setnavColor('bg-white');
-  };
+    window.scrollY <= 10 ? setnavColor('transparent') : setnavColor('bg-white')
+  }
   useEffect(() => {
-    window.scrollY == 0 ? setnavColor('transparent') : setnavColor('bg-white');
-    window.addEventListener('scroll', listenScrollEvent);
+    window.scrollY == 0 ? setnavColor('transparent') : setnavColor('bg-white')
+    window.addEventListener('scroll', listenScrollEvent)
     return () => {
-      window.removeEventListener('scroll', listenScrollEvent);
-    };
-  }, []);
+      window.removeEventListener('scroll', listenScrollEvent)
+    }
+  }, [])
   return (
     <div
       className={`w-full    py-3 fixed left-0 top-0  z-50 flex justify-center items-center transition-all duration-500 ease-in-out ${navColor}`}
@@ -29,9 +29,9 @@ export default function TopMenu() {
           <Image
             src="/main_logo.png"
             alt="clever-core"
-            width={300}
+            width={400}
             height={100}
-            className="max-w-full h-auto min-w-[200px] max-height-[50px] max-width-[250px]"
+            className="max-w-full h-auto min-w-[400px] max-height-[100px] "
           />
         </a>
 
@@ -51,14 +51,14 @@ export default function TopMenu() {
           <Image
             src="/main_logo.png"
             alt="clever-core"
-            width={300}
+            width={400}
             height={100}
-            className="max-w-full h-auto min-w-[200px] max-height-[50px]  max-width-[250px]"
+            className="max-w-full h-auto min-w-[400px] max-height-[100px]  max-width-[250px]"
           />
         </a>
 
         <HamburgerMenu />
       </div>
     </div>
-  );
+  )
 }

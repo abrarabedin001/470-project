@@ -1,136 +1,137 @@
-import React from 'react';
-import {
-  FaFacebook,
-  FaTwitter,
-  FaYoutube,
-  FaLinkedin,
-  FaInstagram,
-} from 'react-icons/fa';
-import { FiMail, FiPhone } from 'react-icons/fi';
-import { FaAmazon, FaApple, FaMicrosoft } from 'react-icons/fa';
+import React from 'react'
+import PrimaryButton from './ui/PrimaryButton'
+import Link from 'next/link'
+import { AiFillLinkedin } from 'react-icons/ai'
+import { AiFillInstagram } from 'react-icons/ai'
+import { BsFacebook } from 'react-icons/bs'
 
-const Foot = () => {
+export default function Foot() {
   return (
-    <footer className="footer" id="about">
-      <div className="footer-content">
-        <div className="footer-section">
-          <h3>About Task Flow</h3>
-          <p>
-          Task Flow - Simplifying Work, Resolving Bugs, and Enhancing Efficiency Since September, 2023. Founded by Abrar, MOHIUZZAMAN, Shahadat, and Sadia, our dedicated team envisions a seamless task and bug management experience for businesses worldwide. Task Flow is your go-to solution for navigating the intricacies of project management with ease. Join us in optimizing your workflow and achieving your project goals effortlessly.
-          </p>
-        </div>
-        <div className="footer-section">
-          <h3>Service We Offer</h3>
-          <ul>
-            <li>Task Management</li>
-            <li>Bug Tracking</li>
-            <li>Workflow Optimization</li>
-            <li>Project Efficiency</li>
-            <li>Seamless Collaboration</li>
-            <li>User-Friendly Interface</li>
-            <li>Innovative Solutions</li>
-            <li>Customizable Workflows</li>
-          </ul>
-        </div>
-        <div className="footer-section contact">
-          <h3>Contact Us</h3>
-          <div className="contact-info">
-            <p>
-              <FiMail className="contact-icon" />
-              <span className="contact-text">Email: info@example.com</span>
-            </p>
-            <p>
-              <FiPhone className="contact-icon" />
-              <span className="contact-text">Phone: +088 01778097713</span>
-            </p>
-          </div>
-          <div className="footer-section address" style={{ marginTop: '2em' }}>
-            <h3>Address</h3>
-            <p>
-              <span className="contact-text">
-                BRAC University
-                <br />
-                Kha 224 Bir Uttam Rafiqul Islam Avenue
-                <br />
-                Merul Badda, Dhaka 1212. Bangladesh
-              </span>
-            </p>
-          </div>
-        </div>
-        <div className="footer-section partner-section">
-          <h3>Our Respective Partners</h3>
-          <div className="partner-icons">
-            <a
-              href="https://www.amazon.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaAmazon className="partner-icon" />
-            </a>
-            <a
-              href="https://www.apple.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaApple className="partner-icon" />
-            </a>
-            <a
-              href="https://www.microsoft.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaMicrosoft className="partner-icon" />
-            </a>
-        </div>
-        </div>
-      </div>
-      <div className="follow-us">
-        <div className="footer-content">
-          <h3>Follow Us</h3>
-        </div>
-        <div className="social-icons">
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebook className="icon" />
-          </a>
-          <a
-            href="https://www.twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaTwitter className="icon" />
-          </a>
-          <a
-            href="https://www.youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaYoutube className="icon" />
-          </a>
-          <a
-            href="https://www.linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin className="icon" />
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaInstagram className="icon" />
-          </a>
-        </div>
-      </div>
-      <div className="footer-bottom">
-        <p>&copy; 2023 Task Flow. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-};
+    <div className="w-full h-full left-0 bottom-0  flex justify-center mt-36 text-gray-700 dark:text-white">
+      <div className="max-w-[1440px] w-full">
+        <div className="w-full  hidden lg:block  ">
+          <div className="flex flex-row p-10 justify-between w-full  ">
+            <div className=" text-zinc-800 dark:text-white text-base font-medium leading-normal py-5">
+              © 2020 Wirefigma
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className=" px-5 py-[13px]  rounded-[5px] justify-center items-start gap-5 inline-flex ">
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Contact
+                </Link>
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Terms of Service
+                </Link>
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Faq
+                </Link>
+              </div>
+              <div className=" pb-7 justify-center items-center gap-2.5 inline-flex py-5">
+                <PrimaryButton className="text-lg font-bold leading-7 p-3">
+                  Get Started
+                </PrimaryButton>
+              </div>
+            </div>
 
-export default Foot;
+            <div className=" h-7 justify-start items-center gap-5 inline-flex py-5">
+              <div className="flex-col justify-start items-center gap-2.5 inline-flex">
+                <div className="text-[#9C1CF3]/70 text-2xl font-normal">
+                  <AiFillLinkedin />
+                </div>
+              </div>
+
+              <div className="flex-col justify-start items-center gap-2.5 inline-flex">
+                <div className="text-[#9C1CF3]/70 text-2xl font-normal">
+                  <BsFacebook />{' '}
+                </div>
+              </div>
+              <div className="flex-col justify-start items-center gap-2.5 inline-flex">
+                <div className="text-[#9C1CF3]/70 text-2xl font-normal">
+                  <AiFillInstagram />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="text-white w-full mt-36 flex flex-col justify-center lg:hidden">
+          <div className="flex flex-row p-10 justify-between w-full">
+            <div className="flex flex-col">
+              <div className=" px-5 py-[13px]  rounded-[5px] justify-center items-start gap-5 inline-flex flex-col  ">
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Faq
+                </Link>
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Contact
+                </Link>
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href={'/'}
+                  className="text-gray-700 dark:text-white text-base font-medium leading-normal"
+                >
+                  Terms of Service
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <div className=" h-7 justify-start items-center gap-5 inline-flex py-5">
+                <div className="flex-col justify-start items-center gap-2.5 inline-flex">
+                  <div className="text-[#9C1CF3]/70 text-2xl font-normal">
+                    <AiFillLinkedin />
+                  </div>
+                </div>
+
+                <div className="flex-col justify-start items-center gap-2.5 inline-flex">
+                  <div className="text-[#9C1CF3]/70 text-2xl font-normal">
+                    <BsFacebook />{' '}
+                  </div>
+                </div>
+                <div className="flex-col justify-start items-center gap-2.5 inline-flex">
+                  <div className="text-[#9C1CF3]/70 text-2xl font-normal">
+                    <AiFillInstagram />
+                  </div>
+                </div>
+              </div>
+              <div className=" pb-7 justify-center items-center gap-2.5 inline-flex py-5">
+                <button className="group relative px-4 overflow-hidden rounded-lg button_bg_grad text-lg border-2 border-transparent hover:border-[#9C1CF3] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] transform active:scale-75 transition-transform">
+                  <span className="relative text-white group-hover:text-[#9C1CF3] tracking-wider">
+                    Get Started
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className=" text-zinc-800 dark:text-white text-base text-center font-medium leading-normal py-5">
+            © 2023 TaskFlow
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

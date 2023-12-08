@@ -12,7 +12,7 @@ export default function Foot() {
         <div className="w-full  hidden lg:block  ">
           <div className="flex flex-row p-10 justify-between w-full  ">
             <div className=" text-zinc-800 dark:text-white text-base font-medium leading-normal py-5">
-              © 2020 Wirefigma
+              © 2023 TaskFlow
             </div>
             <div className="flex flex-col justify-center">
               <div className=" px-5 py-[13px]  rounded-[5px] justify-center items-start gap-5 inline-flex ">
